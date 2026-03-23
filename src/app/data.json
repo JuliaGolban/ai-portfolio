@@ -1,0 +1,480 @@
+{
+  "about": {
+    "name": "Julia Golban",
+    "title": "AI Creator",
+    "bio_ua": "Я працюю на перетині штучного інтелекту та візуального мистецтва. Кожне зображення — свідомий акт: світло, настрій і концепція від промпту до пікселя. Базуюся в Києві.",
+    "bio_en": "I work at the intersection of artificial intelligence and visual art. Each image is a deliberate act — light, mood, and concept built from prompt to pixel. Based in Kyiv.",
+    "images": [
+      {
+        "src": "/portfolio/about-bw-1.png",
+        "caption": "B&W Studio"
+      },
+      {
+        "src": "/portfolio/about-golden.png",
+        "caption": "Golden Ball"
+      },
+      {
+        "src": "/portfolio/about-floral.png",
+        "caption": "Floral"
+      }
+    ]
+  },
+  "serviceCategories": [
+    {
+      "id": "personal-photo",
+      "icon": "✦",
+      "label_ua": "Персональна фотосесія",
+      "label_en": "Personal Photoshoot",
+      "desc_ua": "AI-портрети та образи з реальним характером. Три рівні — від знайомства з AI до повноцінної кінематографічної сесії.",
+      "desc_en": "AI portraits and editorials with real character. Three tiers — from an introduction to AI to a full cinematic session.",
+      "plans": [
+        {
+          "id": "personal-basic",
+          "title_ua": "Звичайна",
+          "title_en": "Standard",
+          "price": "$30",
+          "desc_ua": "одне зображення, створене з наміром\nвідправна точка для вашої візуальної присутності",
+          "desc_en": "one image, crafted with intention\na starting point for your visual presence",
+          "accent": false
+        },
+        {
+          "id": "personal-premium",
+          "title_ua": "Преміум",
+          "title_en": "Premium",
+          "price": "$55",
+          "desc_ua": "палітра вашого бренду, перекладена в настрій\nдетальна генерація з послідовною естетикою",
+          "desc_en": "your brand's palette, translated into mood\ndetailed generation with a consistent aesthetic",
+          "accent": false
+        },
+        {
+          "id": "personal-cinematic",
+          "title_ua": "Кінематографічна",
+          "title_en": "Cinematic",
+          "price": "$100",
+          "desc_ua": "повна творча режисура, один образ за раз\nколи візуал має щось сказати, а не просто гарно виглядати",
+          "desc_en": "full creative direction, one image at a time\nwhen the visual needs to say something, not just look good",
+          "accent": true
+        }
+      ]
+    },
+    {
+      "id": "ai-model-product",
+      "icon": "◈",
+      "label_ua": "AI модель + продукт",
+      "label_en": "AI Model + Product",
+      "desc_ua": "Реалістична AI-модель взаємодіє з вашим продуктом. Ідеально для beauty, fashion, lifestyle брендів.",
+      "desc_en": "A realistic AI model interacts with your product. Ideal for beauty, fashion, and lifestyle brands.",
+      "plans": [
+        {
+          "id": "model-mini",
+          "title_ua": "Mini",
+          "title_en": "Mini",
+          "price": "$80",
+          "desc_ua": "5 зображень · один настрій, готово до публікації",
+          "desc_en": "5 images · one mood, ready to launch",
+          "accent": false
+        },
+        {
+          "id": "model-full",
+          "title_ua": "Full",
+          "title_en": "Full",
+          "price": "$150",
+          "desc_ua": "8 зображень · із наративом і фокусом на бренд",
+          "desc_en": "8 images · with narrative, brand-focused storytelling",
+          "accent": false
+        },
+        {
+          "id": "model-campaign",
+          "title_ua": "Campaign",
+          "title_en": "Campaign",
+          "price": "$250",
+          "desc_ua": "15 зображень · із режисурою, настроєм і метою",
+          "desc_en": "15 images · with direction, mood, and purpose",
+          "accent": true
+        }
+      ]
+    },
+    {
+      "id": "product-still",
+      "icon": "◇",
+      "label_ua": "Предметна зйомка",
+      "label_en": "Product Still Life",
+      "desc_ua": "Косметика, ювелірка, товари — кожна поверхня і відблиск вивірені. Від мінімалізму до surreal editorial.",
+      "desc_en": "Cosmetics, jewelry, goods — every surface and reflection intentional. From minimalism to surreal editorial.",
+      "plans": [
+        {
+          "id": "still-single",
+          "title_ua": "Одиночний кадр",
+          "title_en": "Single Shot",
+          "price": "$40",
+          "desc_ua": "один герой · чистий фон або фактура\nготовий до e-commerce або соцмереж",
+          "desc_en": "one hero · clean background or texture\nready for e-commerce or social media",
+          "accent": false
+        },
+        {
+          "id": "still-series",
+          "title_ua": "Серія",
+          "title_en": "Series",
+          "price": "$120",
+          "desc_ua": "5–7 кадрів · різні ракурси, стилінг, кольори\nлінійка продуктів або сезонна колекція",
+          "desc_en": "5–7 shots · angles, styling, colour variations\nproduct line or seasonal collection",
+          "accent": true
+        },
+        {
+          "id": "still-surreal",
+          "title_ua": "Surreal Edit",
+          "title_en": "Surreal Edit",
+          "price": "$90",
+          "desc_ua": "продукт у неочікуваному контексті\nсюрреалізм + editorial для рекламних кампаній",
+          "desc_en": "product in unexpected context\nsurrealism + editorial for ad campaigns",
+          "accent": false
+        }
+      ]
+    },
+    {
+      "id": "other-images",
+      "icon": "○",
+      "label_ua": "Зображення інші",
+      "label_en": "Other Imagery",
+      "desc_ua": "Персонажі, інтер'єри, архітектура, концепт-арт — будь-який візуал під ваш запит.",
+      "desc_en": "Characters, interiors, architecture, concept art — any visual to match your brief.",
+      "plans": [
+        {
+          "id": "other-single",
+          "title_ua": "Одне зображення",
+          "title_en": "Single Image",
+          "price": "$30–$55",
+          "desc_ua": "залежно від складності та деталізації",
+          "desc_en": "depending on complexity and detail level",
+          "accent": false
+        },
+        {
+          "id": "other-series",
+          "title_ua": "Серія 5+",
+          "title_en": "Series 5+",
+          "price": "від $120",
+          "desc_ua": "єдина естетика, концепт і кольорова гама",
+          "desc_en": "unified aesthetic, concept, and colour palette",
+          "accent": false
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "icon": "▷",
+      "label_ua": "Відео",
+      "label_en": "Video",
+      "desc_ua": "Від продуктового лупу до кінематографічної серії. Reels, TikTok, fashion film.",
+      "desc_en": "From a product loop to a full cinematic series. Reels, TikTok, fashion film.",
+      "plans": [
+        {
+          "id": "video-loop",
+          "title_ua": "Product Loop",
+          "title_en": "Product Loop",
+          "price": "$80",
+          "desc_ua": "3–5 сек · безшовний луп для продукту або бренду",
+          "desc_en": "3–5 sec · seamless loop for product or brand",
+          "accent": false
+        },
+        {
+          "id": "video-reel",
+          "title_ua": "Reels / TikTok",
+          "title_en": "Reels / TikTok",
+          "price": "$150",
+          "desc_ua": "15–30 сек · кінематографічний монтаж з саунд-дизайном",
+          "desc_en": "15–30 sec · cinematic edit with sound design",
+          "accent": false
+        },
+        {
+          "id": "video-fashion",
+          "title_ua": "Fashion Film",
+          "title_en": "Fashion Film",
+          "price": "$300",
+          "desc_ua": "до 60 сек · режисура, розкадровка, колірна гама\nповноцінний branded content",
+          "desc_en": "up to 60 sec · direction, storyboard, colour grade\nfull branded content",
+          "accent": true
+        },
+        {
+          "id": "video-custom",
+          "title_ua": "Campaign Video",
+          "title_en": "Campaign Video",
+          "price": "За запитом",
+          "desc_ua": "великий проєкт · обговорюємо індивідуально",
+          "desc_en": "large project · discussed individually",
+          "accent": false
+        }
+      ]
+    },
+    {
+      "id": "ai-campaign",
+      "icon": "◉",
+      "label_ua": "AI Campaign",
+      "label_en": "AI Campaign",
+      "desc_ua": "Повний AI-продакшн для бренду: стратегія, концепт, зображення, відео — під ключ.",
+      "desc_en": "Full AI production for a brand: strategy, concept, imagery, video — end to end.",
+      "cta_ua": "Дивись приклад кампанії →",
+      "cta_en": "See campaign example →",
+      "plans": [
+        {
+          "id": "campaign-starter",
+          "title_ua": "Starter",
+          "title_en": "Starter",
+          "price": "$450",
+          "desc_ua": "концепт + мудборд + 10 зображень + 1 відео (15 сек)",
+          "desc_en": "concept + moodboard + 10 images + 1 video (15 sec)",
+          "accent": false
+        },
+        {
+          "id": "campaign-full",
+          "title_ua": "Full Campaign",
+          "title_en": "Full Campaign",
+          "price": "$900",
+          "desc_ua": "стратегія + 20 зображень + 2–3 відео + соціальний пакет",
+          "desc_en": "strategy + 20 images + 2–3 videos + social pack",
+          "accent": true
+        },
+        {
+          "id": "campaign-custom",
+          "title_ua": "Custom",
+          "title_en": "Custom",
+          "price": "За запитом",
+          "desc_ua": "масштабний проєкт · NDA за потреби",
+          "desc_en": "large-scale project · NDA available",
+          "accent": false
+        }
+      ]
+    }
+  ],
+  "additionalServices": {
+    "ua": [
+      {
+        "title": "Додаткове правлення",
+        "price": "$10",
+        "desc": "один раунд правок понад включені"
+      },
+      {
+        "title": "Rush Order",
+        "price": "+50%",
+        "desc": "пріоритетна черга, виконання за 48 год"
+      }
+    ],
+    "en": [
+      {
+        "title": "Extra Revision",
+        "price": "$10",
+        "desc": "one correction round beyond what's included"
+      },
+      {
+        "title": "Rush Order",
+        "price": "+50%",
+        "desc": "priority turn, ahead of the queue"
+      }
+    ]
+  },
+  "pricingNote": {
+    "ua": "Робота починається після погодження запиту та отримання передоплати 50%. Перше замовлення — знижка 30%.",
+    "en": "Work begins once the request is approved and 50% prepayment received. First order: −30% discount."
+  },
+  "campaign": {
+    "slug": "jean-darcel",
+    "cover": "/portfolio/jda-lipstick.png",
+    "title_ua": "Jean D'Arcel: повний AI-продакшн для beauty-бренду",
+    "title_en": "Jean D'Arcel: full AI production for a beauty brand",
+    "task_ua": "Jean D'Arcel — преміальний німецький beauty-бренд: розкіш, чуттєвість, жіночність. Завдання — створити серію кампанійних зображень для Valentine's Day та продуктових hero shots без традиційної фотосесії. Повністю AI, але так, щоб виглядало як editorial рівня Vogue.",
+    "task_en": "Jean D'Arcel is a premium German beauty brand: luxury, sensuality, femininity. The task — campaign images for Valentine's Day and product hero shots without a traditional photoshoot. Fully AI, editorial-quality.",
+    "solution_ua": "Замість одного промпту — пайплайн. Кожен кадр: концепт і кольорова гама → генерація у Midjourney + Flux → ретуш і колірна корекція. Продукт завжди точний: колір упаковки, матеріал, пропорції перевірялись на кожному кроці.",
+    "solution_en": "Instead of a single prompt — a pipeline. Each frame: concept and colour palette → generation in Midjourney + Flux → retouching and colour correction. Product always precise: packaging colour, material, proportions verified at each step.",
+    "result_ua": "15 фінальних зображень для digital-кампанії. Час виробництва — 4 дні замість 2–3 тижнів традиційної зйомки. Бюджет — у 6 разів менший за студійний продакшн.",
+    "result_en": "15 final images for digital campaign. Production time — 4 days vs 2–3 weeks of traditional shooting. Budget — 6× lower than studio production.",
+    "images": [
+      "/portfolio/jda-lipstick.jpg",
+      "/portfolio/jda-model.jpg",
+      "/portfolio/jda-cream.jpg",
+      "/portfolio/jda-val-1.jpg",
+      "/portfolio/jda-val-2.jpg",
+      "/portfolio/jda-val-3.jpg"
+    ],
+    "tools": ["Midjourney", "Nana Banana Pro", "Kling", "CapCut"],
+    "tags_ua": ["Beauty", "Valentine's", "Product", "Editorial"],
+    "tags_en": ["Beauty", "Valentine's", "Product", "Editorial"]
+  },
+  "portfolio": [
+    {
+      "id": "beauty",
+      "label_ua": "01 — Б'юті & Портрет",
+      "label_en": "01 — Beauty & Portrait",
+      "title_ua": "Людина\nв кадрі",
+      "title_en": "The Human\nin the Frame",
+      "desc_ua": "Крупнопланові кампанії, де шкіра, світло і тиша розповідають історію.",
+      "desc_en": "Close-up campaigns where skin, light, and silence tell the story.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/beauty-1.jpg",
+          "caption": "Beauty Campaign"
+        },
+        {
+          "src": "/portfolio/beauty-2.jpg",
+          "caption": "Skin Study"
+        },
+        {
+          "src": "/portfolio/beauty-3.jpg",
+          "caption": "Chiaroscuro"
+        }
+      ]
+    },
+    {
+      "id": "spring",
+      "label_ua": "02 — Весняна кампанія",
+      "label_en": "02 — Spring Campaign",
+      "title_ua": "Архітектура\nбажання",
+      "title_en": "Architecture\nof Desire",
+      "desc_ua": "AI-модель у брутальному просторі.",
+      "desc_en": "AI model in brutalist space.",
+      "layout": "grid-asymmetric",
+      "images": [
+        {
+          "src": "/portfolio/spring-1.jpg",
+          "caption": "Brutalist Space"
+        },
+        {
+          "src": "/portfolio/spring-2.jpg",
+          "caption": "Editorial Pose"
+        },
+        {
+          "src": "/portfolio/spring-bag.jpg",
+          "caption": "Bag Still Life"
+        },
+        {
+          "src": "/portfolio/spring-3.jpg",
+          "caption": "Campaign Detail"
+        },
+        {
+          "src": "/portfolio/spring-4.jpg",
+          "caption": "Architecture"
+        },
+        {
+          "src": "/portfolio/spring-5.jpg",
+          "caption": "Light Study"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "label_ua": "03 — Jean D'Arcel",
+      "label_en": "03 — Jean D'Arcel",
+      "title_ua": "Об'єкти\nбажання",
+      "title_en": "Objects\nof Desire",
+      "desc_ua": "Продуктовий сторітелінг для Jean D'Arcel.",
+      "desc_en": "Product storytelling for Jean D'Arcel.",
+      "layout": "grid-editorial",
+      "images": [
+        {
+          "src": "/portfolio/jda-lipstick.jpg",
+          "caption": "Lipstick Giant"
+        },
+        {
+          "src": "/portfolio/jda-model.jpg",
+          "caption": "Campaign Model"
+        },
+        {
+          "src": "/portfolio/jda-cream.jpg",
+          "caption": "Cream Hero"
+        },
+        {
+          "src": "/portfolio/jda-val-1.jpg",
+          "caption": "Valentine's I"
+        },
+        {
+          "src": "/portfolio/jda-val-2.jpg",
+          "caption": "Valentine's II"
+        },
+        {
+          "src": "/portfolio/jda-val-3.jpg",
+          "caption": "Valentine's III"
+        }
+      ]
+    },
+    {
+      "id": "cinematic",
+      "label_ua": "04 — Fashion Film",
+      "label_en": "04 — Fashion Film",
+      "title_ua": "Світло,\nПростір,\nРух",
+      "title_en": "Light,\nSpace,\nMotion",
+      "desc_ua": "Редакційна мода для брендів, що рухаються.",
+      "desc_en": "Editorial fashion for brands that move.",
+      "layout": "grid-cinema",
+      "images": [
+        {
+          "src": "/portfolio/fashion-gown.jpg",
+          "caption": "Golden Gown"
+        },
+        {
+          "src": "/portfolio/fashion-desert.jpg",
+          "caption": "Desert Crown"
+        },
+        {
+          "src": "/portfolio/jewelry-chain.jpg",
+          "caption": "Chain · Light"
+        },
+        {
+          "src": "/portfolio/jewelry-ring.jpg",
+          "caption": "Gold Ring · Macro"
+        },
+        {
+          "src": "/portfolio/fashion-2.jpg",
+          "caption": "Silhouette"
+        },
+        {
+          "src": "/portfolio/fashion-3.jpg",
+          "caption": "Fabric in Motion"
+        },
+        {
+          "src": "/portfolio/fashion-4.jpg",
+          "caption": "Couture Detail"
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "label_ua": "05 — Особисті сесії",
+      "label_en": "05 — Personal Sessions",
+      "title_ua": "Присутність\nпоза\nкадром",
+      "title_en": "Presence\nBeyond\nFrame",
+      "desc_ua": "Ч/б студійні портрети, бежевий костюм, зелена сукня.",
+      "desc_en": "B&W studio portraits, beige suit, green gown.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/personal-bw-1.jpg",
+          "caption": "B&W Studio I"
+        },
+        {
+          "src": "/portfolio/personal-bw-2.jpg",
+          "caption": "B&W Studio II"
+        },
+        {
+          "src": "/portfolio/personal-golden.jpg",
+          "caption": "Beige · Golden Ball"
+        },
+        {
+          "src": "/portfolio/personal-green.jpg",
+          "caption": "Green Gown"
+        },
+        {
+          "src": "/portfolio/personal-portrait-1.jpg",
+          "caption": "Portrait I"
+        },
+        {
+          "src": "/portfolio/personal-portrait-2.jpg",
+          "caption": "Portrait II"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "instagram": "https://instagram.com/juliagolban",
+    "telegram": "https://t.me/juliagolban",
+    "email": "julia.j.shcherban@gmail.com"
+  }
+}
