@@ -5,7 +5,9 @@ export const AboutSection = styled.section`
   padding: 140px 24px;
   max-width: 1400px;
   margin: 0 auto;
-  @media (min-width: 768px) { padding: 160px 80px; }
+  @media (min-width: 768px) {
+    padding: 160px 80px;
+  }
 `;
 
 export const AboutLayout = styled.div`
@@ -28,7 +30,7 @@ export const AboutSubtitle = styled.p`
   font-family: 'Jost', sans-serif;
   font-weight: 200;
   font-size: clamp(0.85rem, 1.4vw, 1rem);
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.3);
   letter-spacing: 0.06em;
   margin-top: 4px;
 `;
@@ -38,7 +40,7 @@ export const AboutBio = styled.p`
   font-weight: 300;
   letter-spacing: 0.04em;
   line-height: 1.9;
-  color: rgba(255,255,255,0.36);
+  color: rgba(255, 255, 255, 0.36);
   max-width: 440px;
   margin-top: 20px;
 `;
@@ -58,20 +60,25 @@ export const SocialLink = styled.a`
   font-weight: 300;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.45);
   transition: color 0.3s;
   &::before {
     content: '';
     display: block;
     width: 20px;
     height: 1px;
-    background: rgba(255,255,255,0.12);
-    transition: width 0.3s, background 0.3s;
+    background: rgba(255, 255, 255, 0.12);
+    transition:
+      width 0.3s,
+      background 0.3s;
     flex-shrink: 0;
   }
   &:hover {
-    color: rgba(255,255,255,0.72);
-    &::before { width: 36px; background: rgba(255,255,255,0.35); }
+    color: rgba(255, 255, 255, 0.72);
+    &::before {
+      width: 36px;
+      background: rgba(255, 255, 255, 0.35);
+    }
   }
 `;
 

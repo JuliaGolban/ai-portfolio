@@ -6,18 +6,375 @@
     "bio_en": "I work at the intersection of artificial intelligence and visual art. Each image is a deliberate act — light, mood, and concept built from prompt to pixel. Based in Kyiv.",
     "images": [
       {
-        "src": "/portfolio/about-bw-1.png",
-        "caption": "B&W Studio"
+        "src": "/portfolio/about-1.png",
+        "caption": "Studio"
       },
       {
-        "src": "/portfolio/about-golden.png",
-        "caption": "Golden Ball"
+        "src": "/portfolio/about-2.png",
+        "caption": "Editorial"
       },
       {
-        "src": "/portfolio/about-floral.png",
-        "caption": "Floral"
+        "src": "/portfolio/about-3.png",
+        "caption": "Detail"
+      },
+      {
+        "src": "/portfolio/about-4.png",
+        "caption": "Mood"
       }
     ]
+  },
+  "portfolio": [
+    {
+      "id": "personal-photo",
+      "label_ua": "01 — Персональна фотосесія",
+      "label_en": "01 — Personal Photoshoot",
+      "title_ua": "Образ,\nщо говорить",
+      "title_en": "The Image\nThat Speaks",
+      "desc_ua": "Портрети та editorial-образи для особистого бренду. Від мінімалістичних студійних кадрів до кінематографічного настрою.",
+      "desc_en": "Portraits and editorial images for personal branding. From minimal studio frames to cinematic mood.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/personal-photo-1.png",
+          "caption": "Portrait"
+        },
+        {
+          "src": "/portfolio/personal-photo-2.png",
+          "caption": "Studio"
+        },
+        {
+          "src": "/portfolio/personal-photo-3.png",
+          "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/personal-photo-4.png",
+          "caption": "Editorial"
+        },
+        {
+          "src": "/portfolio/personal-photo-5.png",
+          "caption": "Character"
+        },
+        {
+          "src": "/portfolio/personal-photo-6.png",
+          "caption": "Cinematic"
+        }
+      ]
+    },
+    {
+      "id": "ai-model-product",
+      "label_ua": "02 — AI модель + продукт",
+      "label_en": "02 — AI Model + Product",
+      "title_ua": "Модель\nі продукт",
+      "title_en": "Model\n& Product",
+      "desc_ua": "Реалістична AI-модель у взаємодії з вашим продуктом. Для beauty, fashion та lifestyle брендів.",
+      "desc_en": "Realistic AI model interacting with your product. For beauty, fashion and lifestyle brands.",
+      "layout": "grid-asymmetric",
+      "images": [
+        {
+          "src": "/portfolio/ai-model-1.png",
+          "caption": "Campaign"
+        },
+        {
+          "src": "/portfolio/ai-model-2.png",
+          "caption": "Editorial"
+        },
+        {
+          "src": "/portfolio/ai-model-3.png",
+          "caption": "Product"
+        },
+        {
+          "src": "/portfolio/ai-model-4.png",
+          "caption": "Character"
+        },
+        {
+          "src": "/portfolio/ai-model-5.png",
+          "caption": "Detail"
+        },
+        {
+          "src": "/portfolio/ai-model-6.png",
+          "caption": "Story"
+        },
+        {
+          "src": "/portfolio/ai-model-7.png",
+          "caption": "Cinematic"
+        },
+        {
+          "src": "/portfolio/ai-model-8.png",
+          "caption": "Portrait"
+        },
+        {
+          "src": "/portfolio/ai-model-9.png",
+          "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/ai-model-10.png",
+          "caption": "Lifestyle"
+        },
+        {
+          "src": "/portfolio/ai-model-11.png",
+          "caption": "Ritual"
+        }
+      ]
+    },
+    {
+      "id": "product-still",
+      "label_ua": "03 — Предметна зйомка",
+      "label_en": "03 — Product Still Life",
+      "title_ua": "Кожна\nдеталь важлива",
+      "title_en": "Every\nDetail Counts",
+      "desc_ua": "Косметика, ювелірка, товари — від мінімалістичного hero shot до surreal editorial. Кожна поверхня і відблиск — навмисні.",
+      "desc_en": "Cosmetics, jewelry, goods — from minimal hero shot to surreal editorial. Every surface and reflection — intentional.",
+      "layout": "grid-editorial",
+      "images": [
+        {
+          "src": "/portfolio/product-1.png",
+          "caption": "Hero Shot"
+        },
+        {
+          "src": "/portfolio/product-2.png",
+          "caption": "Texture"
+        },
+        {
+          "src": "/portfolio/product-3.png",
+          "caption": "Macro"
+        },
+        {
+          "src": "/portfolio/product-4.png",
+          "caption": "Composition"
+        },
+        {
+          "src": "/portfolio/product-5.png",
+          "caption": "Surreal"
+        },
+        {
+          "src": "/portfolio/product-6.png",
+          "caption": "Idea"
+        },
+        {
+          "src": "/portfolio/product-7.png",
+          "caption": "Topic"
+        },
+        {
+          "src": "/portfolio/product-8.png",
+          "caption": "Brand Face"
+        },
+        {
+          "src": "/portfolio/product-9.png",
+          "caption": "Series"
+        },
+        {
+          "src": "/portfolio/product-10.png",
+          "caption": "New look"
+        }
+      ]
+    },
+    {
+      "id": "beauty",
+      "label_ua": "04 — Б'юті",
+      "label_en": "04 — Beauty",
+      "title_ua": "Шкіра,\nсвітло, тиша",
+      "title_en": "Skin,\nLight, Silence",
+      "desc_ua": "Крупнопланові beauty-кадри, де деталь стає головним героєм. Для косметичних брендів, скінкеру та парфумів.",
+      "desc_en": "Close-up beauty frames where the detail becomes the hero. For cosmetic brands, skincare and perfume.",
+      "layout": "grid-cinema",
+      "images": [
+        {
+          "src": "/portfolio/beauty-1.png",
+          "caption": "Skin"
+        },
+        {
+          "src": "/portfolio/beauty-2.png",
+          "caption": "Portrait"
+        },
+        {
+          "src": "/portfolio/beauty-3.png",
+          "caption": "Detail"
+        },
+        {
+          "src": "/portfolio/beauty-4.png",
+          "caption": "Color"
+        },
+        {
+          "src": "/portfolio/beauty-5.png",
+          "caption": "Space"
+        },
+        {
+          "src": "/portfolio/beauty-6.png",
+          "caption": "Editorial"
+        },
+        {
+          "src": "/portfolio/beauty-7.png",
+          "caption": "Campaign"
+        },
+        {
+          "src": "/portfolio/beauty-8.png",
+          "caption": "UGC"
+        },
+        {
+          "src": "/portfolio/beauty-9.png",
+          "caption": "Macro"
+        }
+      ]
+    },
+    {
+      "id": "wellness",
+      "label_ua": "05 — Wellness",
+      "label_en": "05 — Wellness",
+      "title_ua": "Спокій\nу кадрі",
+      "title_en": "Calm\nin Frame",
+      "desc_ua": "Зображення для wellness, spa та lifestyle брендів. Тепле світло, природні текстури, відчуття присутності.",
+      "desc_en": "Imagery for wellness, spa and lifestyle brands. Warm light, natural textures, a sense of presence.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/wellness-1.png",
+          "caption": "Morning"
+        },
+        {
+          "src": "/portfolio/wellness-2.png",
+          "caption": "Ritual"
+        },
+        {
+          "src": "/portfolio/wellness-3.png",
+          "caption": "Calm"
+        },
+        {
+          "src": "/portfolio/wellness-4.png",
+          "caption": "Detail"
+        },
+        {
+          "src": "/portfolio/wellness-5.png",
+          "caption": "Light"
+        },
+        {
+          "src": "/portfolio/wellness-6.png",
+          "caption": "Product"
+        },
+        {
+          "src": "/portfolio/wellness-7.png",
+          "caption": "Mood"
+        }
+      ]
+    },
+    {
+      "id": "food-photo",
+      "label_ua": "06 — Фуд-фото",
+      "label_en": "06 — Food Photography",
+      "title_ua": "Смак\nу кадрі",
+      "title_en": "Taste\nin Frame",
+      "desc_ua": "Їжа як мистецтво. Ресторанна подача, flat lay, food styling — апетитно і стильно для меню, соцмереж та реклами.",
+      "desc_en": "Food as art. Restaurant plating, flat lay, food styling — appetizing and editorial for menus, social media and advertising.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/food-1.png",
+          "caption": "Hero"
+        },
+        {
+          "src": "/portfolio/food-2.png",
+          "caption": "Composition"
+        },
+        {
+          "src": "/portfolio/food-3.png",
+          "caption": "Detail"
+        },
+        {
+          "src": "/portfolio/food-4.png",
+          "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/food-5.png",
+          "caption": "Splash"
+        },
+        {
+          "src": "/portfolio/food-6.png",
+          "caption": "Lifestyle"
+        }
+      ]
+    },
+    {
+      "id": "dark-editorial",
+      "label_ua": "07 — Темне редакційне",
+      "label_en": "07 — Dark Editorial",
+      "title_ua": "Поза\nкатегоріями",
+      "title_en": "Beyond\nCategories",
+      "desc_ua": "Персонажі, архітектура, інтер'єри, концепт-арт, обкладинки. Будь-який візуал під ваш унікальний запит.",
+      "desc_en": "Characters, architecture, interiors, concept art, covers. Any visual to match your unique brief.",
+      "layout": "grid-3",
+      "images": [
+        {
+          "src": "/portfolio/dark-1.png",
+          "caption": "Dark chiaroscuro"
+        },
+        {
+          "src": "/portfolio/dark-2.png",
+          "caption": "Dark jewelry"
+        },
+        {
+          "src": "/portfolio/dark-3.png",
+          "caption": "Interior"
+        },
+        {
+          "src": "/portfolio/dark-4.png",
+          "caption": "Character"
+        },
+        {
+          "src": "/portfolio/dark-5.png",
+          "caption": "Abstract"
+        },
+        {
+          "src": "/portfolio/dark-6.png",
+          "caption": "Editorial"
+        },
+        {
+          "src": "/portfolio/dark-7.png",
+          "caption": "Editorial"
+        },
+        {
+          "src": "/portfolio/dark-8.png",
+          "caption": "Dark beauty"
+        },
+        {
+          "src": "/portfolio/dark-9.png",
+          "caption": "Submerged"
+        },
+        {
+          "src": "/portfolio/dark-10.png",
+          "caption": "Mood"
+        }
+      ]
+    }
+  ],
+  "campaign": {
+    "slug": "jaguar-rebreath",
+    "cover": "/portfolio/jaguar/jaguar-cover.png",
+    "title_ua": "Jaguar Rebreath: AI-кампанія для глобального ребрендингу",
+    "title_en": "Jaguar Rebreath: AI campaign for a global rebrand",
+    "task_ua": "Jaguar оголосив про радикальний ребрендинг — відмову від класичної спадщини на користь ультра-сучасної електричної ери. Нова айдентика «Copy Nothing» поставила під сумнів усе: форму, колір, мову. Завдання — створити серію campaign-зображень, які передають дух трансформації: між старим і новим, між машиною і мистецтвом, між брендом і почуттям.",
+    "task_en": "Jaguar announced a radical rebrand — abandoning classic heritage in favour of an ultra-modern electric era. The new 'Copy Nothing' identity challenged everything: form, colour, language. The task — create a series of campaign images that capture the spirit of transformation: between old and new, between machine and art, between brand and feeling.",
+    "solution_ua": "Замість прямої демонстрації автомобіля — метафора. Образи будувалися навколо ідеї «вдиху» (rebreath): момент між видихом старого і вдихом нового. Колірна гама: глибокий чорний, електричний рожевий, платиновий білий — кольори нової Jaguar-палітри. AI дозволив дослідити абстрактні форми, що неможливо зняти в реальному продакшні: рідкий метал, що трансформується, тканини у стані невагомості, геометрія на межі розпаду.",
+    "solution_en": "Instead of a direct car demonstration — a metaphor. The imagery was built around the idea of 'rebreath': the moment between exhaling the old and inhaling the new. Colour palette: deep black, electric pink, platinum white — the colours of the new Jaguar identity. AI allowed exploration of abstract forms impossible to shoot in real production: liquid metal transforming, fabrics in weightlessness, geometry on the edge of dissolution.",
+    "idea_ua": "«Copy Nothing» — не просто слоган, а режисерська установка. Кожен кадр мав бути впізнаваним як Jaguar, але не схожим ні на що, що бренд робив раніше. Ніякого капота, ніяких коліс — тільки відчуття швидкості, матеріальності та сміливості. AI-інструменти дозволили знаходити форми на перетині fashion editorial і automotive art — там, де жоден традиційний продакшн не міг би опинитися за бюджет кампанії.",
+    "idea_en": "'Copy Nothing' — not just a slogan, but a directorial premise. Every frame had to be recognisably Jaguar, yet unlike anything the brand had done before. No bonnet, no wheels — only the feeling of speed, materiality and boldness. AI tools allowed finding forms at the intersection of fashion editorial and automotive art — where no traditional production could arrive within a campaign budget.",
+    "result_ua": "12 фінальних hero-зображень для digital. Додатково — серія motion-loop для Reels та TikTok. Час виробництва — 5 днів. Жодного реального автомобіля у кадрі, але впізнаваність бренду — 100%.",
+    "result_en": "12 final hero images for digital. Additionally — a motion-loop series for Reels and TikTok. Production time — 5 days. No real car in the frame, yet 100% brand recognisability.",
+    "images": [
+      "/portfolio/jaguar/jaguar-1.png",
+      "/portfolio/jaguar/jaguar-2.png",
+      "/portfolio/jaguar/jaguar-3.png",
+      "/portfolio/jaguar/jaguar-4.png",
+      "/portfolio/jaguar/jaguar-5.png",
+      "/portfolio/jaguar/jaguar-6.png"
+    ],
+    "tools": [
+      "Midjourney v7",
+      "Nano Banana Pro/ 2",
+      "Kling 2.6/ 3",
+      "Photopea",
+      "CapCut"
+    ],
+    "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
+    "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"]
   },
   "serviceCategories": [
     {
@@ -25,8 +382,8 @@
       "icon": "✦",
       "label_ua": "Персональна фотосесія",
       "label_en": "Personal Photoshoot",
-      "desc_ua": "AI-портрети та образи з реальним характером. Три рівні — від знайомства з AI до повноцінної кінематографічної сесії.",
-      "desc_en": "AI portraits and editorials with real character. Three tiers — from an introduction to AI to a full cinematic session.",
+      "desc_ua": "AI-портрети та editorial-образи з реальним характером. Три рівні — від знайомства з AI до повноцінної кінематографічної сесії.",
+      "desc_en": "AI portraits and editorial images with real character. Three tiers — from an introduction to AI to a full cinematic session.",
       "plans": [
         {
           "id": "personal-basic",
@@ -63,7 +420,7 @@
       "label_ua": "AI модель + продукт",
       "label_en": "AI Model + Product",
       "desc_ua": "Реалістична AI-модель взаємодіє з вашим продуктом. Ідеально для beauty, fashion, lifestyle брендів.",
-      "desc_en": "A realistic AI model interacts with your product. Ideal for beauty, fashion, and lifestyle brands.",
+      "desc_en": "A realistic AI model interacts with your product. Ideal for beauty, fashion and lifestyle brands.",
       "plans": [
         {
           "id": "model-mini",
@@ -89,7 +446,7 @@
           "title_en": "Campaign",
           "price": "$250",
           "desc_ua": "15 зображень · із режисурою, настроєм і метою",
-          "desc_en": "15 images · with direction, mood, and purpose",
+          "desc_en": "15 images · with direction, mood and purpose",
           "accent": true
         }
       ]
@@ -136,8 +493,8 @@
       "icon": "○",
       "label_ua": "Зображення інші",
       "label_en": "Other Imagery",
-      "desc_ua": "Персонажі, інтер'єри, архітектура, концепт-арт — будь-який візуал під ваш запит.",
-      "desc_en": "Characters, interiors, architecture, concept art — any visual to match your brief.",
+      "desc_ua": "Персонажі, інтер'єри, архітектура, концепт-арт, обкладинки — будь-який візуал під ваш запит.",
+      "desc_en": "Characters, interiors, architecture, concept art, covers — any visual to match your brief.",
       "plans": [
         {
           "id": "other-single",
@@ -154,7 +511,7 @@
           "title_en": "Series 5+",
           "price": "від $120",
           "desc_ua": "єдина естетика, концепт і кольорова гама",
-          "desc_en": "unified aesthetic, concept, and colour palette",
+          "desc_en": "unified aesthetic, concept and colour palette",
           "accent": false
         }
       ]
@@ -212,8 +569,8 @@
       "label_en": "AI Campaign",
       "desc_ua": "Повний AI-продакшн для бренду: стратегія, концепт, зображення, відео — під ключ.",
       "desc_en": "Full AI production for a brand: strategy, concept, imagery, video — end to end.",
-      "cta_ua": "Дивись приклад кампанії →",
-      "cta_en": "See campaign example →",
+      "cta_ua": "Дивись кейс Jaguar →",
+      "cta_en": "See Jaguar case →",
       "plans": [
         {
           "id": "campaign-starter",
@@ -275,203 +632,6 @@
     "ua": "Робота починається після погодження запиту та отримання передоплати 50%. Перше замовлення — знижка 30%.",
     "en": "Work begins once the request is approved and 50% prepayment received. First order: −30% discount."
   },
-  "campaign": {
-    "slug": "jean-darcel",
-    "cover": "/portfolio/jda-lipstick.png",
-    "title_ua": "Jean D'Arcel: повний AI-продакшн для beauty-бренду",
-    "title_en": "Jean D'Arcel: full AI production for a beauty brand",
-    "task_ua": "Jean D'Arcel — преміальний німецький beauty-бренд: розкіш, чуттєвість, жіночність. Завдання — створити серію кампанійних зображень для Valentine's Day та продуктових hero shots без традиційної фотосесії. Повністю AI, але так, щоб виглядало як editorial рівня Vogue.",
-    "task_en": "Jean D'Arcel is a premium German beauty brand: luxury, sensuality, femininity. The task — campaign images for Valentine's Day and product hero shots without a traditional photoshoot. Fully AI, editorial-quality.",
-    "solution_ua": "Замість одного промпту — пайплайн. Кожен кадр: концепт і кольорова гама → генерація у Midjourney + Flux → ретуш і колірна корекція. Продукт завжди точний: колір упаковки, матеріал, пропорції перевірялись на кожному кроці.",
-    "solution_en": "Instead of a single prompt — a pipeline. Each frame: concept and colour palette → generation in Midjourney + Flux → retouching and colour correction. Product always precise: packaging colour, material, proportions verified at each step.",
-    "result_ua": "15 фінальних зображень для digital-кампанії. Час виробництва — 4 дні замість 2–3 тижнів традиційної зйомки. Бюджет — у 6 разів менший за студійний продакшн.",
-    "result_en": "15 final images for digital campaign. Production time — 4 days vs 2–3 weeks of traditional shooting. Budget — 6× lower than studio production.",
-    "images": [
-      "/portfolio/jda-lipstick.jpg",
-      "/portfolio/jda-model.jpg",
-      "/portfolio/jda-cream.jpg",
-      "/portfolio/jda-val-1.jpg",
-      "/portfolio/jda-val-2.jpg",
-      "/portfolio/jda-val-3.jpg"
-    ],
-    "tools": ["Midjourney", "Nana Banana Pro", "Kling", "CapCut"],
-    "tags_ua": ["Beauty", "Valentine's", "Product", "Editorial"],
-    "tags_en": ["Beauty", "Valentine's", "Product", "Editorial"]
-  },
-  "portfolio": [
-    {
-      "id": "beauty",
-      "label_ua": "01 — Б'юті & Портрет",
-      "label_en": "01 — Beauty & Portrait",
-      "title_ua": "Людина\nв кадрі",
-      "title_en": "The Human\nin the Frame",
-      "desc_ua": "Крупнопланові кампанії, де шкіра, світло і тиша розповідають історію.",
-      "desc_en": "Close-up campaigns where skin, light, and silence tell the story.",
-      "layout": "grid-3",
-      "images": [
-        {
-          "src": "/portfolio/beauty-1.jpg",
-          "caption": "Beauty Campaign"
-        },
-        {
-          "src": "/portfolio/beauty-2.jpg",
-          "caption": "Skin Study"
-        },
-        {
-          "src": "/portfolio/beauty-3.jpg",
-          "caption": "Chiaroscuro"
-        }
-      ]
-    },
-    {
-      "id": "spring",
-      "label_ua": "02 — Весняна кампанія",
-      "label_en": "02 — Spring Campaign",
-      "title_ua": "Архітектура\nбажання",
-      "title_en": "Architecture\nof Desire",
-      "desc_ua": "AI-модель у брутальному просторі.",
-      "desc_en": "AI model in brutalist space.",
-      "layout": "grid-asymmetric",
-      "images": [
-        {
-          "src": "/portfolio/spring-1.jpg",
-          "caption": "Brutalist Space"
-        },
-        {
-          "src": "/portfolio/spring-2.jpg",
-          "caption": "Editorial Pose"
-        },
-        {
-          "src": "/portfolio/spring-bag.jpg",
-          "caption": "Bag Still Life"
-        },
-        {
-          "src": "/portfolio/spring-3.jpg",
-          "caption": "Campaign Detail"
-        },
-        {
-          "src": "/portfolio/spring-4.jpg",
-          "caption": "Architecture"
-        },
-        {
-          "src": "/portfolio/spring-5.jpg",
-          "caption": "Light Study"
-        }
-      ]
-    },
-    {
-      "id": "brand",
-      "label_ua": "03 — Jean D'Arcel",
-      "label_en": "03 — Jean D'Arcel",
-      "title_ua": "Об'єкти\nбажання",
-      "title_en": "Objects\nof Desire",
-      "desc_ua": "Продуктовий сторітелінг для Jean D'Arcel.",
-      "desc_en": "Product storytelling for Jean D'Arcel.",
-      "layout": "grid-editorial",
-      "images": [
-        {
-          "src": "/portfolio/jda-lipstick.jpg",
-          "caption": "Lipstick Giant"
-        },
-        {
-          "src": "/portfolio/jda-model.jpg",
-          "caption": "Campaign Model"
-        },
-        {
-          "src": "/portfolio/jda-cream.jpg",
-          "caption": "Cream Hero"
-        },
-        {
-          "src": "/portfolio/jda-val-1.jpg",
-          "caption": "Valentine's I"
-        },
-        {
-          "src": "/portfolio/jda-val-2.jpg",
-          "caption": "Valentine's II"
-        },
-        {
-          "src": "/portfolio/jda-val-3.jpg",
-          "caption": "Valentine's III"
-        }
-      ]
-    },
-    {
-      "id": "cinematic",
-      "label_ua": "04 — Fashion Film",
-      "label_en": "04 — Fashion Film",
-      "title_ua": "Світло,\nПростір,\nРух",
-      "title_en": "Light,\nSpace,\nMotion",
-      "desc_ua": "Редакційна мода для брендів, що рухаються.",
-      "desc_en": "Editorial fashion for brands that move.",
-      "layout": "grid-cinema",
-      "images": [
-        {
-          "src": "/portfolio/fashion-gown.jpg",
-          "caption": "Golden Gown"
-        },
-        {
-          "src": "/portfolio/fashion-desert.jpg",
-          "caption": "Desert Crown"
-        },
-        {
-          "src": "/portfolio/jewelry-chain.jpg",
-          "caption": "Chain · Light"
-        },
-        {
-          "src": "/portfolio/jewelry-ring.jpg",
-          "caption": "Gold Ring · Macro"
-        },
-        {
-          "src": "/portfolio/fashion-2.jpg",
-          "caption": "Silhouette"
-        },
-        {
-          "src": "/portfolio/fashion-3.jpg",
-          "caption": "Fabric in Motion"
-        },
-        {
-          "src": "/portfolio/fashion-4.jpg",
-          "caption": "Couture Detail"
-        }
-      ]
-    },
-    {
-      "id": "personal",
-      "label_ua": "05 — Особисті сесії",
-      "label_en": "05 — Personal Sessions",
-      "title_ua": "Присутність\nпоза\nкадром",
-      "title_en": "Presence\nBeyond\nFrame",
-      "desc_ua": "Ч/б студійні портрети, бежевий костюм, зелена сукня.",
-      "desc_en": "B&W studio portraits, beige suit, green gown.",
-      "layout": "grid-3",
-      "images": [
-        {
-          "src": "/portfolio/personal-bw-1.jpg",
-          "caption": "B&W Studio I"
-        },
-        {
-          "src": "/portfolio/personal-bw-2.jpg",
-          "caption": "B&W Studio II"
-        },
-        {
-          "src": "/portfolio/personal-golden.jpg",
-          "caption": "Beige · Golden Ball"
-        },
-        {
-          "src": "/portfolio/personal-green.jpg",
-          "caption": "Green Gown"
-        },
-        {
-          "src": "/portfolio/personal-portrait-1.jpg",
-          "caption": "Portrait I"
-        },
-        {
-          "src": "/portfolio/personal-portrait-2.jpg",
-          "caption": "Portrait II"
-        }
-      ]
-    }
-  ],
   "contact": {
     "instagram": "https://instagram.com/juliagolban",
     "telegram": "https://t.me/juliagolban",

@@ -46,7 +46,7 @@ export const SectionLabel = styled.p`
   font-weight: 300;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 24px;
 `;
 
@@ -65,7 +65,7 @@ export const SectionDesc = styled.p`
   font-weight: 300;
   letter-spacing: 0.04em;
   line-height: 1.9;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.42);
   max-width: 360px;
   margin-top: 16px;
 `;
@@ -128,7 +128,7 @@ export const CursorDot = styled(motion.div)`
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 999;

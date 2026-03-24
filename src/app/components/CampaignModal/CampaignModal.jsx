@@ -9,8 +9,8 @@ import {
 } from './CampaignModal.styled';
 
 const T = {
-  ua: { task: 'Завдання', solution: 'Рішення', result: 'Результат', tools: 'Інструменти', order: 'Замовити схожий проєкт →' },
-  en: { task: 'Task',     solution: 'Solution', result: 'Result',    tools: 'Tools',        order: 'Order a similar project →' },
+  ua: { task: 'Завдання', solution: 'Рішення', idea: 'Ідея', result: 'Результат', tools: 'Інструменти', order: 'Замовити схожий проєкт →' },
+  en: { task: 'Task',     solution: 'Solution', idea: 'Idea', result: 'Result',    tools: 'Tools',        order: 'Order a similar project →' },
 };
 
 export default function CampaignModal({ open, onClose, campaign, lang }) {
@@ -60,6 +60,13 @@ export default function CampaignModal({ open, onClose, campaign, lang }) {
               <BlockLabel>{t.solution}</BlockLabel>
               <BlockText>{campaign[`solution_${lang}`]}</BlockText>
             </div>
+
+            {campaign[`idea_${lang}`] && (
+              <div style={{ marginBottom: 36 }}>
+                <BlockLabel>{t.idea}</BlockLabel>
+                <BlockText>{campaign[`idea_${lang}`]}</BlockText>
+              </div>
+            )}
 
             <ImageGrid>
               {campaign.images.map(src => (
