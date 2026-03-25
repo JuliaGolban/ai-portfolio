@@ -72,9 +72,16 @@ export const SectionDesc = styled.p`
 
 export const Divider = styled.div`
   width: 1px;
-  height: 80px;
+  height: 40px;
   background: rgba(255, 255, 255, 0.07);
   margin: 0 auto 120px;
+
+  @media (min-width: 768px) {
+    padding: 0 80px 60px;
+  }
+  @media (min-width: 1280px) {
+    padding: 0 80px 80px;
+  }
 `;
 
 export const ImageFrame = styled(motion.div)`

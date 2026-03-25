@@ -343,6 +343,61 @@
           "caption": "Mood"
         }
       ]
+    },
+    {
+      "id": "video-animations",
+      "label_ua": "08 — Відео та анімації",
+      "label_en": "08 — Video & Animations",
+      "title_ua": "Рух,\nщо захоплює",
+      "title_en": "Motion\nThat Captivates",
+      "desc_ua": "Короткі відео для Reels та TikTok, відео з ефектами, fashion film, продуктові лупи. AI-анімація у кожному кадрі.",
+      "desc_en": "Short videos for Reels and TikTok, effect videos, fashion film, product loops. AI motion in every frame.",
+      "layout": "grid-video",
+      "images": [],
+      "videos": [
+        {
+          "src": "/portfolio/video/fashion-editorial.mp4",
+          "poster": "/portfolio/video/fashion-editorial-poster.jpg",
+          "caption": "Fashion Editorial",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/man-portrait.mp4",
+          "poster": "/portfolio/video/man-portrait-poster.jpg",
+          "caption": "Portrait · Effect",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/perfume-splash.mp4",
+          "poster": "/portfolio/video/perfume-splash-poster.jpg",
+          "caption": "Product Loop",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/kochut.mp4",
+          "poster": "/portfolio/video/kochut-poster.jpg",
+          "caption": "Brand Campaign",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/mood-loop.mp4",
+          "poster": "/portfolio/video/mood-loop-poster.jpg",
+          "caption": "Mood Loop",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/color-grade.mp4",
+          "poster": "/portfolio/video/color-grade-poster.jpg",
+          "caption": "Color Grade",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/smile-effect.mp4",
+          "poster": "/portfolio/video/smile-effect-poster.jpg",
+          "caption": "Effect · Smile",
+          "ratio": "9:16"
+        }
+      ]
     }
   ],
   "campaign": {
@@ -373,8 +428,18 @@
       "Photopea",
       "CapCut"
     ],
-    "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
-    "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"]
+    "tags_ua": [
+      "Automotive",
+      "Rebranding",
+      "Editorial",
+      "Motion"
+    ],
+    "tags_en": [
+      "Automotive",
+      "Rebranding",
+      "Editorial",
+      "Motion"
+    ]
   },
   "serviceCategories": [
     {
@@ -517,13 +582,22 @@
       ]
     },
     {
-      "id": "video",
-      "icon": "▷",
-      "label_ua": "Відео",
-      "label_en": "Video",
-      "desc_ua": "Від продуктового лупу до кінематографічної серії. Reels, TikTok, fashion film.",
-      "desc_en": "From a product loop to a full cinematic series. Reels, TikTok, fashion film.",
+      "id": "video-animations",
+      "icon": "◎",
+      "label_ua": "Відео та анімації",
+      "label_en": "Video & Animations",
+      "desc_ua": "Короткі відео для Reels, TikTok, відео з AI-ефектами, продуктові лупи, fashion film. Від 3 секунд до повноцінного branded content.",
+      "desc_en": "Short videos for Reels, TikTok, AI-effect videos, product loops, fashion film. From 3 seconds to full branded content.",
       "plans": [
+        {
+          "id": "video-effect",
+          "title_ua": "Відео з ефектом",
+          "title_en": "Effect Video",
+          "price": "$40",
+          "desc_ua": "одне відео з AI-ефектом · трансформація, анімація обличчя, об'єкту",
+          "desc_en": "one video with AI effect · transformation, face or object animation",
+          "accent": false
+        },
         {
           "id": "video-loop",
           "title_ua": "Product Loop",

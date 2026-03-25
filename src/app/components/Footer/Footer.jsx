@@ -1,0 +1,33 @@
+'use client';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const FooterWrap = styled.footer`
+  padding: 32px 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.1);
+  @media (max-width: 600px) { padding: 32px 24px; }
+`;
+
+export default function Footer({ lang, t }) {
+  return (
+    <FooterWrap>
+      <span>Julia Golban © 2026</span>
+      <span>{t.tagline}</span>
+      <span>{t.city}</span>
+    </FooterWrap>
+  );
+}
+
+Footer.propTypes = {
+  lang: PropTypes.string.isRequired,
+  t:    PropTypes.object.isRequired,
+};

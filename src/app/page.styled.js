@@ -368,10 +368,13 @@ export const AboutImgSide = styled(ImageFrame)`
 
 // ─── Portfolio
 export const PortfolioSection = styled.section`
-  padding: 0 24px 140px;
+  padding: 0 24px 80px;
   max-width: 1400px;
   margin: 0 auto;
   @media (min-width: 768px) {
+    padding: 0 80px 140px;
+  }
+  @media (min-width: 1280px) {
     padding: 0 80px 160px;
   }
 `;
