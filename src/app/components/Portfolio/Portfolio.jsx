@@ -98,7 +98,6 @@ function VidCard({ video, delay }) {
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
             display: 'block',
           }}
           onEnded={() => setPlaying(false)}

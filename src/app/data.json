@@ -68,7 +68,7 @@
       "title_en": "Model\n& Product",
       "desc_ua": "Реалістична AI-модель у взаємодії з вашим продуктом. Для beauty, fashion та lifestyle брендів.",
       "desc_en": "Realistic AI model interacting with your product. For beauty, fashion and lifestyle brands.",
-      "layout": "grid-asymmetric",
+      "layout": "grid-3",
       "images": [
         {
           "src": "/portfolio/ai-model-1.png",
@@ -129,19 +129,19 @@
       "title_en": "Every\nDetail Counts",
       "desc_ua": "Косметика, ювелірка, товари — від мінімалістичного hero shot до surreal editorial. Кожна поверхня і відблиск — навмисні.",
       "desc_en": "Cosmetics, jewelry, goods — from minimal hero shot to surreal editorial. Every surface and reflection — intentional.",
-      "layout": "grid-editorial",
+      "layout": "grid-3",
       "images": [
         {
           "src": "/portfolio/product-1.png",
           "caption": "Hero Shot"
         },
         {
-          "src": "/portfolio/product-2.png",
-          "caption": "Texture"
+          "src": "/portfolio/product-7.png",
+          "caption": "Topic"
         },
         {
-          "src": "/portfolio/product-3.png",
-          "caption": "Macro"
+          "src": "/portfolio/product-11.png",
+          "caption": "Composition"
         },
         {
           "src": "/portfolio/product-4.png",
@@ -168,8 +168,12 @@
           "caption": "New look"
         },
         {
-          "src": "/portfolio/product-7.png",
-          "caption": "Topic"
+          "src": "/portfolio/product-2.png",
+          "caption": "Texture"
+        },
+        {
+          "src": "/portfolio/product-3.png",
+          "caption": "Macro"
         }
       ]
     },
@@ -218,7 +222,7 @@
         },
         {
           "src": "/portfolio/beauty-7.png",
-          "caption": "Campaign"
+          "caption": "Hair"
         }
       ]
     },
@@ -259,6 +263,14 @@
         {
           "src": "/portfolio/wellness-7.png",
           "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/wellness-8.png",
+          "caption": "Product"
+        },
+        {
+          "src": "/portfolio/wellness-9.png",
+          "caption": "Relax"
         }
       ]
     },
@@ -318,8 +330,7 @@
         },
         {
           "src": "/portfolio/dark-3.png",
-          "caption": "Interior",
-          "ratio": "16:9"
+          "caption": "Interior"
         },
         {
           "src": "/portfolio/dark-4.png",
@@ -347,8 +358,7 @@
         },
         {
           "src": "/portfolio/dark-10.png",
-          "caption": "Mood",
-          "ratio": "16:9"
+          "caption": "Mood"
         }
       ]
     },

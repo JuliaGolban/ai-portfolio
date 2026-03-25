@@ -33,7 +33,7 @@ export const Container = styled.main`
     content: '';
     position: fixed;
     inset: -100%;
-    background: url(https://grainy-gradients.vercel.app/noise.svg);
+    /* background: url(https://grainy-gradients.vercel.app/noise.svg); */
     opacity: 0.04;
     animation: ${grain} 8s steps(10) infinite;
     pointer-events: none;

@@ -29,11 +29,11 @@ const cardBase = css`
   background: #0f0f0f;
   cursor: pointer;
   aspect-ratio: 4/5;
+  /* same hover as About section images */
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
   &:hover {
     transform: scale(1.04);
-    filter: brightness(1) saturate(1);
   }
 `;
 
@@ -98,7 +98,7 @@ export const GridCinema = styled.div`
     display: grid;
     gap: 12px;
     grid-template-columns: repeat(3, 1fr);
-    & > [data-ratio='16:9'] {
+    & [data-ratio='16:9'] {
       grid-column: 1 / -1;
       aspect-ratio: 16/9;
     }
@@ -111,7 +111,7 @@ export const GridVideo = styled.div`
     display: grid;
     gap: 12px;
     grid-template-columns: repeat(3, 1fr);
-    aspect-ratio: 9/16;
+
     & > [data-ratio='16:9'] {
       grid-column: 1 / -1;
       aspect-ratio: 16/9;
