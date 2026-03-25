@@ -76,12 +76,12 @@ export const Divider = styled.div`
   background: rgba(255, 255, 255, 0.07);
   margin: 0 auto 120px;
 
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     padding: 0 80px 60px;
   }
   @media (min-width: 1280px) {
     padding: 0 80px 80px;
-  }
+  } */
 `;
 
 export const ImageFrame = styled(motion.div)`

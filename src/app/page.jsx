@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useMotionValue, useSpring } from 'framer-motion';
 
 import portfolioData from './data.json';
@@ -29,16 +29,22 @@ import Footer from './components/Footer/Footer';
 export default function Page() {
   const [lang, setLang] = useState('ua');
   const [campaignOpen, setCampaignOpen] = useState(false);
-  /* cursor: only on client to avoid hydration mismatch */
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
+  const mounted = useRef(false);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const smoothX = useSpring(mouseX, { damping: 20, stiffness: 100 });
   const smoothY = useSpring(mouseY, { damping: 20, stiffness: 100 });
 
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
   useEffect(() => {
-    // setMounted(true);
+    mounted.current = true;
+  }, []);
+
+  useEffect(() => {
     const move = e => {
       mouseX.set(e.clientX - 18);
       mouseY.set(e.clientY - 18);
@@ -67,7 +73,6 @@ export default function Page() {
     <LangCtx.Provider value={lang}>
       <GlobalStyle />
       <Container>
-        {/* cursor dot — render only after mount to avoid hydration mismatch */}
         {mounted && (
           <CursorDot style={{ x: smoothX, y: smoothY }} initial={false} />
         )}

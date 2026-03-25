@@ -1,26 +1,37 @@
 'use client';
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { motion, AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
 import {
-  Divider, SectionLabel, SectionTitle, SectionDesc,
-  FrameImg, FrameOverlay, FrameCaption,
+  Divider,
+  SectionLabel,
+  SectionTitle,
+  SectionDesc,
+  FrameImg,
+  FrameOverlay,
+  FrameCaption,
 } from '../shared/shared.styled';
 import {
-  PortfolioSection, SectionHeader,
-  ImageCard, VideoCard,
-  Grid3, GridAsymmetric, GridEditorial, GridCinema, GridVideo,
-  VideoOverlay, PlayBtn,
+  PortfolioSection,
+  SectionHeader,
+  ImageCard,
+  VideoCard,
+  Grid3,
+  GridAsymmetric,
+  GridEditorial,
+  GridCinema,
+  GridVideo,
+  VideoOverlay,
+  PlayBtn,
 } from './Portfolio.styled';
 
 /* ── Grid map ── */
 const GRID_MAP = {
-  'grid-3':          Grid3,
+  'grid-3': Grid3,
   'grid-asymmetric': GridAsymmetric,
-  'grid-editorial':  GridEditorial,
-  'grid-cinema':     GridCinema,
-  'grid-video':      GridVideo,
+  'grid-editorial': GridEditorial,
+  'grid-cinema': GridCinema,
+  'grid-video': GridVideo,
 };
 
 /* ── Single image card ── */
@@ -35,7 +46,14 @@ function ImgCard({ img, delay, isWide }) {
           src={img.src}
           alt={img.caption}
           loading="lazy"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.88) saturate(0.88)', transition: 'filter 0.5s' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            filter: 'brightness(0.88) saturate(0.88)',
+            transition: 'filter 0.5s',
+          }}
         />
         <FrameOverlay>
           <FrameCaption>{img.caption}</FrameCaption>
@@ -44,7 +62,11 @@ function ImgCard({ img, delay, isWide }) {
     </Reveal>
   );
 }
-ImgCard.propTypes = { img: PropTypes.object.isRequired, delay: PropTypes.number, isWide: PropTypes.bool };
+ImgCard.propTypes = {
+  img: PropTypes.object.isRequired,
+  delay: PropTypes.number,
+  isWide: PropTypes.bool,
+};
 
 /* ── Video card with inline play/pause ── */
 function VidCard({ video, delay }) {
@@ -62,8 +84,6 @@ function VidCard({ video, delay }) {
     }
   };
 
-  const isWide = video.ratio === '16:9';
-
   return (
     <Reveal delay={delay}>
       <VideoCard data-ratio={video.ratio || '9:16'} onClick={toggle}>
@@ -75,7 +95,12 @@ function VidCard({ video, delay }) {
           playsInline
           muted
           preload="none"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
           onEnded={() => setPlaying(false)}
         />
         {!playing && (
@@ -90,7 +115,10 @@ function VidCard({ video, delay }) {
     </Reveal>
   );
 }
-VidCard.propTypes = { video: PropTypes.object.isRequired, delay: PropTypes.number };
+VidCard.propTypes = {
+  video: PropTypes.object.isRequired,
+  delay: PropTypes.number,
+};
 
 /* ── Section grid ── */
 function SectionGrid({ section }) {
@@ -112,8 +140,11 @@ function SectionGrid({ section }) {
     <GridComponent>
       {(section.images || []).map((img, i) => {
         /* dark-3 and dark-10 are 16:9 wide */
-        const isWide = img.src.includes('dark-3') || img.src.includes('dark-10');
-        return <ImgCard key={img.src} img={img} delay={i * 0.07} isWide={isWide} />;
+        const isWide =
+          img.src.includes('dark-3') || img.src.includes('dark-10');
+        return (
+          <ImgCard key={img.src} img={img} delay={i * 0.07} isWide={isWide} />
+        );
       })}
     </GridComponent>
   );
@@ -148,5 +179,5 @@ export default function Portfolio({ sections, lang }) {
 
 Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
-  lang:     PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
 };

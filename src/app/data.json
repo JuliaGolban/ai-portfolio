@@ -83,28 +83,33 @@
           "caption": "Product"
         },
         {
-          "src": "/portfolio/ai-model-4.png",
-          "caption": "Character"
+          "src": "/portfolio/ai-model-8.png",
+          "caption": "Portrait"
         },
         {
           "src": "/portfolio/ai-model-5.png",
           "caption": "Detail"
         },
         {
-          "src": "/portfolio/ai-model-6.png",
-          "caption": "Story"
-        },
-        {
           "src": "/portfolio/ai-model-7.png",
           "caption": "Cinematic"
         },
         {
-          "src": "/portfolio/ai-model-8.png",
-          "caption": "Portrait"
+          "src": "/portfolio/ai-model-6.png",
+          "caption": "Story"
         },
+
         {
           "src": "/portfolio/ai-model-9.png",
           "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/ai-model-12.png",
+          "caption": "Character"
+        },
+        {
+          "src": "/portfolio/ai-model-4.png",
+          "caption": "Lifestyle"
         },
         {
           "src": "/portfolio/ai-model-10.png",
@@ -112,7 +117,7 @@
         },
         {
           "src": "/portfolio/ai-model-11.png",
-          "caption": "Ritual"
+          "caption": "UGC"
         }
       ]
     },
@@ -147,16 +152,12 @@
           "caption": "Surreal"
         },
         {
-          "src": "/portfolio/product-6.png",
-          "caption": "Idea"
-        },
-        {
-          "src": "/portfolio/product-7.png",
-          "caption": "Topic"
-        },
-        {
           "src": "/portfolio/product-8.png",
           "caption": "Brand Face"
+        },
+        {
+          "src": "/portfolio/product-6.png",
+          "caption": "Idea"
         },
         {
           "src": "/portfolio/product-9.png",
@@ -165,6 +166,10 @@
         {
           "src": "/portfolio/product-10.png",
           "caption": "New look"
+        },
+        {
+          "src": "/portfolio/product-7.png",
+          "caption": "Topic"
         }
       ]
     },
@@ -176,11 +181,15 @@
       "title_en": "Skin,\nLight, Silence",
       "desc_ua": "Крупнопланові beauty-кадри, де деталь стає головним героєм. Для косметичних брендів, скінкеру та парфумів.",
       "desc_en": "Close-up beauty frames where the detail becomes the hero. For cosmetic brands, skincare and perfume.",
-      "layout": "grid-cinema",
+      "layout": "grid-3",
       "images": [
         {
           "src": "/portfolio/beauty-1.png",
           "caption": "Skin"
+        },
+        {
+          "src": "/portfolio/beauty-6.png",
+          "caption": "Editorial"
         },
         {
           "src": "/portfolio/beauty-2.png",
@@ -194,25 +203,22 @@
           "src": "/portfolio/beauty-4.png",
           "caption": "Color"
         },
+
         {
-          "src": "/portfolio/beauty-5.png",
-          "caption": "Space"
-        },
-        {
-          "src": "/portfolio/beauty-6.png",
-          "caption": "Editorial"
-        },
-        {
-          "src": "/portfolio/beauty-7.png",
-          "caption": "Campaign"
+          "src": "/portfolio/beauty-9.png",
+          "caption": "Macro"
         },
         {
           "src": "/portfolio/beauty-8.png",
           "caption": "UGC"
         },
         {
-          "src": "/portfolio/beauty-9.png",
-          "caption": "Macro"
+          "src": "/portfolio/beauty-5.png",
+          "caption": "Space"
+        },
+        {
+          "src": "/portfolio/beauty-7.png",
+          "caption": "Campaign"
         }
       ]
     },
@@ -300,7 +306,7 @@
       "title_en": "Beyond\nCategories",
       "desc_ua": "Персонажі, архітектура, інтер'єри, концепт-арт, обкладинки. Будь-який візуал під ваш унікальний запит.",
       "desc_en": "Characters, architecture, interiors, concept art, covers. Any visual to match your unique brief.",
-      "layout": "grid-3",
+      "layout": "grid-cinema",
       "images": [
         {
           "src": "/portfolio/dark-1.png",
@@ -312,7 +318,8 @@
         },
         {
           "src": "/portfolio/dark-3.png",
-          "caption": "Interior"
+          "caption": "Interior",
+          "ratio": "16:9"
         },
         {
           "src": "/portfolio/dark-4.png",
@@ -340,7 +347,8 @@
         },
         {
           "src": "/portfolio/dark-10.png",
-          "caption": "Mood"
+          "caption": "Mood",
+          "ratio": "16:9"
         }
       ]
     },
@@ -357,43 +365,43 @@
       "videos": [
         {
           "src": "/portfolio/video/fashion-editorial.mp4",
-          "poster": "/portfolio/video/fashion-editorial-poster.jpg",
+          "poster": "/portfolio/video/fashion-editorial-poster.png",
           "caption": "Fashion Editorial",
           "ratio": "9:16"
         },
         {
           "src": "/portfolio/video/man-portrait.mp4",
-          "poster": "/portfolio/video/man-portrait-poster.jpg",
+          "poster": "/portfolio/video/man-portrait-poster.png",
           "caption": "Portrait · Effect",
           "ratio": "9:16"
         },
         {
           "src": "/portfolio/video/perfume-splash.mp4",
-          "poster": "/portfolio/video/perfume-splash-poster.jpg",
+          "poster": "/portfolio/video/perfume-splash-poster.png",
           "caption": "Product Loop",
           "ratio": "9:16"
         },
         {
           "src": "/portfolio/video/kochut.mp4",
-          "poster": "/portfolio/video/kochut-poster.jpg",
+          "poster": "/portfolio/video/kochut-poster.png",
           "caption": "Brand Campaign",
           "ratio": "9:16"
         },
         {
           "src": "/portfolio/video/mood-loop.mp4",
-          "poster": "/portfolio/video/mood-loop-poster.jpg",
+          "poster": "/portfolio/video/mood-loop-poster.png",
           "caption": "Mood Loop",
           "ratio": "9:16"
         },
         {
           "src": "/portfolio/video/color-grade.mp4",
-          "poster": "/portfolio/video/color-grade-poster.jpg",
+          "poster": "/portfolio/video/color-grade-poster.png",
           "caption": "Color Grade",
           "ratio": "9:16"
         },
         {
-          "src": "/portfolio/video/smile-effect.mp4",
-          "poster": "/portfolio/video/smile-effect-poster.jpg",
+          "src": "/portfolio/video/vfx-effect.mp4",
+          "poster": "/portfolio/video/vfx-effect-poster.png",
           "caption": "Effect · Smile",
           "ratio": "9:16"
         }
@@ -428,18 +436,8 @@
       "Photopea",
       "CapCut"
     ],
-    "tags_ua": [
-      "Automotive",
-      "Rebranding",
-      "Editorial",
-      "Motion"
-    ],
-    "tags_en": [
-      "Automotive",
-      "Rebranding",
-      "Editorial",
-      "Motion"
-    ]
+    "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
+    "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"]
   },
   "serviceCategories": [
     {
