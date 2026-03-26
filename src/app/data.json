@@ -388,9 +388,9 @@
           "ratio": "9:16"
         },
         {
-          "src": "/portfolio/video/kochut.mp4",
-          "poster": "/portfolio/video/kochut-poster.png",
-          "caption": "Brand Campaign",
+          "src": "/portfolio/video/girl-birds.mp4",
+          "poster": "/portfolio/video/girl-birds-poster.png",
+          "caption": "Minimalism Surreal",
           "ratio": "9:16"
         },
         {
@@ -409,6 +409,12 @@
           "src": "/portfolio/video/vfx-effect.mp4",
           "poster": "/portfolio/video/vfx-effect-poster.png",
           "caption": "Effect · Smile",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/kochut.mp4",
+          "poster": "/portfolio/video/kochut-poster.png",
+          "caption": "Brand Campaign",
           "ratio": "9:16"
         }
       ]
