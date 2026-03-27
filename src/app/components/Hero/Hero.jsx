@@ -2,13 +2,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  HeroSection, VideoBackground, StyledVideo, HeroContent,
-  HeroEyebrow, HeroTitle, HeroSubtitle, HeroCTA,
+  HeroSection,
+  VideoBackground,
+  StyledVideo,
+  HeroContent,
+  HeroEyebrow,
+  HeroTitle,
+  HeroSubtitle,
+  HeroCTA,
 } from './Hero.styled';
 
-export default function Hero({ t, instagramUrl }) {
-  const titleLines    = t.title.split('\n');
+export default function Hero({ t, instagramUrl, contact }) {
+  const titleLines = t.title.split('\n');
   const subtitleLines = t.subtitle.split('\n');
+
+  const scrollTo = id => {
+    setTimeout(
+      () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }),
+      50,
+    );
+  };
 
   return (
     <HeroSection id="hero">
@@ -53,7 +66,11 @@ export default function Hero({ t, instagramUrl }) {
         <HeroTitle
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{
+            duration: 1.2,
+            delay: 0.5,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           {titleLines.map((line, i) => (
             <React.Fragment key={i}>
@@ -77,8 +94,7 @@ export default function Hero({ t, instagramUrl }) {
         </HeroSubtitle>
 
         <HeroCTA
-          href={instagramUrl}
-          target="_blank"
+          onClick={() => scrollTo('contact')}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.1 }}
@@ -92,10 +108,10 @@ export default function Hero({ t, instagramUrl }) {
 
 Hero.propTypes = {
   t: PropTypes.shape({
-    eyebrow:  PropTypes.string.isRequired,
-    title:    PropTypes.string.isRequired,
+    eyebrow: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-    cta:      PropTypes.string.isRequired,
+    cta: PropTypes.string.isRequired,
   }).isRequired,
   instagramUrl: PropTypes.string.isRequired,
 };

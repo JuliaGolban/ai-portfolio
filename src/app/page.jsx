@@ -91,7 +91,7 @@ export default function Page() {
           translations={translations}
         />
 
-        <Hero t={t.hero} instagramUrl={contact.instagram} />
+        <Hero t={t.hero} instagramUrl={contact.instagram} contact={contact} />
 
         <About about={about} lang={lang} contact={contact} />
 
