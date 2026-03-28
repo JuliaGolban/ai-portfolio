@@ -49,7 +49,7 @@ export const NavLink = styled.a`
   font-weight: 300;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.425);
+  color: rgba(255, 255, 255, 0.38);
   cursor: pointer;
   transition: color 0.3s;
   &:hover {
@@ -57,11 +57,99 @@ export const NavLink = styled.a`
   }
 `;
 
+/* ── Dropdown ── */
+export const DropdownWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const DropdownTrigger = styled.button`
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  /* tiny chevron */
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.5;
+    transition: transform 0.25s;
+  }
+  &[data-open='true']::after {
+    transform: rotate(180deg);
+  }
+`;
+
+export const DropdownMenu = styled(motion.div)`
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  /* background: rgba(8, 8, 8, 0.96); */
+  background: transparent;
+  /* border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;*/
+  backdrop-filter: blur(16px);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 10;
+  /* triangle pointer */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.08);
+  }
+`;
+
+export const DropdownItem = styled.a`
+  display: block;
+  padding: 12px 18px;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.04);
+  }
+`;
+
 export const LangSwitch = styled.button`
   font-size: 10px;
   font-weight: 300;
   letter-spacing: 0.3em;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 5px 10px;
   border-radius: 1px;
@@ -114,7 +202,7 @@ export const MobileMenu = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 36px;
   @media (min-width: 768px) {
     display: none;
   }
@@ -130,5 +218,19 @@ export const MobileMenuLink = styled.a`
   transition: color 0.3s;
   &:hover {
     color: #fff;
+  }
+`;
+
+export const MobileMenuSub = styled.a`
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-top: -20px;
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
   }
 `;

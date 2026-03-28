@@ -49,18 +49,18 @@ export const Tab = styled.button`
 export const TabIcon = styled.span`
   font-size: 12px;
   color: ${({ $active }) =>
-    $active ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.15)'};
+    $active ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.45)'};
   flex-shrink: 0;
   transition: color 0.2s;
 `;
 
 export const TabLabel = styled.span`
   font-family: 'Jost', sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.06em;
   color: ${({ $active }) =>
-    $active ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.3)'};
+    $active ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.45)'};
   transition: color 0.2s;
   line-height: 1.4;
 `;
@@ -70,10 +70,10 @@ export const PanelWrap = styled(motion.div)`
 `;
 
 export const PanelDesc = styled.p`
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.7;
   margin-bottom: 24px;
   max-width: 520px;
@@ -111,11 +111,11 @@ export const PlanCell = styled.div`
 `;
 
 export const PlanName = styled.span`
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.45);
 `;
 
 export const PlanPrice = styled.span`
@@ -128,9 +128,9 @@ export const PlanPrice = styled.span`
 `;
 
 export const PlanDesc = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.65;
   white-space: pre-line;
   margin-top: 2px;
@@ -138,11 +138,11 @@ export const PlanDesc = styled.span`
 
 export const CampaignCTA = styled.button`
   margin-top: 20px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.45);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 2px;
   cursor: pointer;
@@ -202,10 +202,10 @@ export const AccordionBody = styled(motion.div)`
 `;
 
 export const AccordionDesc = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.8;
   margin-bottom: 16px;
   padding-left: 32px;
@@ -235,9 +235,9 @@ export const MobilePlanName = styled.span`
 `;
 
 export const MobilePlanDesc = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.6;
   white-space: pre-line;
 `;
@@ -274,8 +274,8 @@ export const AdditionalTitle = styled.span`
 `;
 
 export const AdditionalDesc = styled.span`
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.42);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
   margin-left: 12px;
 `;
 
@@ -288,10 +288,10 @@ export const AdditionalPrice = styled.span`
 `;
 
 export const PricingNote = styled.p`
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
   line-height: 1.7;
   margin-top: 28px;
   padding-top: 24px;
@@ -314,7 +314,7 @@ export const FAQQuestion = styled.button`
   justify-content: space-between;
   align-items: center;
   padding: 22px 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.5);
@@ -329,7 +329,7 @@ export const FAQQuestion = styled.button`
 export const FAQIcon = styled.span`
   font-size: 18px;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
   flex-shrink: 0;
   transition: transform 0.35s;
   transform: ${({ $open }) => ($open ? 'rotate(45deg)' : 'none')};
@@ -340,10 +340,10 @@ export const FAQAnswer = styled(motion.div)`
 `;
 
 export const FAQAnswerInner = styled.p`
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 300;
   line-height: 1.9;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.45);
   padding-bottom: 22px;
   max-width: 640px;
 `;

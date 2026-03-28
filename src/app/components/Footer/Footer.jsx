@@ -9,12 +9,14 @@ const FooterWrap = styled.footer`
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 9px;
   font-weight: 300;
   letter-spacing: 0.3em;
-  color: rgba(255,255,255,0.1);
-  @media (max-width: 600px) { padding: 32px 24px; }
+  color: rgba(255, 255, 255, 0.25);
+  @media (max-width: 600px) {
+    padding: 32px 24px;
+  }
 `;
 
 export default function Footer({ lang, t }) {
@@ -29,5 +31,5 @@ export default function Footer({ lang, t }) {
 
 Footer.propTypes = {
   lang: PropTypes.string.isRequired,
-  t:    PropTypes.object.isRequired,
+  t: PropTypes.object.isRequired,
 };
