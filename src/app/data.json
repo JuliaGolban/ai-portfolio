@@ -94,7 +94,6 @@
           "src": "/portfolio/ai-model-6.png",
           "caption": "Story"
         },
-
         {
           "src": "/portfolio/ai-model-9.png",
           "caption": "Mood"
@@ -203,7 +202,6 @@
           "src": "/portfolio/beauty-4.png",
           "caption": "Color"
         },
-
         {
           "src": "/portfolio/beauty-9.png",
           "caption": "Macro"
@@ -720,5 +718,121 @@
     "instagram": "https://instagram.com/juliagolban",
     "telegram": "https://t.me/juliagolban",
     "email": "julia.j.shcherban@gmail.com"
-  }
+  },
+  "cases": [
+    {
+      "id": "jaguar",
+      "client": "Jaguar",
+      "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "cover_video": "/portfolio/jaguar/jaguar.mp4",
+      "cover_image": "/portfolio/jaguar/jaguar-cover.png",
+      "title_ua": "Jaguar Rebreath",
+      "title_en": "Jaguar Rebreath",
+      "subtitle_ua": "AI-кампанія для глобального ребрендингу",
+      "subtitle_en": "AI campaign for a global rebrand",
+      "intro_ua": "Copy Nothing — не просто слоган. Це режисерська установка.",
+      "intro_en": "Copy Nothing — not just a slogan. A directorial premise.",
+      "task_ua": "Jaguar оголосив радикальний ребрендинг — відмову від класичної спадщини на користь ультра-сучасної електричної ери. Нова айдентика «Copy Nothing» поставила під сумнів усе: форму, колір, мову. Завдання — створити серію campaign-зображень, які передають дух трансформації.",
+      "task_en": "Jaguar announced a radical rebrand — abandoning classic heritage in favour of an ultra-modern electric era. The new 'Copy Nothing' identity challenged everything: form, colour, language. The task — create campaign images that capture the spirit of transformation.",
+      "idea_ua": "Замість прямої демонстрації автомобіля — метафора вдиху: момент між видихом старого і вдихом нового. Колірна гама: глибокий чорний, електричний рожевий, платиновий білий. AI дозволив дослідити абстрактні форми, неможливі в реальному продакшні.",
+      "idea_en": "Instead of showing the car — a metaphor of breath: the moment between exhaling the old and inhaling the new. Palette: deep black, electric pink, platinum white. AI allowed exploring forms impossible in real production.",
+      "result_ua": "12 hero-зображень для digital. Серія motion-loop для Reels та TikTok. Час виробництва — 5 днів. Жодного реального автомобіля, але впізнаваність бренду — 100%.",
+      "result_en": "12 hero images for digital. A motion-loop series for Reels and TikTok. Production time — 5 days. No real car in frame, yet 100% brand recognisability.",
+      "images": [
+        "/portfolio/jaguar/jaguar-1.png",
+        "/portfolio/jaguar/jaguar-2.png",
+        "/portfolio/jaguar/jaguar-3.png",
+        "/portfolio/jaguar/jaguar-4.png",
+        "/portfolio/jaguar/jaguar-5.png",
+        "/portfolio/jaguar/jaguar-6.png"
+      ],
+      "tools": [
+        "Midjourney v7",
+        "Nana Banana Pro/ 2",
+        "Kling 2.6/ 3",
+        "Photopea",
+        "CapCut"
+      ]
+    },
+    {
+      "id": "hermes-time",
+      "client": "Hermès",
+      "tags_ua": ["Luxury", "Editorial", "Archaeological", "Time"],
+      "tags_en": ["Luxury", "Editorial", "Archaeological", "Time"],
+      "cover_video": "/portfolio/hermes/hermes-heritage.mp4",
+      "cover_poster": "/portfolio/hermes/hermes-heritage-cover.png",
+      "cover_image": null,
+      "title_ua": "When Time Remained",
+      "title_en": "When Time Remained",
+      "subtitle_ua": "Це не fashion-історія. Це археологічний документ часу.",
+      "subtitle_en": "This is not a fashion story. This is an archaeological document of time.",
+      "intro_ua": "Це дослідження часу як останнього свідка людської присутності.",
+      "intro_en": "An exploration of time as the final surviving witness of human presence.",
+      "task_ua": "Проєкт досліджує час як останнього свідка людської присутності. Знятий всередині занедбаного маєтку в англійській сільській місцевості, він документує приватну колекцію, залишену після незрозумілого зникнення. Будинок тихо занепадає. Пісок і плющ поглинули архітектуру. Лише відсутність.",
+      "task_en": "This project explores time as the final surviving witness of human presence. Set inside an abandoned English countryside estate, the documents a private collection left behind after an unexplained disappearance. The house decays quietly. Sand and ivy reclaimed architecture. Only absence.",
+      "idea_ua": "Ремесло стає архітектурою. Традиція стає системою. ДНК дому залишається — еволюціонує функціонально, але зберігає форму. Не ностальгія. Продовження.",
+      "idea_en": "Leather became architecture. Craft became system. The saddle became structure. Not nostalgia. Continuation. Where heritage becomes infrastructure. Where craft outlives time.",
+      "result_ua": "Серія editorial-зображень та кінематографічне відео, що фіксують естетику відсутності. Hermès як свідок — з 1837 року. Досі стаючи.",
+      "result_en": "A series of editorial images and a cinematic video capturing the aesthetic of absence. Hermès as witness — since 1837. Still becoming.",
+      "images": [
+        "/portfolio/hermes/hermes-heritage-1.png",
+        "/portfolio/hermes/hermes-heritage-2.png",
+        "/portfolio/hermes/hermes-heritage-3.png",
+        "/portfolio/hermes/hermes-heritage-4.png",
+        "/portfolio/hermes/hermes-heritage-5.png",
+        "/portfolio/hermes/hermes-heritage-6.png",
+        "/portfolio/hermes/hermes-heritage-7.png"
+      ],
+      "tools": [
+        "Midjourney v7",
+        "Nana Banana Pro/ 2",
+        "Kling 2.6/ 3",
+        "Photopea",
+        "CapCut"
+      ]
+    },
+    {
+      "id": "hermes-3578",
+      "client": "Hermès",
+      "tags_ua": ["Luxury", "Concept", "Heritage", "Future"],
+      "tags_en": ["Luxury", "Concept", "Heritage", "Future"],
+      "cover_video": "/portfolio/hermes/hermes-future.mp4",
+      "cover_poster": "/portfolio/hermes/hermes-future-cover.png",
+      "cover_image": null,
+      "title_ua": "Hermès 3578",
+      "title_en": "Hermès 3578",
+      "subtitle_ua": "Civilization Continued",
+      "subtitle_en": "Civilization Continued",
+      "intro_ua": "Це дослідження креативного напрямку. Не про тренди. Про довгострокову культурну еволюцію.",
+      "intro_en": "This is a study in creative direction. Not about trends. About long-term cultural evolution.",
+      "task_ua": "Hermès 3578 — концептуальний проєкт про те, яким буде дім у 3578 році, якщо цивілізація продовжиться. ДНК бренду зберігається, еволюціонує функціонально, але зберігає форму.",
+      "task_en": "Hermès 3578 — a conceptual project about what the house looks like in the year 3578, if civilisation continues. Brand DNA preserved, evolving functionally but retaining form.",
+      "idea_ua": "Шкіра стає архітектурою. Ремесло стає системою. Сідло стає структурою. Де спадщина стає інфраструктурою. Де майстерність переживає час. З 1837 року. Досі стаючи.",
+      "idea_en": "Leather became architecture. Craft became system. The saddle became structure. Where heritage becomes infrastructure. Where craft outlives time. Since 1837. Still becoming.",
+      "result_ua": "Концептуальна серія зображень, що досліджує Hermès не як бренд, а як цивілізацію. Майбутнє як продовження, а не розрив.",
+      "result_en": "A conceptual image series exploring Hermès not as a brand but as a civilisation. The future as continuation, not rupture.",
+      "images": [
+        "/portfolio/hermes/hermes-future-1.png",
+        "/portfolio/hermes/hermes-future-2.png",
+        "/portfolio/hermes/hermes-future-3.png",
+        "/portfolio/hermes/hermes-future-4.png",
+        "/portfolio/hermes/hermes-future-5.png",
+        "/portfolio/hermes/hermes-future-6.png",
+        "/portfolio/hermes/hermes-future-7.png",
+        "/portfolio/hermes/hermes-future-8.png",
+        "/portfolio/hermes/hermes-future-9.png",
+        "/portfolio/hermes/hermes-future-10.png",
+        "/portfolio/hermes/hermes-future-11.png",
+        "/portfolio/hermes/hermes-future-12.png"
+      ],
+      "tools": [
+        "Midjourney v7",
+        "Nana Banana Pro/ 2",
+        "Kling 2.6/ 3",
+        "Photopea",
+        "CapCut"
+      ]
+    }
+  ]
 }

@@ -24,6 +24,7 @@ import Portfolio from './components/Portfolio/Portfolio';
 import Pricing from './components/Pricing/Pricing';
 import Brief from './components/Brief/Brief';
 import CampaignModal from './components/CampaignModal/CampaignModal';
+import Cases from './components/Cases/Cases';
 import Footer from './components/Footer/Footer';
 
 export default function Page() {
@@ -65,7 +66,7 @@ export default function Page() {
     additionalServices,
     pricingNote,
     portfolio,
-    campaign,
+    cases,
     contact,
   } = portfolioData;
 
@@ -80,7 +81,7 @@ export default function Page() {
         <CampaignModal
           open={campaignOpen}
           onClose={closeCampaign}
-          campaign={campaign}
+          campaign={cases[0]} // Assuming the first case is the campaign case
           lang={lang}
         />
 
@@ -98,6 +99,8 @@ export default function Page() {
         <Divider />
 
         <Portfolio sections={portfolio} lang={lang} />
+
+        <Cases cases={cases} lang={lang} contact={contact} />
 
         <Pricing
           serviceCategories={serviceCategories}
