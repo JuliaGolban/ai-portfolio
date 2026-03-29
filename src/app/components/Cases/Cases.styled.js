@@ -50,7 +50,7 @@ export const CaseCard = styled(motion.div)`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* always fills, crops if ratio differs */
     display: block;
     filter: brightness(0.72) saturate(0.85);
     transition:
@@ -135,21 +135,21 @@ export const CardCTA = styled.span`
   }
 `;
 
-/* ── Modal backdrop ── */
+/* ── Modal backdrop — no scroll on backdrop itself ── */
 export const Backdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
   z-index: 200;
   background: rgba(5, 5, 5, 0.94);
   backdrop-filter: blur(10px);
-  overflow-y: auto;
+  /* No overflow-y: auto here — scroll only inside text column */
+  overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 40px 12px 80px;
+  padding: 24px 12px;
   @media (min-width: 768px) {
-    padding: 56px 24px 80px;
-    align-items: center;
+    padding: 40px 24px;
   }
 `;
 
@@ -161,7 +161,13 @@ export const ModalBox = styled(motion.div)`
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 20px;
+  /* Fixed height so modal never goes off-screen */
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 700px) {
+    max-height: calc(100vh - 80px);
+  }
 `;
 
 export const ModalClose = styled.button`
@@ -180,28 +186,35 @@ export const ModalClose = styled.button`
   }
 `;
 
-/* ── Two-column layout: video 9:16 + text ── */
+/* ── Two-column layout ── */
 export const ModalLayout = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  flex: 1;
+  min-height: 0; /* important: allows children to scroll */
+  gap: 0;
   @media (min-width: 700px) {
     flex-direction: row;
-    min-height: 560px;
   }
 `;
 
-/* Left — 9:16 video column */
+/*
+  Video column — fixed container, video fills it with object-fit: contain.
+  Any aspect ratio (9:16, 4:5) gets cropped to fill — no black bars, no distortion.
+  Width controlled; height stretches to match text column on desktop.
+*/
 export const ModalVideoWrap = styled.div`
   flex: 0 0 auto;
-  aspect-ratio: 4/5;
-  background: #0f0f0f;
   overflow: hidden;
+  background: #0f0f0f;
+
+  /* Mobile: fixed height box */
   width: 100%;
+  height: 260px;
 
   @media (min-width: 700px) {
-    width: clamp(60%, 32%, 320px);
-    aspect-ratio: unset;
+    /* Desktop: fixed width, full height of modal */
+    width: 300px;
     height: auto;
     align-self: stretch;
   }
@@ -210,24 +223,40 @@ export const ModalVideoWrap = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* always fills, crops if ratio differs */
     display: block;
   }
 `;
 
-/* Right — text column */
+/*
+  Text column — scrollable, takes remaining space.
+  Scroll here, not on backdrop.
+*/
 export const ModalTextWrap = styled.div`
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
-  padding: 40px 24px 40px;
+  padding: 48px 24px 32px;
   display: flex;
   flex-direction: column;
+
   @media (min-width: 700px) {
-    padding: 44px 36px 44px;
+    padding: 48px 36px 36px;
   }
-  max-height: 85vh;
+
+  /* Thin scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
 `;
 
 export const ModalMeta = styled.div`
@@ -336,8 +365,6 @@ export const ModalTool = styled.span`
 
 export const ModalCTA = styled.a`
   display: inline-block;
-  margin-top: auto;
-  padding-top: 28px;
   font-family: 'Jost', sans-serif;
   font-size: 10px;
   font-weight: 300;
@@ -358,5 +385,3 @@ export const ModalCTA = styled.a`
     border-color: rgba(255, 255, 255, 0.28);
   }
 `;
-
-export const ModalContent = styled.div``;

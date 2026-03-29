@@ -785,7 +785,13 @@
         "/portfolio/cases/hermes-heritage-6.png",
         "/portfolio/cases/hermes-heritage-7.png"
       ],
-      "tools": ["Midjourney v7", "Kling 3", "CapCut", "Adobe Firefly"]
+      "tools": [
+        "Midjourney v7",
+        "Nana Banana Pro/ 2",
+        "Kling 2.6",
+        "Photopea",
+        "CapCut"
+      ]
     },
     {
       "id": "hermes-3578",
@@ -825,7 +831,7 @@
       "tools": [
         "Midjourney v7",
         "Nana Banana Pro/ 2",
-        "Kling 2.6/ 3",
+        "Kling 2.6",
         "Photopea",
         "CapCut"
       ]

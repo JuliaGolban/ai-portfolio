@@ -145,14 +145,14 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
 
             {/* Works group */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.07 }}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 10,
+                gap: '25px',
               }}
             >
               <MobileMenuLink as="span" style={{ opacity: 0.9 }}>
