@@ -109,7 +109,7 @@ function CaseModal({ c, lang, onClose, contactUrl }) {
         <ModalClose onClick={onClose}>×</ModalClose>
 
         <ModalLayout>
-          {/* LEFT — video 9:16 */}
+          {/* LEFT — video */}
           <ModalVideoWrap>
             <CoverMedia c={c} autoPlay />
           </ModalVideoWrap>
