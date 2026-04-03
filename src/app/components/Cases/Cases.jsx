@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
@@ -42,8 +42,8 @@ import {
   ModalCTA,
 } from './Cases.styled';
 
-/* ── Media helpers ── */
-function CoverMedia({ c, autoPlay = false }) {
+/* ── Card cover — preload="metadata" so browser knows duration/size ── */
+function CardCover({ c, autoPlay = false }) {
   if (c.cover_video) {
     return (
       <video
@@ -61,10 +61,57 @@ function CoverMedia({ c, autoPlay = false }) {
     return <img src={c.cover_image} alt={c.title_en} loading="lazy" />;
   return <div style={{ width: '100%', height: '100%', background: '#111' }} />;
 }
-CoverMedia.propTypes = {
-  c: PropTypes.object.isRequired,
-  autoPlay: PropTypes.bool,
-};
+CardCover.propTypes = { c: PropTypes.object.isRequired };
+
+/* ── Modal video — plays immediately on mount, no poster wait ── */
+function ModalVideo({ c }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Force play immediately — don't wait for preload
+    el.currentTime = 0;
+    const playPromise = el.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked — still show poster, acceptable fallback
+      });
+    }
+  }, []);
+
+  if (c.cover_video) {
+    return (
+      <video
+        ref={ref}
+        src={c.cover_video}
+        // No poster in modal — avoids flash while video loads
+        loop
+        muted
+        playsInline
+        // preload="auto" tells browser to buffer as much as possible
+        preload="auto"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+          display: 'block',
+        }}
+      />
+    );
+  }
+  if (c.cover_image) {
+    return (
+      <img
+        src={c.cover_image}
+        alt={c.title_en}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+    );
+  }
+  return null;
+}
+ModalVideo.propTypes = { c: PropTypes.object.isRequired };
 
 /* ── Modal ── */
 function CaseModal({ c, lang, onClose, contactUrl }) {
@@ -96,25 +143,25 @@ function CaseModal({ c, lang, onClose, contactUrl }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.25 }}
       onClick={onClose}
     >
       <ModalBox
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        exit={{ opacity: 0, y: 16 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
         onClick={e => e.stopPropagation()}
       >
         <ModalClose onClick={onClose}>×</ModalClose>
 
         <ModalLayout>
-          {/* LEFT — video */}
+          {/* LEFT — video fills fixed container */}
           <ModalVideoWrap>
-            <CoverMedia c={c} autoPlay />
+            <ModalVideo c={c} />
           </ModalVideoWrap>
 
-          {/* RIGHT — description */}
+          {/* RIGHT — scrollable text */}
           <ModalTextWrap>
             <ModalMeta>
               <ModalClient>{c.client}</ModalClient>
@@ -150,16 +197,18 @@ function CaseModal({ c, lang, onClose, contactUrl }) {
 
             {(c[`result_${lang}`] || c.result_en) && (
               <ModalResultBox>
-                <ModalBlockLabel style={{ marginTop: 0 }}>
-                  {labels.result}
-                </ModalBlockLabel>
-                <ModalText>{c[`result_${lang}`] || c.result_en}</ModalText>
+                <ModalBlockLabel>{labels.result}</ModalBlockLabel>
+                <ModalText style={{ marginBottom: 0 }}>
+                  {c[`result_${lang}`] || c.result_en}
+                </ModalText>
               </ModalResultBox>
             )}
 
             {c.tools && c.tools.length > 0 && (
               <>
-                <ModalBlockLabel>{labels.tools}</ModalBlockLabel>
+                <ModalBlockLabel style={{ marginTop: 24 }}>
+                  {labels.tools}
+                </ModalBlockLabel>
                 <ModalTools>
                   {c.tools.map(tool => (
                     <ModalTool key={tool}>{tool}</ModalTool>
@@ -184,24 +233,23 @@ CaseModal.propTypes = {
   contactUrl: PropTypes.string.isRequired,
 };
 
-/* ── Main ── */
+/* ── Main Cases component ── */
 export default function Cases({ cases, lang, contact }) {
   const [active, setActive] = useState(null);
 
-  const label = 'Case Studies';
   const title =
     lang === 'ua' ? 'AI Campaign\nпроєкти' : 'AI Campaign\nProjects';
   const desc =
     lang === 'ua'
       ? 'Концептуальні кейси для глобальних брендів. Повний AI-продакшн — від ідеї до фінального кадру.'
       : 'Conceptual cases for global brands. Full AI production — from idea to final frame.';
-  const openLabel = lang === 'ua' ? 'Відкрити кейс' : 'Open case';
+  const openLbl = lang === 'ua' ? 'Відкрити кейс →' : 'Open case →';
 
   return (
     <CasesSection id="cases">
       <CasesHeader>
         <Reveal>
-          <SectionLabel>{label}</SectionLabel>
+          <SectionLabel>Case Studies</SectionLabel>
           <SectionTitle>{title}</SectionTitle>
           <SectionDesc>{desc}</SectionDesc>
         </Reveal>
@@ -213,7 +261,7 @@ export default function Cases({ cases, lang, contact }) {
           return (
             <Reveal key={c.id} delay={i * 0.1}>
               <CaseCard onClick={() => setActive(c)}>
-                <CoverMedia c={c} />
+                <CardCover c={c} />
                 <CardOverlay>
                   <CardClient>{c.client}</CardClient>
                   <CardTitle>{c[`title_${lang}`] || c.title_en}</CardTitle>
@@ -225,7 +273,7 @@ export default function Cases({ cases, lang, contact }) {
                       <CardTag key={tag}>{tag}</CardTag>
                     ))}
                   </CardTagList>
-                  <CardCTA>{openLabel} →</CardCTA>
+                  <CardCTA>{openLbl}</CardCTA>
                 </CardOverlay>
               </CaseCard>
             </Reveal>
@@ -239,7 +287,7 @@ export default function Cases({ cases, lang, contact }) {
             c={active}
             lang={lang}
             onClose={() => setActive(null)}
-            contactUrl={`#contact`}
+            contactUrl={contact.instagram}
           />
         )}
       </AnimatePresence>
