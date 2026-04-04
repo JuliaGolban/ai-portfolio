@@ -1,111 +1,57 @@
 'use client';
-import React, { useState, useRef } from 'react';
+
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { motion, AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
+import Lightbox from '../shared/Lightbox';
 import {
-  Divider,
-  SectionLabel,
-  SectionTitle,
-  SectionDesc,
-  FrameImg,
-  FrameOverlay,
-  FrameCaption,
+  Divider, SectionLabel, SectionTitle, SectionDesc,
+  FrameImg, FrameOverlay, FrameCaption,
 } from '../shared/shared.styled';
 import {
-  PortfolioSection,
-  SectionHeader,
-  ImageCard,
-  VideoCard,
-  Grid3,
-  GridAsymmetric,
-  GridEditorial,
-  GridCinema,
-  GridVideo,
-  VideoOverlay,
-  PlayBtn,
+  PortfolioSection, SectionHeader,
+  ImageCard, VideoCard,
+  Grid3, GridAsymmetric, GridEditorial, GridCinema, GridVideo,
+  VideoOverlay, PlayBtn,
 } from './Portfolio.styled';
+
+/* ── .png → .webp swap for grid thumbnails ── */
+const toWebp = src => src ? src.replace(/\.png$/i, '.webp') : src;
 
 /* ── Grid map ── */
 const GRID_MAP = {
-  'grid-3': Grid3,
+  'grid-3':          Grid3,
   'grid-asymmetric': GridAsymmetric,
-  'grid-editorial': GridEditorial,
-  'grid-cinema': GridCinema,
-  'grid-video': GridVideo,
+  'grid-editorial':  GridEditorial,
+  'grid-cinema':     GridCinema,
+  'grid-video':      GridVideo,
 };
 
-/* ── Single image card ── */
-function ImgCard({ img, delay, isWide }) {
-  return (
-    <Reveal delay={delay}>
-      <ImageCard
-        data-ratio={isWide ? '16:9' : '4:5'}
-        whileHover={{ zIndex: 2 }}
-      >
-        <FrameImg
-          src={img.src}
-          alt={img.caption}
-          loading="lazy"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            filter: 'brightness(0.88) saturate(0.88)',
-            transition: 'filter 0.5s',
-          }}
-        />
-        <FrameOverlay>
-          <FrameCaption>{img.caption}</FrameCaption>
-        </FrameOverlay>
-      </ImageCard>
-    </Reveal>
-  );
-}
-ImgCard.propTypes = {
-  img: PropTypes.object.isRequired,
-  delay: PropTypes.number,
-  isWide: PropTypes.bool,
-};
-
-/* ── Video card with inline play/pause ── */
+/* ── Video card — plays inline on click ── */
 function VidCard({ video, delay }) {
-  const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const ref = React.useRef(null);
 
   const toggle = () => {
-    if (!videoRef.current) return;
-    if (playing) {
-      videoRef.current.pause();
-      setPlaying(false);
-    } else {
-      videoRef.current.play();
-      setPlaying(true);
-    }
+    if (!ref.current) return;
+    if (playing) { ref.current.pause(); setPlaying(false); }
+    else         { ref.current.play();  setPlaying(true);  }
   };
 
   return (
     <Reveal delay={delay}>
       <VideoCard data-ratio={video.ratio || '9:16'} onClick={toggle}>
         <video
-          ref={videoRef}
+          ref={ref}
           src={video.src}
           poster={video.poster}
-          loop
-          playsInline
-          muted
-          preload="none"
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'block',
-          }}
+          loop playsInline muted preload="none"
+          style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
           onEnded={() => setPlaying(false)}
         />
         {!playing && (
-          <VideoOverlay>
-            <PlayBtn />
-          </VideoOverlay>
+          <VideoOverlay><PlayBtn /></VideoOverlay>
         )}
         <FrameOverlay style={{ opacity: playing ? 0 : undefined }}>
           <FrameCaption>{video.caption}</FrameCaption>
@@ -114,41 +60,66 @@ function VidCard({ video, delay }) {
     </Reveal>
   );
 }
-VidCard.propTypes = {
-  video: PropTypes.object.isRequired,
-  delay: PropTypes.number,
-};
+VidCard.propTypes = { video: PropTypes.object.isRequired, delay: PropTypes.number };
 
-/* ── Section grid ── */
-function SectionGrid({ section }) {
+/* ── Section images grid with lightbox ── */
+function ImgGrid({ section }) {
+  const [lightbox, setLightbox] = useState(null); // index | null
+  const images = section.images || [];
   const GridComponent = GRID_MAP[section.layout] || Grid3;
-  const isVideo = section.layout === 'grid-video';
-
-  if (isVideo) {
-    const items = section.videos || [];
-    return (
-      <GridComponent>
-        {items.map((video, i) => (
-          <VidCard key={video.src} video={video} delay={i * 0.07} />
-        ))}
-      </GridComponent>
-    );
-  }
 
   return (
+    <>
+      <GridComponent>
+        {images.map((img, i) => (
+          <Reveal key={img.src} delay={i * 0.06}>
+            <ImageCard
+              onClick={() => setLightbox(i)}
+              title={img.caption}
+              style={{ cursor: 'zoom-in' }}
+            >
+              {/* WebP thumbnail for fast grid loading */}
+              <FrameImg
+                src={toWebp(img.src)}
+                alt={img.caption}
+                loading={i < 3 ? 'eager' : 'lazy'}
+              />
+              <FrameOverlay>
+                <FrameCaption>{img.caption}</FrameCaption>
+              </FrameOverlay>
+            </ImageCard>
+          </Reveal>
+        ))}
+      </GridComponent>
+
+      {/* Full-resolution PNG lightbox */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <Lightbox
+            images={images}
+            index={lightbox}
+            onClose={() => setLightbox(null)}
+            onChange={setLightbox}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+ImgGrid.propTypes = { section: PropTypes.object.isRequired };
+
+/* ── Video grid ── */
+function VideoGrid({ section }) {
+  const GridComponent = GRID_MAP[section.layout] || Grid3;
+  return (
     <GridComponent>
-      {(section.images || []).map((img, i) => {
-        /* dark-3 and dark-10 are 16:9 wide */
-        const isWide =
-          img.src.includes('dark-3') || img.src.includes('dark-10');
-        return (
-          <ImgCard key={img.src} img={img} delay={i * 0.07} isWide={isWide} />
-        );
-      })}
+      {(section.videos || []).map((video, i) => (
+        <VidCard key={video.src} video={video} delay={i * 0.06} />
+      ))}
     </GridComponent>
   );
 }
-SectionGrid.propTypes = { section: PropTypes.object.isRequired };
+VideoGrid.propTypes = { section: PropTypes.object.isRequired };
 
 /* ── Main Portfolio ── */
 export default function Portfolio({ sections, lang }) {
@@ -166,7 +137,11 @@ export default function Portfolio({ sections, lang }) {
                 <SectionDesc>{section[`desc_${lang}`]}</SectionDesc>
               </SectionHeader>
             </Reveal>
-            <SectionGrid section={section} />
+
+            {section.layout === 'grid-video'
+              ? <VideoGrid section={section} />
+              : <ImgGrid   section={section} />
+            }
           </PortfolioSection>
 
           {si < sections.length - 1 && <Divider />}
@@ -178,5 +153,5 @@ export default function Portfolio({ sections, lang }) {
 
 Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
-  lang: PropTypes.string.isRequired,
+  lang:     PropTypes.string.isRequired,
 };
