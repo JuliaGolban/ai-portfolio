@@ -38,6 +38,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
     name: '',
     email: '',
     telegram: '',
+    website: '',
     brandName: '',
     brandDesc: '',
     packageId: '',
@@ -48,8 +49,10 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
     details: '',
     textNeeded: '',
     references: '',
-    restrictions: '',
+    accents: '',
+    videoDynamic: '',
     deadline: '',
+    restrictions: '',
     tzFile: null,
   };
 
@@ -69,6 +72,8 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
   const selectedPkg = projectTypes.find(p => p.id === fields.packageId);
   const autoPrice = selectedPkg ? selectedPkg.price : '—';
   const autoLabel = selectedPkg ? selectedPkg.label : '—';
+  const isVideoType =
+    selectedPkg?.group === 'video' || selectedPkg?.group === 'campaign';
 
   const handleFile = e => {
     if (e.target.files[0]) set('tzFile', e.target.files[0]);
@@ -84,6 +89,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
       `Name: ${fields.name}`,
       `Email: ${fields.email}`,
       `TG: ${fields.telegram || '—'}`,
+      `Website/Social: ${fields.website || '—'}`,
       '',
       `Brand: ${fields.brandName || '—'}`,
       `About: ${fields.brandDesc || '—'}`,
@@ -96,10 +102,13 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
       `Style: ${fields.styles.join(', ') || '—'}`,
       '',
       `Details: ${fields.details || '—'}`,
-      `Text: ${fields.textNeeded || '—'}`,
-      `Refs: ${fields.references || '—'}`,
-      `Restrictions: ${fields.restrictions || '—'}`,
+      `Text needed: ${fields.textNeeded || '—'}`,
+      `References: ${fields.references || '—'}`,
+      `Video dynamics: ${fields.videoDynamic || '—'}`,
+      '',
       `Deadline: ${fields.deadline || '—'}`,
+      `Restrictions: ${fields.restrictions || '—'}`,
+      '',
       `File: ${fields.tzFile ? fields.tzFile.name : '—'}`,
     ];
 
@@ -124,83 +133,39 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
         }
       }
 
-      const EJS_SVC = process.env.NEXT_PUBLIC_EMAILJS_SERVICE;
-      const EJS_TPL = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE;
-      const EJS_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY;
-      if (EJS_SVC && EJS_TPL && EJS_KEY) {
-        const { default: emailjs } = await import('@emailjs/browser');
-        await emailjs.send(
-          EJS_SVC,
-          EJS_TPL,
-          {
-            from_name: fields.name,
-            from_email: fields.email,
-            telegram: fields.telegram || '—',
-            brand_name: fields.brandName || '—',
-            brand_desc: fields.brandDesc || '—',
-            package_label: autoLabel,
-            package_price: autoPrice,
-            goal: fields.goal || '—',
-            format: fields.format || '—',
-            tone: fields.tone || '—',
-            styles: fields.styles.join(', ') || '—',
-            details: fields.details || '—',
-            text_needed: fields.textNeeded || '—',
-            references: fields.references || '—',
-            restrictions: fields.restrictions || '—',
-            deadline: fields.deadline || '—',
-            tz_filename: fields.tzFile ? fields.tzFile.name : '—',
-            lang: lang.toUpperCase(),
-          },
-          EJS_KEY,
-        );
-        // if (fields.tzFile) {
-        //   // Якщо є файл — використовуємо sendForm
-        //   const formData = new FormData();
-
-        //   formData.append('service_id', EJS_SVC);
-        //   formData.append('template_id', EJS_TPL);
-        //   formData.append('user_id', EJS_KEY);
-
-        //   // Основні поля
-        //   formData.append('from_name', fields.name);
-        //   formData.append('from_email', fields.email);
-        //   formData.append('telegram', fields.telegram || '—');
-        //   formData.append('brand_name', fields.brandName || '—');
-        //   formData.append('brand_desc', fields.brandDesc || '—');
-        //   formData.append('package_label', autoLabel);
-        //   formData.append('package_price', autoPrice);
-        //   formData.append('goal', fields.goal || '—');
-        //   formData.append('format', fields.format || '—');
-        //   formData.append('tone', fields.tone || '—');
-        //   formData.append('styles', fields.styles.join(', ') || '—');
-        //   formData.append('details', fields.details || '—');
-        //   formData.append('text_needed', fields.textNeeded || '—');
-        //   formData.append('references', fields.references || '—');
-        //   formData.append('restrictions', fields.restrictions || '—');
-        //   formData.append('deadline', fields.deadline || '—');
-        //   formData.append('lang', lang.toUpperCase());
-
-        //   // Файл
-        //   formData.append('tz_file', fields.tzFile); // ← важливий рядок
-
-        //   await emailjs.sendForm(EJS_SVC, EJS_TPL, formData, EJS_KEY);
-        // } else {
-        //   // Якщо файлу немає — можна залишити send
-        //   await emailjs.send(
-        //     EJS_SVC,
-        //     EJS_TPL,
-        //     {
-        //       from_name: fields.name,
-        //       from_email: fields.email,
-        //       // ... всі інші поля без файлу
-        //       tz_filename: '—',
-        //       lang: lang.toUpperCase(),
-        //     },
-        //     EJS_KEY,
-        //   );
-        // }
-      }
+      // const EJS_SVC = process.env.NEXT_PUBLIC_EMAILJS_SERVICE;
+      // const EJS_TPL = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE;
+      // const EJS_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY;
+      // if (EJS_SVC && EJS_TPL && EJS_KEY) {
+      //   const { default: emailjs } = await import('@emailjs/browser');
+      //   await emailjs.send(
+      //     EJS_SVC,
+      //     EJS_TPL,
+      //     {
+      //       from_name: fields.name,
+      //       from_email: fields.email,
+      //       telegram: fields.telegram || '—',
+      //       website: fields.website || '—',
+      //       brand_name: fields.brandName || '—',
+      //       brand_desc: fields.brandDesc || '—',
+      //       package_label: autoLabel,
+      //       package_price: autoPrice,
+      //       goal: fields.goal || '—',
+      //       format: fields.format || '—',
+      //       tone: fields.tone || '—',
+      //       styles: fields.styles.join(', ') || '—',
+      //       details: fields.details || '—',
+      //       text_needed: fields.textNeeded || '—',
+      //       references: fields.references || '—',
+      //       video_dynamic: fields.videoDynamic || '—',
+      //       deadline: fields.deadline || '—',
+      //       restrictions: fields.restrictions || '—',
+      //       tz_filename: fields.tzFile ? fields.tzFile.name : '—',
+      //       lang: lang.toUpperCase(),
+      //     },
+      //     EJS_KEY,
+      //   );
+      // }
 
       setStatus('ok');
       setFields(EMPTY);
@@ -249,6 +214,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
 
         <Reveal delay={0.15}>
           <BriefForm onSubmit={handleSubmit}>
+            {/* ── Контактні дані ── */}
             <FormGroup>
               <FormLabel>{tb.name}</FormLabel>
               <FormInput
@@ -277,6 +243,21 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
               />
             </FormGroup>
             <FormGroup>
+              <FormLabel>
+                {tb.website ||
+                  (lang === 'ua'
+                    ? 'Сайт або сторінка в соцмережах'
+                    : 'Website or social page')}
+              </FormLabel>
+              <FormInput
+                placeholder={lang === 'ua' ? 'https://...' : 'https://...'}
+                value={fields.website}
+                onChange={e => set('website', e.target.value)}
+              />
+            </FormGroup>
+
+            {/* ── Бренд ── */}
+            <FormGroup>
               <FormLabel>{tb.brandName}</FormLabel>
               <FormInput
                 placeholder={tb.brandNamePh}
@@ -293,6 +274,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
               />
             </FormGroup>
 
+            {/* ── Пакет ── */}
             <FormGroup>
               <FormLabel>{tb.packageLabel}</FormLabel>
               <PackageGrid>
@@ -324,6 +306,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
               )}
             </FormGroup>
 
+            {/* ── Параметри ── */}
             <FormGroup>
               <FormLabel>{tb.goal}</FormLabel>
               <FormSelect
@@ -401,29 +384,67 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
               <FormLabel>{tb.references}</FormLabel>
               <FormTextarea
                 placeholder={tb.referencesPh}
+                style={{ height: 60 }}
                 value={fields.references}
                 onChange={e => set('references', e.target.value)}
-                style={{ height: 60 }}
               />
             </FormGroup>
+
+            {/* тільки для відео */}
+            {isVideoType && (
+              <FormGroup>
+                <FormLabel>
+                  {lang === 'ua' ? 'Динаміка відео' : 'Video dynamics'}
+                </FormLabel>
+                <FormTextarea
+                  placeholder={
+                    lang === 'ua'
+                      ? 'Рух камери, ефекти (зум, слоу-мо, таймлапс...). Озвучка/музика? Якою мовою?'
+                      : 'Camera movement, effects (zoom, slow-mo, timelapse...). Voiceover/music? Language?'
+                  }
+                  style={{ height: 70 }}
+                  value={fields.videoDynamic}
+                  onChange={e => set('videoDynamic', e.target.value)}
+                />
+              </FormGroup>
+            )}
+
             <FormGroup>
-              <FormLabel>{tb.deadline}</FormLabel>
+              <FormLabel>
+                {tb.deadline ||
+                  (lang === 'ua' ? 'Дедлайн' : 'Deadline')}
+              </FormLabel>
               <FormInput
-                placeholder={tb.deadlinePh}
+                placeholder={
+                  lang === 'ua'
+                    ? 'Коли потрібен результат?'
+                    : 'When do you need the result?'
+                }
                 value={fields.deadline}
                 onChange={e => set('deadline', e.target.value)}
               />
             </FormGroup>
+
             <FormGroup>
-              <FormLabel>{tb.restrictions}</FormLabel>
+              <FormLabel>
+                {tb.restrictions ||
+                  (lang === 'ua'
+                    ? 'Заборони та обмеження'
+                    : 'Restrictions')}
+              </FormLabel>
               <FormTextarea
-                placeholder={tb.restrictionsPh}
+                placeholder={
+                  lang === 'ua'
+                    ? 'Що категорично не можна? Кольори, стилі, елементи. Особливі побажання щодо композиції, ракурсів, фону'
+                    : 'What is strictly forbidden? Colors, styles, elements. Special requests for composition, angles, background'
+                }
+                style={{ height: 70 }}
                 value={fields.restrictions}
                 onChange={e => set('restrictions', e.target.value)}
-                style={{ height: 60 }}
               />
             </FormGroup>
 
+            {/* ── Файл ── */}
             <FormGroup>
               <FormLabel>{tb.fileLabel}</FormLabel>
               <FileUploadArea>

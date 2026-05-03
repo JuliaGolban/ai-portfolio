@@ -30,7 +30,16 @@ const G = {
   fabBg: 'rgba(10,9,8,0.78)',
 };
 
-// ─── API ──────────────────────────────────────────────────────────────────────
+const ALLOWED_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+  'application/pdf',
+];
+const MAX_FILES = 3;
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+
 async function callClaude(messages) {
   const res = await fetch('/api/brief-chat', {
     method: 'POST',
@@ -41,7 +50,6 @@ async function callClaude(messages) {
   return (await res.json()).reply;
 }
 
-// ─── JSON parser — шукає {} в будь-якому місці відповіді ─────────────────────
 function tryParseJSON(text) {
   try {
     const start = text.indexOf('{');
@@ -53,7 +61,6 @@ function tryParseJSON(text) {
   return null;
 }
 
-// ─── File → base64 ────────────────────────────────────────────────────────────
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -97,11 +104,9 @@ function TypingDots() {
   );
 }
 
-// ─── FilePreview — прев'ю прикріпленого файлу ────────────────────────────────
-function FilePreview({ file, onRemove }) {
+// ─── FileChip — один прикріплений файл ───────────────────────────────────────
+function FileChip({ file, onRemove }) {
   const isImage = file.type.startsWith('image/');
-
-  // useMemo — створює URL під час рендеру (не в effect), useEffect — прибирає
   const previewUrl = useMemo(
     () => (isImage ? URL.createObjectURL(file) : null),
     [file, isImage],
@@ -117,28 +122,36 @@ function FilePreview({ file, onRemove }) {
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 8,
-        padding: '6px 10px',
+        gap: 6,
+        padding: '4px 8px',
         background: 'rgba(180,148,90,0.06)',
         border: `1px solid ${G.borderGold}`,
-        borderRadius: 6,
-        maxWidth: '100%',
+        borderRadius: 5,
+        flexShrink: 0,
+        maxWidth: 140,
       }}
     >
       {isImage && previewUrl ? (
         <img
           src={previewUrl}
           alt=""
-          style={{ width: 32, height: 32, objectFit: 'cover', borderRadius: 3 }}
+          style={{
+            width: 22,
+            height: 22,
+            objectFit: 'cover',
+            borderRadius: 2,
+            flexShrink: 0,
+          }}
         />
       ) : (
         <svg
-          width="16"
-          height="16"
+          width="13"
+          height="13"
           viewBox="0 0 24 24"
           fill="none"
           stroke={G.gold}
           strokeWidth="1.5"
+          style={{ flexShrink: 0 }}
         >
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14,2 14,8 20,8" />
@@ -146,12 +159,12 @@ function FilePreview({ file, onRemove }) {
       )}
       <span
         style={{
-          fontSize: 11,
+          fontSize: 10,
           color: G.soft,
-          flex: 1,
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
+          flex: 1,
         }}
       >
         {file.name}
@@ -163,9 +176,10 @@ function FilePreview({ file, onRemove }) {
           border: 'none',
           cursor: 'pointer',
           color: G.muted,
-          padding: '0 2px',
-          fontSize: 14,
+          padding: 0,
+          fontSize: 13,
           lineHeight: 1,
+          flexShrink: 0,
         }}
       >
         ×
@@ -174,7 +188,7 @@ function FilePreview({ file, onRemove }) {
   );
 }
 
-// ─── BriefCard ────────────────────────────────────────────────────────────────
+// ─── BriefCard — клієнт бачить summary + visual_description + client_brief ───
 function BriefCard({ brief, onReset }) {
   const [tab, setTab] = useState('summary');
   const [copied, setCopied] = useState(false);
@@ -322,7 +336,7 @@ export default function BriefWidget() {
   const [briefResult, setBriefResult] = useState(null);
   const [selectedStyle, setSelectedStyle] = useState(null);
   const [showBadge, setShowBadge] = useState(false);
-  const [attachedFile, setAttachedFile] = useState(null); // { file, base64, mimeType }
+  const [attachedFiles, setAttachedFiles] = useState([]); // до 3 файлів
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const fileRef = useRef(null);
@@ -338,29 +352,44 @@ export default function BriefWidget() {
     if (screen === 'chat') inputRef.current?.focus();
   }, [screen]);
 
-  // ─── File attach ────────────────────────────────────────────────────────────
-  const handleFileChange = useCallback(async e => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    // Підтримувані типи: зображення + PDF
-    const allowed = [
-      'image/jpeg',
-      'image/png',
-      'image/webp',
-      'image/gif',
-      'application/pdf',
-    ];
-    if (!allowed.includes(file.type)) {
-      alert('Підтримуються: JPG, PNG, WEBP, GIF, PDF');
-      return;
-    }
-    if (file.size > 10 * 1024 * 1024) {
-      alert('Максимальний розмір файлу — 10 МБ');
-      return;
-    }
-    const base64 = await fileToBase64(file);
-    setAttachedFile({ file, base64, mimeType: file.type });
-    e.target.value = '';
+  // ─── File attach (до 3 файлів) ──────────────────────────────────────────────
+  const handleFileChange = useCallback(
+    async e => {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+
+      const remaining = MAX_FILES - attachedFiles.length;
+      if (remaining <= 0) {
+        alert(`Максимум ${MAX_FILES} файли`);
+        return;
+      }
+
+      const toAdd = files.slice(0, remaining);
+      const errors = [];
+      const valid = [];
+
+      for (const file of toAdd) {
+        if (!ALLOWED_TYPES.includes(file.type)) {
+          errors.push(`${file.name}: непідтримуваний формат`);
+          continue;
+        }
+        if (file.size > MAX_SIZE) {
+          errors.push(`${file.name}: понад 10 МБ`);
+          continue;
+        }
+        const base64 = await fileToBase64(file);
+        valid.push({ file, base64, mimeType: file.type });
+      }
+
+      if (errors.length) alert(errors.join('\n'));
+      if (valid.length) setAttachedFiles(prev => [...prev, ...valid]);
+      e.target.value = '';
+    },
+    [attachedFiles.length],
+  );
+
+  const removeFile = useCallback(idx => {
+    setAttachedFiles(prev => prev.filter((_, i) => i !== idx));
   }, []);
 
   // ─── Process reply ──────────────────────────────────────────────────────────
@@ -381,16 +410,27 @@ export default function BriefWidget() {
     }
   }
 
-  // ─── Send with optional file ────────────────────────────────────────────────
-  async function sendMsg(text, base, fileData) {
-    // Формуємо content: якщо є файл — масив parts для Gemini multimodal
-    const userContent = fileData
-      ? { text, file: fileData } // route.js обробить це
+  // ─── Send ────────────────────────────────────────────────────────────────────
+  async function sendMsg(text, base, files) {
+    const hasFiles = files && files.length > 0;
+
+    // content для API (з файлами або просто текст)
+    const userContent = hasFiles
+      ? {
+          text,
+          files: files.map(f => ({
+            base64: f.base64,
+            mimeType: f.mimeType,
+            name: f.file.name,
+          })),
+        }
       : text;
 
-    const displayText = fileData
-      ? `${text ? text + '\n' : ''}📎 ${fileData.file.name}`
-      : text;
+    // display для чату
+    const fileNames = hasFiles
+      ? files.map(f => `📎 ${f.file.name}`).join('\n')
+      : '';
+    const displayText = [text, fileNames].filter(Boolean).join('\n');
 
     const msgs = [
       ...base,
@@ -398,14 +438,10 @@ export default function BriefWidget() {
     ];
     setMessages(msgs);
     setIsTyping(true);
-    setAttachedFile(null);
+    setAttachedFiles([]);
 
     try {
-      // Для API надсилаємо messages з можливим файлом
-      const apiMsgs = msgs.map(m => ({
-        role: m.role,
-        content: m.content,
-      }));
+      const apiMsgs = msgs.map(m => ({ role: m.role, content: m.content }));
       await process(await callClaude(apiMsgs), msgs);
     } catch (error) {
       console.error('Error sending message:', error);
@@ -420,20 +456,20 @@ export default function BriefWidget() {
 
   const handleSend = useCallback(async () => {
     const text = inputVal.trim();
-    if ((!text && !attachedFile) || isTyping) return;
+    if ((!text && attachedFiles.length === 0) || isTyping) return;
     setInputVal('');
-    await sendMsg(text, messages, attachedFile);
-  }, [inputVal, isTyping, messages, attachedFile]);
+    await sendMsg(text, messages, attachedFiles);
+  }, [inputVal, isTyping, messages, attachedFiles]);
 
   const startChat = useCallback(() => {
     setScreen('chat');
     setMessages([]);
     sendMsg(
       selectedStyle
-        ? 'Привіт! Хочу замовити AI-генерацію в стилі "' + selectedStyle + '"'
+        ? `Привіт! Хочу замовити AI-генерацію в стилі "${selectedStyle}"`
         : 'Привіт! Хочу замовити AI-генерацію',
       [],
-      null,
+      [],
     );
   }, [selectedStyle]);
 
@@ -443,10 +479,11 @@ export default function BriefWidget() {
     setBriefResult(null);
     setSelectedStyle(null);
     setInputVal('');
-    setAttachedFile(null);
+    setAttachedFiles([]);
   };
 
-  const canSend = (inputVal.trim() || attachedFile) && !isTyping;
+  const canSend = (inputVal.trim() || attachedFiles.length > 0) && !isTyping;
+  const canAttach = attachedFiles.length < MAX_FILES && !isTyping;
 
   return (
     <>
@@ -456,13 +493,13 @@ export default function BriefWidget() {
         #jnb-start:hover { background: rgba(180,148,90,0.09) !important; }
         #jnb-msgs::-webkit-scrollbar { width:3px }
         #jnb-msgs::-webkit-scrollbar-thumb { background: rgba(180,148,90,0.15); border-radius:2px }
-        #jnb-attach:hover { border-color: rgba(180,148,90,0.4) !important; }
+        #jnb-attach:hover { border-color: rgba(180,148,90,0.4) !important; opacity: 1 !important; }
       `}</style>
 
-      {/* Hidden file input */}
       <input
         ref={fileRef}
         type="file"
+        multiple
         accept="image/jpeg,image/png,image/webp,image/gif,application/pdf"
         onChange={handleFileChange}
         style={{ display: 'none' }}
@@ -552,7 +589,7 @@ export default function BriefWidget() {
           bottom: 84,
           right: 28,
           width: 358,
-          height: 570,
+          height: 578,
           background: G.bg,
           border: `1px solid ${G.border}`,
           borderRadius: 14,
@@ -763,7 +800,6 @@ export default function BriefWidget() {
                           }),
                     }}
                   >
-                    {/* Показуємо display текст (з іменем файлу) або content */}
                     {m.display ||
                       (typeof m.content === 'string'
                         ? m.content
@@ -777,42 +813,57 @@ export default function BriefWidget() {
               {/* Input area */}
               <div
                 style={{
-                  padding: '8px 18px 14px',
+                  padding: '8px 16px 14px',
                   borderTop: `1px solid ${G.border}`,
                   flexShrink: 0,
                 }}
               >
-                {/* File preview */}
-                {attachedFile && (
-                  <div style={{ marginBottom: 8 }}>
-                    <FilePreview
-                      file={attachedFile.file}
-                      onRemove={() => setAttachedFile(null)}
-                    />
+                {/* File chips row */}
+                {attachedFiles.length > 0 && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: 6,
+                      flexWrap: 'wrap',
+                      marginBottom: 8,
+                    }}
+                  >
+                    {attachedFiles.map((f, i) => (
+                      <FileChip
+                        key={i}
+                        file={f.file}
+                        onRemove={() => removeFile(i)}
+                      />
+                    ))}
                   </div>
                 )}
                 <div
                   style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}
                 >
-                  {/* Attach button */}
+                  {/* Attach */}
                   <button
                     id="jnb-attach"
                     onClick={() => fileRef.current?.click()}
-                    disabled={isTyping}
-                    title="Прикріпити фото або PDF"
+                    disabled={!canAttach}
+                    title={
+                      canAttach
+                        ? `Додати файл (${attachedFiles.length}/${MAX_FILES})`
+                        : `Максимум ${MAX_FILES} файли`
+                    }
                     style={{
                       width: 32,
                       height: 32,
                       borderRadius: 4,
                       background: 'transparent',
                       border: `1px solid ${G.border}`,
-                      cursor: isTyping ? 'not-allowed' : 'pointer',
+                      cursor: canAttach ? 'pointer' : 'not-allowed',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      opacity: isTyping ? 0.3 : 0.7,
+                      opacity: canAttach ? 0.65 : 0.25,
                       transition: 'opacity 0.2s, border-color 0.2s',
+                      position: 'relative',
                     }}
                   >
                     <svg
@@ -825,6 +876,27 @@ export default function BriefWidget() {
                     >
                       <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
                     </svg>
+                    {attachedFiles.length > 0 && (
+                      <span
+                        style={{
+                          position: 'absolute',
+                          top: -5,
+                          right: -5,
+                          width: 14,
+                          height: 14,
+                          borderRadius: '50%',
+                          background: G.gold,
+                          color: '#000',
+                          fontSize: 9,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontWeight: 700,
+                        }}
+                      >
+                        {attachedFiles.length}
+                      </span>
+                    )}
                   </button>
                   {/* Textarea */}
                   <textarea
@@ -856,7 +928,7 @@ export default function BriefWidget() {
                       lineHeight: 1.5,
                     }}
                   />
-                  {/* Send button */}
+                  {/* Send */}
                   <button
                     onClick={handleSend}
                     disabled={!canSend}
