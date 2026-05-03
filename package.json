@@ -9,12 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
     "@emailjs/browser": "^4.4.1",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^16.4.5",
     "framer-motion": "^12.34.3",
     "i18next": "^25.8.13",
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
     "next-i18next": "^15.4.3",
+    "node-telegram-bot-api": "^0.66.0",
     "prop-types": "^15.8.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -28,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "nodemon": "^3.1.14",
     "typescript": "^5"
   }
 }
