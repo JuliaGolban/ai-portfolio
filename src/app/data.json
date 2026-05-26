@@ -155,16 +155,20 @@
           "caption": "Idea"
         },
         {
+          "src": "/portfolio/product-12.png",
+          "caption": "Lighting"
+        },
+        {
           "src": "/portfolio/product-9.png",
           "caption": "Series"
         },
         {
-          "src": "/portfolio/product-10.png",
-          "caption": "New look"
-        },
-        {
           "src": "/portfolio/product-2.png",
           "caption": "Texture"
+        },
+        {
+          "src": "/portfolio/product-10.png",
+          "caption": "New look"
         },
         {
           "src": "/portfolio/product-3.png",
@@ -291,16 +295,20 @@
           "caption": "Detail"
         },
         {
-          "src": "/portfolio/food-4.png",
-          "caption": "Mood"
-        },
-        {
           "src": "/portfolio/food-5.png",
           "caption": "Splash"
         },
         {
           "src": "/portfolio/food-6.png",
           "caption": "Lifestyle"
+        },
+        {
+          "src": "/portfolio/food-7.png",
+          "caption": "Flat Lay"
+        },
+        {
+          "src": "/portfolio/food-4.png",
+          "caption": "Mood"
         }
       ]
     },
@@ -413,6 +421,18 @@
           "src": "/portfolio/video/kochut.mp4",
           "poster": "/portfolio/video/kochut-poster.png",
           "caption": "Brand Campaign",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/iPhone.mp4",
+          "poster": "/portfolio/video/iPhone-poster.png",
+          "caption": "Brand Campaign",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/puppy.mp4",
+          "poster": "/portfolio/video/puppy-poster.png",
+          "caption": "Emotion Loop",
           "ratio": "9:16"
         }
       ]
