@@ -309,6 +309,18 @@
         {
           "src": "/portfolio/food-4.png",
           "caption": "Mood"
+        },
+        {
+          "src": "/portfolio/food-8.png",
+          "caption": "Atmosphere"
+        },
+        {
+          "src": "/portfolio/food-9.png",
+          "caption": "Christmas set"
+        },
+        {
+          "src": "/portfolio/food-10.png",
+          "caption": "Details"
         }
       ]
     },
@@ -376,9 +388,21 @@
       "images": [],
       "videos": [
         {
-          "src": "/portfolio/video/fashion-editorial.mp4",
-          "poster": "/portfolio/video/fashion-editorial-poster.png",
-          "caption": "Fashion Editorial",
+          "src": "/portfolio/video/personal.mp4",
+          "poster": "/portfolio/video/personal-poster.png",
+          "caption": "Personal Reel",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/vfx-effect.mp4",
+          "poster": "/portfolio/video/vfx-effect-poster.png",
+          "caption": "Effect · Smile",
+          "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/kochut.mp4",
+          "poster": "/portfolio/video/kochut-poster.png",
+          "caption": "Brand Campaign",
           "ratio": "9:16"
         },
         {
@@ -406,23 +430,18 @@
           "ratio": "9:16"
         },
         {
+          "src": "/portfolio/video/underwater.mp4",
+          "poster": "/portfolio/video/underwater-poster.png",
+          "caption": "Underwater",
+          "ratio": "9:16"
+        },
+        {
           "src": "/portfolio/video/color-grade.mp4",
           "poster": "/portfolio/video/color-grade-poster.png",
           "caption": "Color Grade",
           "ratio": "9:16"
         },
-        {
-          "src": "/portfolio/video/vfx-effect.mp4",
-          "poster": "/portfolio/video/vfx-effect-poster.png",
-          "caption": "Effect · Smile",
-          "ratio": "9:16"
-        },
-        {
-          "src": "/portfolio/video/kochut.mp4",
-          "poster": "/portfolio/video/kochut-poster.png",
-          "caption": "Brand Campaign",
-          "ratio": "9:16"
-        },
+
         {
           "src": "/portfolio/video/iPhone.mp4",
           "poster": "/portfolio/video/iPhone-poster.png",
