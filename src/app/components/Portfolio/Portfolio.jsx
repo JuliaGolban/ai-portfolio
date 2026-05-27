@@ -6,26 +6,38 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
 import Lightbox from '../shared/Lightbox';
 import {
-  Divider, SectionLabel, SectionTitle, SectionDesc,
-  FrameImg, FrameOverlay, FrameCaption,
+  Divider,
+  SectionLabel,
+  SectionTitle,
+  SectionDesc,
+  FrameImg,
+  FrameOverlay,
+  FrameCaption,
 } from '../shared/shared.styled';
 import {
-  PortfolioSection, SectionHeader,
-  ImageCard, VideoCard,
-  Grid3, GridAsymmetric, GridEditorial, GridCinema, GridVideo,
-  VideoOverlay, PlayBtn,
+  PortfolioSection,
+  SectionHeader,
+  ImageCard,
+  VideoCard,
+  Grid3,
+  GridAsymmetric,
+  GridEditorial,
+  GridCinema,
+  GridVideo,
+  VideoOverlay,
+  PlayBtn,
 } from './Portfolio.styled';
 
 /* ── .png → .webp swap for grid thumbnails ── */
-const toWebp = src => src ? src.replace(/\.png$/i, '.webp') : src;
+const toWebp = src => (src ? src.replace(/\.png$/i, '.webp') : src);
 
 /* ── Grid map ── */
 const GRID_MAP = {
-  'grid-3':          Grid3,
+  'grid-3': Grid3,
   'grid-asymmetric': GridAsymmetric,
-  'grid-editorial':  GridEditorial,
-  'grid-cinema':     GridCinema,
-  'grid-video':      GridVideo,
+  'grid-editorial': GridEditorial,
+  'grid-cinema': GridCinema,
+  'grid-video': GridVideo,
 };
 
 /* ── Video card — plays inline on click ── */
@@ -35,8 +47,13 @@ function VidCard({ video, delay }) {
 
   const toggle = () => {
     if (!ref.current) return;
-    if (playing) { ref.current.pause(); setPlaying(false); }
-    else         { ref.current.play();  setPlaying(true);  }
+    if (playing) {
+      ref.current.pause();
+      setPlaying(false);
+    } else {
+      ref.current.play();
+      setPlaying(true);
+    }
   };
 
   return (
@@ -46,12 +63,22 @@ function VidCard({ video, delay }) {
           ref={ref}
           src={video.src}
           poster={video.poster}
-          loop playsInline muted preload="none"
-          style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
+          loop
+          playsInline
+          muted
+          preload="none"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            display: 'block',
+          }}
           onEnded={() => setPlaying(false)}
         />
         {!playing && (
-          <VideoOverlay><PlayBtn /></VideoOverlay>
+          <VideoOverlay>
+            <PlayBtn />
+          </VideoOverlay>
         )}
         <FrameOverlay style={{ opacity: playing ? 0 : undefined }}>
           <FrameCaption>{video.caption}</FrameCaption>
@@ -60,7 +87,10 @@ function VidCard({ video, delay }) {
     </Reveal>
   );
 }
-VidCard.propTypes = { video: PropTypes.object.isRequired, delay: PropTypes.number };
+VidCard.propTypes = {
+  video: PropTypes.object.isRequired,
+  delay: PropTypes.number,
+};
 
 /* ── Section images grid with lightbox ── */
 function ImgGrid({ section }) {
@@ -138,10 +168,11 @@ export default function Portfolio({ sections, lang }) {
               </SectionHeader>
             </Reveal>
 
-            {section.layout === 'grid-video'
-              ? <VideoGrid section={section} />
-              : <ImgGrid   section={section} />
-            }
+            {section.layout === 'grid-video' ? (
+              <VideoGrid section={section} />
+            ) : (
+              <ImgGrid section={section} />
+            )}
           </PortfolioSection>
 
           {si < sections.length - 1 && <Divider />}
@@ -153,5 +184,5 @@ export default function Portfolio({ sections, lang }) {
 
 Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
-  lang:     PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
 };
