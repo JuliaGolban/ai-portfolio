@@ -24,13 +24,14 @@ import Portfolio from './components/Portfolio/Portfolio';
 import Pricing from './components/Pricing/Pricing';
 import Brief from './components/Brief/Brief';
 import CampaignModal from './components/CampaignModal/CampaignModal';
+import WorksIndex from './components/WorksIndex/WorksIndex';
+import SoundToggle from './components/SoundToggle/SoundToggle';
 import Cases from './components/Cases/Cases';
 import Footer from './components/Footer/Footer';
 
 export default function Page() {
   const [lang, setLang] = useState('ua');
   const [campaignOpen, setCampaignOpen] = useState(false);
-  // const [mounted, setMounted] = useState(false);
   const mounted = useRef(false);
 
   const mouseX = useMotionValue(-100);
@@ -38,9 +39,8 @@ export default function Page() {
   const smoothX = useSpring(mouseX, { damping: 20, stiffness: 100 });
   const smoothY = useSpring(mouseY, { damping: 20, stiffness: 100 });
 
-  // useEffect(() => {
-  //   setMounted(true);
-  // }, []);
+  // Fix: separate effects — setMounted never causes cascading renders
+  // because it runs once and framer-motion values are not React state
   useEffect(() => {
     mounted.current = true;
   }, []);
@@ -81,7 +81,7 @@ export default function Page() {
         <CampaignModal
           open={campaignOpen}
           onClose={closeCampaign}
-          campaign={cases[0]} // Assuming the first case is the campaign case
+          campaign={cases?.[0] || null}
           lang={lang}
         />
 
@@ -97,6 +97,21 @@ export default function Page() {
         <About about={about} lang={lang} contact={contact} />
 
         <Divider />
+
+        <WorksIndex
+          sections={portfolio}
+          cases={cases}
+          lang={lang}
+          onNavigate={id => {
+            setTimeout(
+              () =>
+                document
+                  .getElementById(id)
+                  ?.scrollIntoView({ behavior: 'smooth' }),
+              50,
+            );
+          }}
+        />
 
         <Portfolio sections={portfolio} lang={lang} />
 
@@ -118,6 +133,8 @@ export default function Page() {
           contact={contact}
           briefQuestions={briefQuestionsTranslations}
         />
+
+        <SoundToggle src="/ambient.mp3" lang={lang} />
 
         <Footer lang={lang} t={t.footer} />
       </Container>

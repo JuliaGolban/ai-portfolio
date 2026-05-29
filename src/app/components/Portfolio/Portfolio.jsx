@@ -65,7 +65,6 @@ function VidCard({ video, delay }) {
           poster={video.poster}
           loop
           playsInline
-          muted
           preload="none"
           style={{
             width: '100%',

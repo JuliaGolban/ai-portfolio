@@ -394,6 +394,12 @@
           "ratio": "9:16"
         },
         {
+          "src": "/portfolio/video/man_studio.mp4",
+          "poster": "/portfolio/video/man_studio-poster.png",
+          "caption": "Effect · Smile",
+          "ratio": "9:16"
+        },
+        {
           "src": "/portfolio/video/vfx-effect.mp4",
           "poster": "/portfolio/video/vfx-effect-poster.png",
           "caption": "Effect · Smile",
@@ -430,19 +436,6 @@
           "ratio": "9:16"
         },
         {
-          "src": "/portfolio/video/underwater.mp4",
-          "poster": "/portfolio/video/underwater-poster.png",
-          "caption": "Underwater",
-          "ratio": "9:16"
-        },
-        {
-          "src": "/portfolio/video/color-grade.mp4",
-          "poster": "/portfolio/video/color-grade-poster.png",
-          "caption": "Color Grade",
-          "ratio": "9:16"
-        },
-
-        {
           "src": "/portfolio/video/iPhone.mp4",
           "poster": "/portfolio/video/iPhone-poster.png",
           "caption": "Brand Campaign",
@@ -453,6 +446,12 @@
           "poster": "/portfolio/video/puppy-poster.png",
           "caption": "Emotion Loop",
           "ratio": "9:16"
+        },
+        {
+          "src": "/portfolio/video/she_remember.mp4",
+          "poster": "/portfolio/video/she_remember-poster.png",
+          "caption": "Emotion Loop",
+          "ratio": "16:9"
         }
       ]
     }
