@@ -189,7 +189,7 @@ function FileChip({ file, onRemove }) {
 }
 
 // ─── BriefCard — клієнт бачить summary + visual_description + client_brief ───
-function BriefCard({ brief, onReset }) {
+function BriefCard({ lang, brief, onReset }) {
   const [tab, setTab] = useState('summary');
   const [copied, setCopied] = useState(false);
   const content =
@@ -240,7 +240,9 @@ function BriefCard({ brief, onReset }) {
             lineHeight: 1.6,
           }}
         >
-          Бриф зібрано. Юлія зв&apos;яжеться з вами найближчим часом.
+          {lang === 'ua'
+            ? 'Бриф зібрано. Юлія зв&apos;яжеться з вами найближчим часом.'
+            : 'Brief collected. Julia will contact you shortly.'}
         </p>
       </div>
       <div
@@ -257,7 +259,7 @@ function BriefCard({ brief, onReset }) {
           }}
           style={tabStyle('summary')}
         >
-          Огляд
+          {lang === 'ua' ? 'Огляд' : 'Overview'}
         </button>
         <button
           onClick={() => {
@@ -266,7 +268,7 @@ function BriefCard({ brief, onReset }) {
           }}
           style={tabStyle('brief')}
         >
-          Бриф
+          {lang === 'ua' ? 'Бриф' : 'Brief'}
         </button>
       </div>
       <div
@@ -300,7 +302,13 @@ function BriefCard({ brief, onReset }) {
           flexShrink: 0,
         }}
       >
-        {copied ? 'Скопійовано' : 'Копіювати'}
+        {copied
+          ? lang === 'ua'
+            ? 'Скопійовано'
+            : 'Copied'
+          : lang === 'ua'
+            ? 'Копіювати'
+            : 'Copy'}
       </button>
       <button
         onClick={onReset}
@@ -320,7 +328,7 @@ function BriefCard({ brief, onReset }) {
           flexShrink: 0,
         }}
       >
-        Новий бриф
+        {lang === 'ua' ? 'Новий бриф' : 'New Brief'}
       </button>
     </div>
   );
@@ -328,6 +336,7 @@ function BriefCard({ brief, onReset }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function BriefWidget() {
+  const [lang, setLang] = useState('ua');
   const [isOpen, setIsOpen] = useState(false);
   const [screen, setScreen] = useState('welcome');
   const [messages, setMessages] = useState([]);
@@ -525,7 +534,7 @@ export default function BriefWidget() {
             transition: 'opacity 0.7s ease, transform 0.7s ease',
           }}
         >
-          Замовити бриф
+          {lang === 'ua' ? 'Замовити бриф' : 'Order Brief'}
         </div>
       )}
 
@@ -555,7 +564,7 @@ export default function BriefWidget() {
           transition: 'border-color 0.3s, background 0.3s',
           boxShadow: 'none',
         }}
-        aria-label="Бриф"
+        aria-label={lang === 'ua' ? 'Бриф' : 'Brief'}
       >
         {isOpen ? (
           <svg
@@ -633,7 +642,7 @@ export default function BriefWidget() {
                 margin: 0,
               }}
             >
-              Creative Brief
+              {lang === 'ua' ? 'Креативний бриф' : 'Creative Brief'}
             </p>
             <p
               style={{
@@ -699,8 +708,9 @@ export default function BriefWidget() {
                   fontWeight: 300,
                 }}
               >
-                Оберіть стиль або одразу розпочніть — я поставлю потрібні
-                запитання.
+                {lang === 'ua'
+                  ? 'Оберіть стиль або одразу розпочніть — я поставлю потрібні запитання.'
+                  : 'Choose a style or start immediately — I will ask the necessary questions.'}
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                 {STYLE_PILLS.map(s => (
@@ -745,7 +755,7 @@ export default function BriefWidget() {
                   transition: 'background 0.2s',
                 }}
               >
-                Розпочати
+                {lang === 'ua' ? 'Розпочати' : 'Start'}
               </button>
             </div>
           )}
@@ -846,9 +856,13 @@ export default function BriefWidget() {
                     onClick={() => fileRef.current?.click()}
                     disabled={!canAttach}
                     title={
-                      canAttach
-                        ? `Додати файл (${attachedFiles.length}/${MAX_FILES})`
-                        : `Максимум ${MAX_FILES} файли`
+                      lang === 'ua'
+                        ? canAttach
+                          ? `Додати файл (${attachedFiles.length}/${MAX_FILES})`
+                          : `Максимум ${MAX_FILES} файли`
+                        : canAttach
+                          ? `Attach file (${attachedFiles.length}/${MAX_FILES})`
+                          : `Maximum ${MAX_FILES} files`
                     }
                     style={{
                       width: 32,
@@ -909,7 +923,7 @@ export default function BriefWidget() {
                         handleSend();
                       }
                     }}
-                    placeholder="Відповідь..."
+                    placeholder={lang === 'ua' ? 'Відповідь...' : 'Answer...'}
                     rows={1}
                     disabled={isTyping}
                     style={{
@@ -964,7 +978,7 @@ export default function BriefWidget() {
           )}
 
           {screen === 'brief' && briefResult && (
-            <BriefCard brief={briefResult} onReset={reset} />
+            <BriefCard lang={lang} brief={briefResult} onReset={reset} />
           )}
         </div>
       </div>

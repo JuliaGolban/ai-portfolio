@@ -49,11 +49,12 @@ function CardCover({ c, autoPlay = false }) {
       <video
         src={c.cover_video}
         poster={c.cover_poster || undefined}
-        autoPlay={autoPlay}
-        loop
+        // autoPlay={autoPlay}
+        // loop
         muted
         playsInline
-        preload={autoPlay ? 'auto' : 'none'}
+        // preload={autoPlay ? 'auto' : 'none'}
+        preload="auto"
       />
     );
   }
@@ -72,12 +73,19 @@ function ModalVideo({ c }) {
     if (!el) return;
     // Force play immediately — don't wait for preload
     el.currentTime = 0;
-    const playPromise = el.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay blocked — still show poster, acceptable fallback
+    el.muted = false; // ensure sound on
+
+    const tryPlay = () => {
+      el.play().catch(() => {
+        // If blocked with sound, try muted (silent fallback)
+        el.muted = true;
+        el.play().catch(() => {});
       });
-    }
+    };
+
+    // Small delay to let modal animation settle
+    const timer = setTimeout(tryPlay, 80);
+    return () => clearTimeout(timer);
   }, []);
 
   if (c.cover_video) {

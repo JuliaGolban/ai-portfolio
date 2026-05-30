@@ -7,19 +7,89 @@ import {
   NavLogo,
   NavLinks,
   NavLink,
+  NavControls,
+  IconBtn,
   LangSwitch,
-  DropdownWrap,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
   BurgerBtn,
   BurgerLine,
   MobileMenu,
   MobileMenuLink,
-  MobileMenuSub,
+  DropdownWrap,
+  DropdownMenu,
+  DropdownItem,
 } from './Nav.styled';
 
-export default function Nav({ lang, onToggleLang, contact, translations }) {
+/* ── SVG icons ── */
+const SoundOnIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path
+      d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z"
+      fill="currentColor"
+      fillOpacity=".7"
+    />
+    <path
+      d="M10 5.5c1.1.6 1.8 1.7 1.8 2.5S11.1 9.9 10 10.5"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M12 3.5c1.8 1.1 2.8 2.8 2.8 4.5s-1 3.4-2.8 4.5"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeOpacity=".5"
+    />
+  </svg>
+);
+const SoundOffIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path
+      d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z"
+      fill="currentColor"
+      fillOpacity=".35"
+    />
+    <path
+      d="M11 6l3 4M14 6l-3 4"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeOpacity=".6"
+    />
+  </svg>
+);
+const SunIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <circle cx="8" cy="8" r="3" fill="currentColor" fillOpacity=".7" />
+    <path
+      d="M8 1v2M8 13v2M1 8h2M13 8h2M3.2 3.2l1.4 1.4M11.4 11.4l1.4 1.4M3.2 12.8l1.4-1.4M11.4 4.6l1.4-1.4"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeOpacity=".55"
+    />
+  </svg>
+);
+const MoonIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path
+      d="M13.5 10A6 6 0 016 2.5a6 6 0 100 11 6 6 0 007.5-3.5z"
+      fill="currentColor"
+      fillOpacity=".65"
+    />
+  </svg>
+);
+
+export default function Nav({
+  lang,
+  onToggleLang,
+  contact,
+  translations,
+  soundOn,
+  onToggleSound,
+  theme,
+  onToggleTheme,
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [worksOpen, setWorksOpen] = useState(false);
@@ -32,12 +102,10 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = e => {
-      if (dropRef.current && !dropRef.current.contains(e.target)) {
+      if (dropRef.current && !dropRef.current.contains(e.target))
         setWorksOpen(false);
-      }
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -52,17 +120,18 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
     );
   };
 
-  const worksItems = [
-    { label: lang === 'ua' ? 'Зображення' : 'Images', id: 'personal-photo' },
-    { label: lang === 'ua' ? 'Відео' : 'Video', id: 'video-animations' },
-    { label: lang === 'ua' ? 'Campaign' : 'Campaign', id: 'cases' },
-  ];
-
-  const staticLinks = [
-    { label: t.about, id: 'about' },
-    { label: t.pricing, id: 'pricing' },
-    { label: t.order, id: 'contact' },
-  ];
+  const worksItems =
+    lang === 'ua'
+      ? [
+          { label: 'Зображення', id: 'works' },
+          { label: 'Відео', id: 'video-animations' },
+          { label: 'Campaign', id: 'cases' },
+        ]
+      : [
+          { label: 'Images', id: 'works' },
+          { label: 'Video', id: 'video-animations' },
+          { label: 'Campaign', id: 'cases' },
+        ];
 
   return (
     <>
@@ -70,17 +139,27 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
         <NavLogo onClick={() => scrollTo('hero')}>JG</NavLogo>
 
         <NavLinks>
-          {/* About */}
           <NavLink onClick={() => scrollTo('about')}>{t.about}</NavLink>
 
-          {/* Works dropdown */}
           <DropdownWrap ref={dropRef}>
-            <DropdownTrigger
-              data-open={worksOpen}
+            <NavLink
+              as="button"
               onClick={() => setWorksOpen(o => !o)}
+              style={{ display: 'flex', alignItems: 'center', gap: 5 }}
             >
               {t.works}
-            </DropdownTrigger>
+              <span
+                style={{
+                  fontSize: 7,
+                  opacity: 0.5,
+                  transform: worksOpen ? 'rotate(180deg)' : 'none',
+                  transition: 'transform .25s',
+                  display: 'inline-block',
+                }}
+              >
+                ▼
+              </span>
+            </NavLink>
             <AnimatePresence>
               {worksOpen && (
                 <DropdownMenu
@@ -102,19 +181,27 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
             </AnimatePresence>
           </DropdownWrap>
 
-          {/* Pricing & Order */}
-          {staticLinks.slice(1).map(item => (
-            <NavLink key={item.id} onClick={() => scrollTo(item.id)}>
-              {item.label}
-            </NavLink>
-          ))}
-
+          <NavLink onClick={() => scrollTo('pricing')}>{t.pricing}</NavLink>
+          <NavLink onClick={() => scrollTo('contact')}>{t.order}</NavLink>
           {/* <NavLink href={contact.instagram} target="_blank">
             {t.ig}
           </NavLink> */}
-          <LangSwitch onClick={onToggleLang}>
-            {lang === 'ua' ? 'EN' : 'UA'}
-          </LangSwitch>
+
+          {/* Controls group */}
+          <NavControls>
+            <IconBtn onClick={onToggleSound} title={soundOn ? 'Mute' : 'Sound'}>
+              {soundOn ? <SoundOnIcon /> : <SoundOffIcon />}
+            </IconBtn>
+            <IconBtn
+              onClick={onToggleTheme}
+              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </IconBtn>
+            <LangSwitch onClick={onToggleLang}>
+              {lang === 'ua' ? 'EN' : 'UA'}
+            </LangSwitch>
+          </NavControls>
         </NavLinks>
 
         <BurgerBtn onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
@@ -124,7 +211,6 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
         </BurgerBtn>
       </NavWrap>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <MobileMenu
@@ -133,67 +219,52 @@ export default function Nav({ lang, onToggleLang, contact, translations }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0 }}
-            >
-              <MobileMenuLink onClick={() => scrollTo('about')}>
-                {t.about}
-              </MobileMenuLink>
-            </motion.div>
-
-            {/* Works group */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.07 }}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '25px',
-              }}
-            >
-              <MobileMenuLink as="span" style={{ opacity: 0.9 }}>
-                {t.works}
-              </MobileMenuLink>
-              {worksItems.map((item, i) => (
-                <MobileMenuSub key={item.id} onClick={() => scrollTo(item.id)}>
-                  {item.label}
-                </MobileMenuSub>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.14 }}
-            >
-              <MobileMenuLink onClick={() => scrollTo('pricing')}>
-                {t.pricing}
-              </MobileMenuLink>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.21 }}
-            >
-              <MobileMenuLink onClick={() => scrollTo('contact')}>
-                {t.order}
-              </MobileMenuLink>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.28 }}
-            >
-              <MobileMenuLink
-                onClick={onToggleLang}
-                style={{ fontSize: '1rem', letterSpacing: '0.3em' }}
+            {[
+              { label: t.about, id: 'about' },
+              { label: t.pricing, id: 'pricing' },
+              { label: t.order, id: 'contact' },
+            ].map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
               >
+                <MobileMenuLink onClick={() => scrollTo(item.id)}>
+                  {item.label}
+                </MobileMenuLink>
+              </motion.div>
+            ))}
+            {worksItems.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + i * 0.06 }}
+              >
+                <MobileMenuLink
+                  onClick={() => scrollTo(item.id)}
+                  style={{ fontSize: 'clamp(1.3rem,5vw,2rem)', opacity: 0.7 }}
+                >
+                  {item.label}
+                </MobileMenuLink>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              style={{ display: 'flex', gap: 20, justifyContent: 'center' }}
+            >
+              <IconBtn onClick={onToggleSound}>
+                {soundOn ? <SoundOnIcon /> : <SoundOffIcon />}
+              </IconBtn>
+              <IconBtn onClick={onToggleTheme}>
+                {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+              </IconBtn>
+              <LangSwitch onClick={onToggleLang} style={{ background: 'none' }}>
                 {lang === 'ua' ? 'EN' : 'UA'}
-              </MobileMenuLink>
+              </LangSwitch>
             </motion.div>
           </MobileMenu>
         )}
@@ -207,4 +278,8 @@ Nav.propTypes = {
   onToggleLang: PropTypes.func.isRequired,
   contact: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,
+  soundOn: PropTypes.bool.isRequired,
+  onToggleSound: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
 };

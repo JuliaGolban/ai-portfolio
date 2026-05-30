@@ -22,22 +22,22 @@ export const IndexGrid = styled.div`
   @media (min-width: 640px) {
     grid-template-columns: repeat(3, 1fr);
     /* Last item (campaign) spans full width
-    & > *:last-child {
-      grid-column: 1 / -1;
-      aspect-ratio: 16/9 !important;
+    & > *:last-child { 
+    grid-column: 1 / -1; 
+    aspect-ratio: 16/9 !important; 
     } */
   }
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
-    /* Second to last (video) — 2 cols, last (campaign) — full
+    /* Second to last (video) — 2 cols, last (campaign) — full 
     & > *:nth-last-child(2) {
       grid-column: 2 / 4;
     }
     & > *:last-child {
       grid-column: 1 / -1;
       aspect-ratio: 16/9 !important;
-    } */
+    }*/
   }
 `;
 
@@ -48,17 +48,17 @@ export const IndexCard = styled(motion.div)`
   cursor: pointer;
   background: #0d0d0d;
   aspect-ratio: 4/3;
-  /* 
+  /*
   @media (min-width: 900px) {
-    &[data-tall='true'] {
-      aspect-ratio: 3/4;
-    }
+    &[data-tall="true"] { 
+    aspect-ratio: 3/4;
+     }
   }
 
- Campaign card — wide panoramic
+  /* Campaign card — wide panoramic
   &[data-campaign='true'] {
     aspect-ratio: 16/5;
-  } */
+  }*/
 `;
 
 export const CardMedia = styled.div`
@@ -105,16 +105,20 @@ export const CardNum = styled.span`
 `;
 
 export const CardArrow = styled.span`
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0);
-  transition: all 0.35s;
-  z-index: 1;
-  ${IndexCard}:hover & {
-    color: rgba(255, 255, 255, 0.5);
-    transform: translate(3px, -3px);
+  display: none; /* hidden on mobile — looks bad on touch */
+  @media (min-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0);
+    transition: all 0.35s;
+    z-index: 1;
+    ${IndexCard}:hover & {
+      color: rgba(255, 255, 255, 0.5);
+      transform: translate(3px, -3px);
+    }
   }
 `;
 

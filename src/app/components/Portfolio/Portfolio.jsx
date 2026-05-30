@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
 import Lightbox from '../shared/Lightbox';
 import {
@@ -28,10 +28,8 @@ import {
   PlayBtn,
 } from './Portfolio.styled';
 
-/* ── .png → .webp swap for grid thumbnails ── */
 const toWebp = src => (src ? src.replace(/\.png$/i, '.webp') : src);
 
-/* ── Grid map ── */
 const GRID_MAP = {
   'grid-3': Grid3,
   'grid-asymmetric': GridAsymmetric,
@@ -40,21 +38,43 @@ const GRID_MAP = {
   'grid-video': GridVideo,
 };
 
-/* ── Video card — plays inline on click ── */
-function VidCard({ video, delay }) {
-  const [playing, setPlaying] = useState(false);
-  const ref = React.useRef(null);
+/* ── Video card — only one plays at a time, bg mutes while playing ── */
+function VidCard({ video, delay, playingRef, setPlayingRef, bgVideoRef }) {
+  const ref = useRef(null);
 
-  const toggle = () => {
-    if (!ref.current) return;
-    if (playing) {
-      ref.current.pause();
-      setPlaying(false);
+  const toggle = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const bg = bgVideoRef?.current;
+
+    if (playingRef.current === el) {
+      /* pause this video */
+      el.pause();
+      playingRef.current = null;
+      /* restore bg sound if it was playing */
+      if (bg) {
+        // eslint-disable-next-line react-hooks/immutability
+        bg.muted = false;
+      }
     } else {
-      ref.current.play();
-      setPlaying(true);
+      /* pause previous */
+      if (playingRef.current) {
+        playingRef.current.pause();
+      }
+      /* mute bg */
+      if (bg) {
+        bg.muted = true;
+      }
+      /* play this */
+      el.play().catch(console.error);
+      playingRef.current = el;
     }
-  };
+    /* force re-render via setPlayingRef */
+    setPlayingRef(el === playingRef.current ? el : null);
+    // setPlayingRef(Date.now());
+  }, [playingRef, setPlayingRef, bgVideoRef]);
+
+  const isPlaying = playingRef.current === ref.current;
 
   return (
     <Reveal delay={delay}>
@@ -72,14 +92,13 @@ function VidCard({ video, delay }) {
             objectFit: 'contain',
             display: 'block',
           }}
-          onEnded={() => setPlaying(false)}
         />
-        {!playing && (
+        {!isPlaying && (
           <VideoOverlay>
             <PlayBtn />
           </VideoOverlay>
         )}
-        <FrameOverlay style={{ opacity: playing ? 0 : undefined }}>
+        <FrameOverlay style={{ opacity: isPlaying ? 0 : undefined }}>
           <FrameCaption>{video.caption}</FrameCaption>
         </FrameOverlay>
       </VideoCard>
@@ -89,11 +108,40 @@ function VidCard({ video, delay }) {
 VidCard.propTypes = {
   video: PropTypes.object.isRequired,
   delay: PropTypes.number,
+  playingRef: PropTypes.object.isRequired,
+  setPlayingRef: PropTypes.func.isRequired,
+  bgVideoRef: PropTypes.object,
 };
 
-/* ── Section images grid with lightbox ── */
+/* ── Video grid — shared playing state ── */
+function VideoGrid({ section, bgVideoRef }) {
+  const playingRef = useRef(null);
+  const [, setPlayingRef] = useState(0); /* just for re-render */
+  const GridComponent = GRID_MAP[section.layout] || Grid3;
+
+  return (
+    <GridComponent>
+      {(section.videos || []).map((video, i) => (
+        <VidCard
+          key={video.src}
+          video={video}
+          delay={i * 0.06}
+          playingRef={playingRef}
+          setPlayingRef={setPlayingRef}
+          bgVideoRef={bgVideoRef}
+        />
+      ))}
+    </GridComponent>
+  );
+}
+VideoGrid.propTypes = {
+  section: PropTypes.object.isRequired,
+  bgVideoRef: PropTypes.object,
+};
+
+/* ── Image grid with lightbox ── */
 function ImgGrid({ section }) {
-  const [lightbox, setLightbox] = useState(null); // index | null
+  const [lightbox, setLightbox] = useState(null);
   const images = section.images || [];
   const GridComponent = GRID_MAP[section.layout] || Grid3;
 
@@ -104,10 +152,8 @@ function ImgGrid({ section }) {
           <Reveal key={img.src} delay={i * 0.06}>
             <ImageCard
               onClick={() => setLightbox(i)}
-              title={img.caption}
               style={{ cursor: 'zoom-in' }}
             >
-              {/* WebP thumbnail for fast grid loading */}
               <FrameImg
                 src={toWebp(img.src)}
                 alt={img.caption}
@@ -120,8 +166,6 @@ function ImgGrid({ section }) {
           </Reveal>
         ))}
       </GridComponent>
-
-      {/* Full-resolution PNG lightbox */}
       <AnimatePresence>
         {lightbox !== null && (
           <Lightbox
@@ -137,21 +181,8 @@ function ImgGrid({ section }) {
 }
 ImgGrid.propTypes = { section: PropTypes.object.isRequired };
 
-/* ── Video grid ── */
-function VideoGrid({ section }) {
-  const GridComponent = GRID_MAP[section.layout] || Grid3;
-  return (
-    <GridComponent>
-      {(section.videos || []).map((video, i) => (
-        <VidCard key={video.src} video={video} delay={i * 0.06} />
-      ))}
-    </GridComponent>
-  );
-}
-VideoGrid.propTypes = { section: PropTypes.object.isRequired };
-
 /* ── Main Portfolio ── */
-export default function Portfolio({ sections, lang }) {
+export default function Portfolio({ sections, lang, bgVideoRef }) {
   return (
     <div id="works">
       {sections.map((section, si) => (
@@ -166,14 +197,12 @@ export default function Portfolio({ sections, lang }) {
                 <SectionDesc>{section[`desc_${lang}`]}</SectionDesc>
               </SectionHeader>
             </Reveal>
-
             {section.layout === 'grid-video' ? (
-              <VideoGrid section={section} />
+              <VideoGrid section={section} bgVideoRef={bgVideoRef} />
             ) : (
               <ImgGrid section={section} />
             )}
           </PortfolioSection>
-
           {si < sections.length - 1 && <Divider />}
         </React.Fragment>
       ))}
@@ -184,4 +213,5 @@ export default function Portfolio({ sections, lang }) {
 Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
   lang: PropTypes.string.isRequired,
+  bgVideoRef: PropTypes.object,
 };

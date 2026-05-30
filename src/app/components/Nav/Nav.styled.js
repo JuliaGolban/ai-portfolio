@@ -145,21 +145,61 @@ export const DropdownItem = styled.a`
   }
 `;
 
+export const DropdownSubItem = styled.a`
+  display: block;
+  padding: 10px 28px;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  &:hover {
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.06);
+  }
+`;
+
+/* ── Controls (lang + theme + sounds) ── */
+export const NavControls = styled.div`
+  display: none;
+  gap: 8px;
+  align-items: center;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const IconBtn = styled.button`
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s;
+  &:hover {
+    color: rgba(255, 255, 255, 0.95);
+  }
+`;
+
 export const LangSwitch = styled.button`
   font-size: 10px;
   font-weight: 300;
   letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.35);
+  /* padding: 5px 10px; 
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 5px 10px;
-  border-radius: 1px;
+  border-radius: 1px; */
   cursor: pointer;
   transition:
     color 0.3s,
-    border-color 0.3s;
+    /* border-color 0.3s; */
   &:hover {
     color: rgba(255, 255, 255, 0.75);
-    border-color: rgba(255, 255, 255, 0.3);
+    /* border-color: rgba(255, 255, 255, 0.3); */
   }
 `;
 
