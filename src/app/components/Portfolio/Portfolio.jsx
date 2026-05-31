@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import Reveal from '../shared/Reveal';
@@ -39,8 +39,22 @@ const GRID_MAP = {
 };
 
 /* ── Video card — only one plays at a time, bg mutes while playing ── */
-function VidCard({ video, delay, playingRef, setPlayingRef, bgVideoRef }) {
+function VidCard({
+  video,
+  delay,
+  playingRef,
+  setPlaying,
+  bgVideoRef,
+  soundOn,
+}) {
   const ref = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.muted = !soundOn;
+  }, [soundOn]);
 
   const toggle = useCallback(() => {
     const el = ref.current;
@@ -51,6 +65,8 @@ function VidCard({ video, delay, playingRef, setPlayingRef, bgVideoRef }) {
       /* pause this video */
       el.pause();
       playingRef.current = null;
+      setIsPlaying(false);
+      setPlaying(null);
       /* restore bg sound if it was playing */
       if (bg) {
         // eslint-disable-next-line react-hooks/immutability
@@ -65,16 +81,17 @@ function VidCard({ video, delay, playingRef, setPlayingRef, bgVideoRef }) {
       if (bg) {
         bg.muted = true;
       }
+      el.muted = !soundOn;
       /* play this */
       el.play().catch(console.error);
       playingRef.current = el;
+      setIsPlaying(true);
+      setPlaying(el);
     }
     /* force re-render via setPlayingRef */
     setPlayingRef(el === playingRef.current ? el : null);
     // setPlayingRef(Date.now());
-  }, [playingRef, setPlayingRef, bgVideoRef]);
-
-  const isPlaying = playingRef.current === ref.current;
+  }, [playingRef, setPlaying, bgVideoRef, soundOn]);
 
   return (
     <Reveal delay={delay}>
@@ -109,14 +126,15 @@ VidCard.propTypes = {
   video: PropTypes.object.isRequired,
   delay: PropTypes.number,
   playingRef: PropTypes.object.isRequired,
-  setPlayingRef: PropTypes.func.isRequired,
+  setPlaying: PropTypes.func.isRequired,
   bgVideoRef: PropTypes.object,
+  soundOn: PropTypes.bool.isRequired,
 };
 
 /* ── Video grid — shared playing state ── */
-function VideoGrid({ section, bgVideoRef }) {
+function VideoGrid({ section, bgVideoRef, soundOn }) {
   const playingRef = useRef(null);
-  const [, setPlayingRef] = useState(0); /* just for re-render */
+  const [, setPlaying] = useState(0); /* just for re-render */
   const GridComponent = GRID_MAP[section.layout] || Grid3;
 
   return (
@@ -127,8 +145,9 @@ function VideoGrid({ section, bgVideoRef }) {
           video={video}
           delay={i * 0.06}
           playingRef={playingRef}
-          setPlayingRef={setPlayingRef}
+          setPlaying={setPlaying}
           bgVideoRef={bgVideoRef}
+          soundOn={soundOn}
         />
       ))}
     </GridComponent>
@@ -137,6 +156,7 @@ function VideoGrid({ section, bgVideoRef }) {
 VideoGrid.propTypes = {
   section: PropTypes.object.isRequired,
   bgVideoRef: PropTypes.object,
+  soundOn: PropTypes.bool.isRequired,
 };
 
 /* ── Image grid with lightbox ── */
@@ -182,7 +202,7 @@ function ImgGrid({ section }) {
 ImgGrid.propTypes = { section: PropTypes.object.isRequired };
 
 /* ── Main Portfolio ── */
-export default function Portfolio({ sections, lang, bgVideoRef }) {
+export default function Portfolio({ sections, lang, bgVideoRef, soundOn }) {
   return (
     <div id="works">
       {sections.map((section, si) => (
@@ -198,7 +218,11 @@ export default function Portfolio({ sections, lang, bgVideoRef }) {
               </SectionHeader>
             </Reveal>
             {section.layout === 'grid-video' ? (
-              <VideoGrid section={section} bgVideoRef={bgVideoRef} />
+              <VideoGrid
+                section={section}
+                bgVideoRef={bgVideoRef}
+                soundOn={soundOn}
+              />
             ) : (
               <ImgGrid section={section} />
             )}
@@ -214,4 +238,5 @@ Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
   lang: PropTypes.string.isRequired,
   bgVideoRef: PropTypes.object,
+  soundOn: PropTypes.bool.isRequired,
 };

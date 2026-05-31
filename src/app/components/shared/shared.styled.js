@@ -5,11 +5,12 @@ export const GlobalStyle = createGlobalStyle`
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: #050505;
-    color: #fff;
+    background: var(--bg, #050505);
+    color: var(--text-primary, rgba(255,255,255,0.85));
     font-family: 'Jost', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
   }
   a { color: inherit; text-decoration: none; }
   button { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
@@ -23,8 +24,8 @@ const grain = keyframes`
 `;
 
 export const Container = styled.main`
-  background: #050505;
-  color: #fff;
+  background: var(--bg, #050505);
+  color: var(--text-primary, rgba(255, 255, 255, 0.85));
   min-height: 100vh;
   position: relative;
   font-family: 'Jost', sans-serif;

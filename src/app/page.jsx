@@ -62,9 +62,11 @@ export default function Page() {
   const handleToggleSound = useCallback(() => {
     const bg = bgVideoRef.current;
     if (!bg) return;
-    const next = !soundOn;
-    bg.muted = !next;
-    setSoundOn(next);
+
+    const nextSoundOn = !soundOn;
+
+    bg.muted = !nextSoundOn;
+    setSoundOn(nextSoundOn);
   }, [soundOn]);
 
   const toggleLang = () => setLang(l => (l === 'ua' ? 'en' : 'ua'));
