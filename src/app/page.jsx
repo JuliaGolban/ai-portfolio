@@ -31,7 +31,7 @@ import Footer from './components/Footer/Footer';
 export default function Page() {
   const [lang, setLang] = useState('ua');
   const [campaignOpen, setCampaignOpen] = useState(false);
-  const [soundOn, setSoundOn] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const [theme, setTheme] = useState('dark');
   const mounted = useRef(false);
   const bgVideoRef = useRef(null);
@@ -58,18 +58,26 @@ export default function Page() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  /* Sound toggle — controls bg video mute */
+  /* Sound toggle — mutes bg video AND all other <video> on the page */
   const handleToggleSound = useCallback(() => {
-    const bg = bgVideoRef.current;
-    if (!bg) return;
-
     const nextSoundOn = !soundOn;
-
-    bg.muted = !nextSoundOn;
+    // bg video
+    if (bgVideoRef.current) bgVideoRef.current.muted = !nextSoundOn;
+    // all other videos (portfolio section)
+    document.querySelectorAll('video').forEach(v => {
+      if (v !== bgVideoRef.current) v.muted = !nextSoundOn;
+    });
     setSoundOn(nextSoundOn);
   }, [soundOn]);
 
-  const toggleLang = () => setLang(l => (l === 'ua' ? 'en' : 'ua'));
+  const toggleLang = () =>
+    setLang(l => {
+      const next = l === 'ua' ? 'en' : 'ua';
+      // Sync to BriefWidget via localStorage + custom event (same tab)
+      localStorage.setItem('jg-lang', next);
+      window.dispatchEvent(new CustomEvent('jg-lang-change', { detail: next }));
+      return next;
+    });
   const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
 
   const openCampaign = useCallback(() => setCampaignOpen(true), []);

@@ -28,19 +28,19 @@ export const AboutText = styled.div`
 
 export const AboutSubtitle = styled.p`
   font-family: 'Jost', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
   font-size: clamp(0.85rem, 1.4vw, 1rem);
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-muted);
   letter-spacing: 0.06em;
   margin-top: 4px;
 `;
 
 export const AboutBio = styled.p`
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.9;
-  color: rgba(255, 255, 255, 0.36);
+  color: var(--text-medium);
   max-width: 440px;
   margin-top: 20px;
 `;
@@ -56,28 +56,28 @@ export const SocialLink = styled.a`
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-label);
   transition: color 0.3s;
   &::before {
     content: '';
     display: block;
     width: 20px;
     height: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--text-faint);
     transition:
       width 0.3s,
       background 0.3s;
     flex-shrink: 0;
   }
   &:hover {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--text-frame);
     &::before {
       width: 36px;
-      background: rgba(255, 255, 255, 0.35);
+      background: var(--text-muted);
     }
   }
 `;

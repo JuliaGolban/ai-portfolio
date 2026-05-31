@@ -14,7 +14,7 @@ export const Nav = styled.nav`
     background 0.4s,
     backdrop-filter 0.4s;
   background: ${({ $scrolled }) =>
-    $scrolled ? 'rgba(5,5,5,0.88)' : 'transparent'};
+    $scrolled ? 'var(--bg-nav)' : 'transparent'};
   backdrop-filter: ${({ $scrolled }) => ($scrolled ? 'blur(14px)' : 'none')};
   @media (min-width: 768px) {
     padding: 32px 80px;
@@ -25,13 +25,13 @@ export const NavLogo = styled.a`
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 16px;
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  color: var(--text-nav);
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: color 0.3s;
   &:hover {
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
   }
 `;
 
@@ -45,15 +45,15 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled.a`
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: var(--text-medium);
   cursor: pointer;
   transition: color 0.3s;
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-dark);
   }
 `;
 
@@ -65,18 +65,18 @@ export const DropdownWrap = styled.div`
 `;
 
 export const DropdownTrigger = styled.button`
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: var(--text-medium);
   cursor: pointer;
   transition: color 0.3s;
   display: flex;
   align-items: center;
   gap: 5px;
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-dark);
   }
   /* tiny chevron */
   &::after {
@@ -126,11 +126,11 @@ export const DropdownMenu = styled(motion.div)`
 export const DropdownItem = styled.a`
   display: block;
   padding: 12px 18px;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: var(--text-medium);
   cursor: pointer;
   transition:
     color 0.2s,
@@ -140,26 +140,26 @@ export const DropdownItem = styled.a`
     border-bottom: none;
   }
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-dark);
+    background: var(--bg-faint);
   }
 `;
 
 export const DropdownSubItem = styled.a`
   display: block;
   padding: 10px 28px;
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-medium);
   cursor: pointer;
   transition:
     color 0.2s,
     background 0.2s;
   &:hover {
-    color: rgba(255, 255, 255, 0.75);
-    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-dark);
+    background: var(--bg-faint);
   }
 `;
 
@@ -178,28 +178,23 @@ export const IconBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-medium);
   transition: color 0.3s;
   &:hover {
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
   }
 `;
 
 export const LangSwitch = styled.button`
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.3em;
-  color: rgba(255, 255, 255, 0.35);
-  /* padding: 5px 10px; 
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1px; */
+  color: var(--text-medium);
   cursor: pointer;
-  transition:
-    color 0.3s,
-    /* border-color 0.3s; */
+  transition: color 0.3s;
+  /* border-color 0.3s; */
   &:hover {
-    color: rgba(255, 255, 255, 0.75);
-    /* border-color: rgba(255, 255, 255, 0.3); */
+    color: var(--text);
   }
 `;
 
@@ -218,7 +213,7 @@ export const BurgerLine = styled.span`
   display: block;
   width: 22px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--text-muted);
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   &:nth-child(1) {
     transform: ${({ $open }) =>
@@ -237,7 +232,7 @@ export const MobileMenu = styled(motion.div)`
   position: fixed;
   inset: 0;
   z-index: 88;
-  background: rgba(5, 5, 5, 0.97);
+  background: var(--overlay);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -252,25 +247,25 @@ export const MobileMenuLink = styled.a`
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: clamp(2rem, 8vw, 3rem);
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.65);
+  font-weight: 400;
+  color: var(--text-label);
   cursor: pointer;
   transition: color 0.3s;
   &:hover {
-    color: #fff;
+    color: var(--text);
   }
 `;
 
 export const MobileMenuSub = styled.a`
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-label);
   cursor: pointer;
   transition: color 0.3s;
   margin-top: -20px;
   &:hover {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text);
   }
 `;

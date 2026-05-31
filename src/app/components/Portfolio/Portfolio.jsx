@@ -89,8 +89,8 @@ function VidCard({
       setPlaying(el);
     }
     /* force re-render via setPlayingRef */
-    setPlayingRef(el === playingRef.current ? el : null);
-    // setPlayingRef(Date.now());
+    setPlaying(el === playingRef.current ? el : null);
+    // setPlaying(Date.now());
   }, [playingRef, setPlaying, bgVideoRef, soundOn]);
 
   return (

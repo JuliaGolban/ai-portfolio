@@ -81,11 +81,11 @@ export const CardOverlay = styled.div`
 `;
 
 export const CardClient = styled.p`
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-muted);
 `;
 
 export const CardTitle = styled.h3`
@@ -93,15 +93,15 @@ export const CardTitle = styled.h3`
   font-style: italic;
   font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 200;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
   line-height: 1.1;
 `;
 
 export const CardSubtitle = styled.p`
-  font-size: 11px;
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: 0.03em;
-  color: rgba(255, 255, 255, 0.32);
+  color: var(--text-muted);
   line-height: 1.5;
 `;
 
@@ -113,25 +113,25 @@ export const CardTagList = styled.div`
 `;
 
 export const CardTag = styled.span`
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  border: 1px solid var(--border-soft);
   padding: 2px 7px;
   border-radius: 1px;
 `;
 
 export const CardCTA = styled.span`
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-muted);
   margin-top: 6px;
   transition: color 0.3s;
   ${CaseCard}:hover & {
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--text-label);
   }
 `;
 
@@ -140,7 +140,7 @@ export const Backdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(5, 5, 5, 0.94);
+  background: var(--overlay);
   backdrop-filter: blur(10px);
   /* No overflow-y: auto here — scroll only inside text column */
   overflow: hidden;
@@ -154,8 +154,8 @@ export const Backdrop = styled(motion.div)`
 `;
 
 export const ModalBox = styled(motion.div)`
-  background: #080808;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--bg-modal);
+  border: 1px solid var(--border-soft);
   border-radius: 4px;
   max-width: 960px;
   width: 100%;
@@ -176,13 +176,13 @@ export const ModalClose = styled.button`
   right: 16px;
   font-size: 22px;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-muted);
   z-index: 10;
   transition: color 0.2s;
   line-height: 1;
   padding: 4px 8px;
   &:hover {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-label);
   }
 `;
 
@@ -206,7 +206,7 @@ export const ModalLayout = styled.div`
 export const ModalVideoWrap = styled.div`
   flex: 0 0 auto;
   overflow: hidden;
-  background: #0f0f0f;
+  background: var(--bg-card);
 
   /* Mobile: fixed height box */
   width: 100%;
@@ -246,7 +246,7 @@ export const ModalTextWrap = styled.div`
 
   /* Thin scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: var(--text-faint) transparent;
   &::-webkit-scrollbar {
     width: 3px;
   }
@@ -254,7 +254,7 @@ export const ModalTextWrap = styled.div`
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--text-faint);
     border-radius: 2px;
   }
 `;
@@ -268,11 +268,11 @@ export const ModalMeta = styled.div`
 `;
 
 export const ModalClient = styled.span`
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-muted);
 `;
 
 export const ModalTagList = styled.div`
@@ -285,8 +285,8 @@ export const ModalTag = styled.span`
   font-size: 8px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-faint);
+  border: 1px solid var(--border-soft);
   padding: 2px 7px;
   border-radius: 1px;
 `;
@@ -296,7 +296,7 @@ export const ModalTitle = styled.h2`
   font-style: italic;
   font-weight: 200;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-dark);
   line-height: 1.1;
   margin-bottom: 6px;
 `;
@@ -305,7 +305,7 @@ export const ModalSubtitle = styled.p`
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.32);
+  color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 24px;
 `;
@@ -314,16 +314,16 @@ export const ModalBlockLabel = styled.p`
   font-size: 9px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.18);
+  color: var(--text-faint);
   margin-bottom: 8px;
 `;
 
 export const ModalText = styled.p`
   font-family: 'Jost', sans-serif;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.85;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-muted);
   margin-bottom: 22px;
 `;
 
@@ -332,15 +332,15 @@ export const ModalQuote = styled.blockquote`
   font-style: italic;
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 200;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-label);
   line-height: 1.6;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid var(--border-soft);
   padding-left: 16px;
   margin: 0 0 22px;
 `;
 
 export const ModalResultBox = styled.div`
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
   border-radius: 3px;
   padding: 18px 16px;
   margin: 8px 0 16px;
@@ -357,8 +357,8 @@ export const ModalTool = styled.span`
   font-size: 10px;
   font-weight: 300;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-medium);
+  background: var(--bg-light);
   padding: 5px 12px;
   border-radius: 2px;
 `;
@@ -370,8 +370,8 @@ export const ModalCTA = styled.a`
   font-weight: 300;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-medium);
+  border: 1px solid var(--border-soft);
   padding: 13px 28px;
   border-radius: 1px;
   text-decoration: none;
@@ -381,7 +381,7 @@ export const ModalCTA = styled.a`
   align-self: flex-start;
   margin-top: 24px;
   &:hover {
-    color: rgba(255, 255, 255, 0.82);
-    border-color: rgba(255, 255, 255, 0.28);
+    color: var(--text-dark);
+    border-color: var(--border-medium);
   }
 `;

@@ -336,7 +336,28 @@ function BriefCard({ lang, brief, onReset }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function BriefWidget() {
-  const [lang, setLang] = useState('ua');
+  // Sync lang with main page via localStorage
+  const [lang, setLang] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('jg-lang') || 'ua';
+    }
+    return 'ua';
+  });
+
+  useEffect(() => {
+    // Listen for lang changes from main page
+    const onStorage = (e) => {
+      if (e.key === 'jg-lang' && e.newValue) setLang(e.newValue);
+    };
+    // Also check immediately (same-tab custom event)
+    const onLangChange = (e) => setLang(e.detail);
+    window.addEventListener('storage', onStorage);
+    window.addEventListener('jg-lang-change', onLangChange);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('jg-lang-change', onLangChange);
+    };
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [screen, setScreen] = useState('welcome');
   const [messages, setMessages] = useState([]);

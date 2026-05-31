@@ -5,7 +5,7 @@ export const Backdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(5,5,5,0.92);
+  background: var(--overlay);
   backdrop-filter: blur(8px);
   overflow-y: auto;
   display: flex;
@@ -15,8 +15,8 @@ export const Backdrop = styled(motion.div)`
 `;
 
 export const ModalBox = styled(motion.div)`
-  background: #0a0a0a;
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
   border-radius: 4px;
   max-width: 860px;
   width: 100%;
@@ -30,10 +30,12 @@ export const CloseBtn = styled.button`
   right: 24px;
   font-size: 22px;
   font-weight: 100;
-  color: rgba(255,255,255,0.25);
+  color: var(--text-medium);
   line-height: 1;
   transition: color 0.2s;
-  &:hover { color: rgba(255,255,255,0.7); }
+  &:hover {
+    color: var(--text-faint);
+  }
 `;
 
 export const TagList = styled.div`
@@ -47,8 +49,8 @@ export const Tag = styled.span`
   font-size: 9px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.22);
-  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-faint);
+  border: 1px solid var(--border-soft);
   padding: 4px 10px;
   border-radius: 1px;
 `;
@@ -59,7 +61,7 @@ export const ModalTitle = styled.h2`
   font-weight: 200;
   font-size: clamp(1.6rem, 4vw, 2.8rem);
   line-height: 1.1;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-dark);
   margin-bottom: 32px;
 `;
 
@@ -80,7 +82,7 @@ export const BlockLabel = styled.p`
   font-size: 9px;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
+  color: var(--text-faint);
   margin-bottom: 12px;
 `;
 
@@ -89,7 +91,7 @@ export const BlockText = styled.p`
   font-size: 14px;
   font-weight: 300;
   line-height: 1.85;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
 `;
 
 export const ImageGrid = styled.div`
@@ -104,11 +106,16 @@ export const ImageGridCell = styled.div`
   border-radius: 3px;
   overflow: hidden;
   background: #0f0f0f;
-  img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.88); }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.88);
+  }
 `;
 
 export const ResultBox = styled.div`
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid var(--border-soft);
   border-radius: 3px;
   padding: 28px 24px;
   margin-bottom: 32px;
@@ -124,8 +131,8 @@ export const ToolChip = styled.span`
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.04);
+  color: var(--text-medium);
+  background: var(--bg-light);
   padding: 6px 14px;
   border-radius: 2px;
 `;
@@ -138,11 +145,16 @@ export const ModalCTA = styled.a`
   font-weight: 300;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-medium);
+  border: 1px solid var(--border-soft);
   padding: 14px 36px;
   border-radius: 1px;
   text-decoration: none;
-  transition: color 0.3s, border-color 0.3s;
-  &:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.3); }
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+  &:hover {
+    color: var(--text-dark);
+    border-color: var(--border-medium);
+  }
 `;
