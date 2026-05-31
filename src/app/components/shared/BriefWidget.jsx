@@ -27,7 +27,8 @@ const G = {
   soft: 'rgba(200,190,172,0.58)',
   userBg: 'rgba(180,148,90,0.06)',
   botBg: 'rgba(255,255,255,0.018)',
-  fabBg: 'rgba(10,9,8,0.78)',
+  // fabBg: 'rgba(10,9,8,0.78)',
+  fabBg: 'transparent',
 };
 
 const ALLOWED_TYPES = [
@@ -346,11 +347,11 @@ export default function BriefWidget() {
 
   useEffect(() => {
     // Listen for lang changes from main page
-    const onStorage = (e) => {
+    const onStorage = e => {
       if (e.key === 'jg-lang' && e.newValue) setLang(e.newValue);
     };
     // Also check immediately (same-tab custom event)
-    const onLangChange = (e) => setLang(e.detail);
+    const onLangChange = e => setLang(e.detail);
     window.addEventListener('storage', onStorage);
     window.addEventListener('jg-lang-change', onLangChange);
     return () => {

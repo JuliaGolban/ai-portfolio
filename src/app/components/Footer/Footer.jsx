@@ -9,11 +9,11 @@ const FooterWrap = styled.footer`
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 9px;
-  font-weight: 300;
+  border-top: 1px solid var(--border-soft);
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.3em;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-light);
   @media (max-width: 600px) {
     padding: 32px 24px;
   }

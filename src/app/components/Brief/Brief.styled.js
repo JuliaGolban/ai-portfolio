@@ -115,7 +115,7 @@ const inputBase = `
   transition: border-color 0.3s;
   width: 100%;
   &::placeholder {
-    color: var(--text-faint);
+    color: var(--text-muted);
   }
   &:focus {
     border-color: var(--border-medium);
@@ -242,7 +242,7 @@ export const FileUploadText = styled.span`
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-muted);
 `;
 
 export const FileUploadName = styled.span`

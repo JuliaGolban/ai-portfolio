@@ -56,7 +56,7 @@ export const SocialLink = styled.a`
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
