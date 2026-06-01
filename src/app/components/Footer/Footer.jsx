@@ -13,7 +13,7 @@ const FooterWrap = styled.footer`
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.3em;
-  color: var(--text-light);
+  color: var(--text-medium);
   @media (max-width: 600px) {
     padding: 32px 24px;
   }

@@ -107,7 +107,7 @@ const inputBase = `
   border-bottom: 1px solid var(--border);
   color: var(--text);
   font-family: 'Jost', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 10px 0;

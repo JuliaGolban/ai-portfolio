@@ -28,14 +28,40 @@ import Brief from './components/Brief/Brief';
 import CampaignModal from './components/CampaignModal/CampaignModal';
 import Footer from './components/Footer/Footer';
 
-export default function Page() {
-  const [lang, setLang] = useState('ua');
-  const [campaignOpen, setCampaignOpen] = useState(false);
-  const [soundOn, setSoundOn] = useState(true);
-  const [theme, setTheme] = useState('dark');
-  const mounted = useRef(false);
-  const bgVideoRef = useRef(null);
+/* ── helpers ── */
+const LS_SOUND = 'jg-sound';
+const LS_THEME = 'jg-theme';
+const LS_LANG = 'jg-lang';
 
+function lsGet(key, fallback) {
+  if (typeof window === 'undefined') return fallback;
+  try {
+    return localStorage.getItem(key) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+function lsSet(key, val) {
+  try {
+    localStorage.setItem(key, String(val));
+  } catch {}
+}
+
+export default function Page() {
+  /* ── init from localStorage ── */
+  const [lang, setLang] = useState(() => lsGet(LS_LANG, 'ua'));
+  const [theme, setTheme] = useState(() => lsGet(LS_THEME, 'dark'));
+  const [soundOn, setSoundOn] = useState(false); // always start false — browser autoplay policy
+
+  const [campaignOpen, setCampaignOpen] = useState(false);
+  const mounted = useRef(false);
+
+  /* ref to bg video element — set by Hero */
+  const bgVideoRef = useRef(null);
+  /* ref to currently playing portfolio video */
+  const portfolioPlayingRef = useRef(null);
+
+  /* cursor */
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const smoothX = useSpring(mouseX, { damping: 20, stiffness: 100 });
@@ -44,6 +70,7 @@ export default function Page() {
   useEffect(() => {
     mounted.current = true;
   }, []);
+
   useEffect(() => {
     const move = e => {
       mouseX.set(e.clientX - 18);
@@ -53,35 +80,117 @@ export default function Page() {
     return () => window.removeEventListener('mousemove', move);
   }, [mouseX, mouseY]);
 
-  /* Apply theme to <html> */
+  /* Apply theme */
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    lsSet(LS_THEME, theme);
   }, [theme]);
 
-  /* Sound toggle — mutes bg video AND all other <video> on the page */
-  const handleToggleSound = useCallback(() => {
-    const nextSoundOn = !soundOn;
-    // bg video
-    if (bgVideoRef.current) bgVideoRef.current.muted = !nextSoundOn;
-    // all other videos (portfolio section)
-    document.querySelectorAll('video').forEach(v => {
-      if (v !== bgVideoRef.current) v.muted = !nextSoundOn;
-    });
-    setSoundOn(nextSoundOn);
-  }, [soundOn]);
+  /* Restore sound from localStorage after bg video loads */
+  useEffect(() => {
+    const saved = lsGet(LS_SOUND, 'false');
+    if (saved !== 'true') return;
+    /* Try to apply sound when video is ready */
+    const apply = () => {
+      const bg = bgVideoRef.current;
+      if (!bg) return;
+      bg.muted = false;
+      setSoundOn(true);
+    };
+    /* Video might not be ready yet — listen for canplay */
+    const bg = bgVideoRef.current;
+    if (bg) {
+      if (bg.readyState >= 1) {
+        apply();
+      } else {
+        bg.addEventListener('canplay', apply, { once: true });
+      }
+    } else {
+      /* bgVideoRef not ready yet — retry after small delay */
+      const t = setTimeout(apply, 800);
+      return () => clearTimeout(t);
+    }
+  }, []); // run once on mount
 
-  const toggleLang = () =>
-    setLang(l => {
-      const next = l === 'ua' ? 'en' : 'ua';
-      // Sync to BriefWidget via localStorage + custom event (same tab)
-      localStorage.setItem('jg-lang', next);
-      window.dispatchEvent(new CustomEvent('jg-lang-change', { detail: next }));
+  /* ── Sound toggle ── */
+  const handleToggleSound = useCallback(() => {
+    setSoundOn(prev => {
+      const next = !prev;
+      lsSet(LS_SOUND, next);
+      const bg = bgVideoRef.current;
+
+      if (next) {
+        /* Enable sound */
+        /* bg — only if no portfolio video is playing */
+        if (bg && !portfolioPlayingRef.current) bg.muted = false;
+        /* Portfolio video currently playing */
+        if (portfolioPlayingRef.current)
+          portfolioPlayingRef.current.muted = false;
+      } else {
+        /* Mute everything */
+        if (bg) bg.muted = true;
+        if (portfolioPlayingRef.current)
+          portfolioPlayingRef.current.muted = true;
+        /* Also mute any other videos */
+        document.querySelectorAll('video').forEach(v => {
+          v.muted = true;
+        });
+      }
       return next;
     });
-  const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
+  }, []);
 
-  const openCampaign = useCallback(() => setCampaignOpen(true), []);
-  const closeCampaign = useCallback(() => setCampaignOpen(false), []);
+  /* ── Called by Portfolio when video starts playing ── */
+  const onPortfolioVideoPlay = useCallback(
+    videoEl => {
+      portfolioPlayingRef.current = videoEl;
+      /* Mute bg */
+      const bg = bgVideoRef.current;
+      if (bg) bg.muted = true;
+      /* Apply sound state to portfolio video */
+      if (videoEl) videoEl.muted = !soundOn;
+    },
+    [soundOn],
+  );
+
+  /* ── Called by Portfolio when video pauses ── */
+  const onPortfolioVideoPause = useCallback(() => {
+    portfolioPlayingRef.current = null;
+    /* Restore bg sound */
+    const bg = bgVideoRef.current;
+    if (bg) bg.muted = !soundOn;
+  }, [soundOn]);
+
+  /* ── Campaign modal: mute/restore bg ── */
+  const openCampaign = useCallback(() => {
+    const bg = bgVideoRef.current;
+    if (bg) bg.muted = true;
+    setCampaignOpen(true);
+  }, []);
+
+  const closeCampaign = useCallback(() => {
+    setCampaignOpen(false);
+    /* Restore bg — only if no portfolio video playing */
+    const bg = bgVideoRef.current;
+    if (bg && !portfolioPlayingRef.current) bg.muted = !soundOn;
+  }, [soundOn]);
+
+  /* ── Lang toggle ── */
+  const toggleLang = useCallback(() => {
+    setLang(l => {
+      const next = l === 'ua' ? 'en' : 'ua';
+      lsSet(LS_LANG, next);
+      /* Notify BriefWidget (same tab — custom event; other tabs — storage event) */
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent('jg-lang-change', { detail: next }),
+        );
+      }, 0);
+      return next;
+    });
+  }, []);
+
+  const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
 
   const t = translations[lang];
   const faq = faqTranslations[lang];
@@ -114,6 +223,7 @@ export default function Page() {
           onClose={closeCampaign}
           campaign={cases?.[0] || null}
           lang={lang}
+          soundOn={soundOn}
         />
 
         <Nav
@@ -144,9 +254,16 @@ export default function Page() {
           onNavigate={scrollTo}
         />
 
-        <Portfolio sections={portfolio} lang={lang} bgVideoRef={bgVideoRef} />
+        <Portfolio
+          sections={portfolio}
+          lang={lang}
+          bgVideoRef={bgVideoRef}
+          soundOn={soundOn}
+          onVideoPlay={onPortfolioVideoPlay}
+          onVideoPause={onPortfolioVideoPause}
+        />
 
-        <Cases cases={cases} lang={lang} contact={contact} />
+        <Cases cases={cases} lang={lang} contact={contact} soundOn={soundOn} />
 
         <Pricing
           serviceCategories={serviceCategories}

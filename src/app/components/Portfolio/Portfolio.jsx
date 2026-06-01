@@ -43,55 +43,51 @@ function VidCard({
   video,
   delay,
   playingRef,
-  setPlaying,
-  bgVideoRef,
+  onRerender,
   soundOn,
+  onVideoPlay,
+  onVideoPause,
 }) {
   const ref = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.muted = !soundOn;
-  }, [soundOn]);
+  // eslint-disable-next-line react-hooks/refs
+  const isPlaying = playingRef.current === ref.current;
 
   const toggle = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    const bg = bgVideoRef?.current;
 
     if (playingRef.current === el) {
-      /* pause this video */
+      /* Pause this video */
       el.pause();
+      el.muted = true;
       playingRef.current = null;
-      setIsPlaying(false);
-      setPlaying(null);
-      /* restore bg sound if it was playing */
-      if (bg) {
-        // eslint-disable-next-line react-hooks/immutability
-        bg.muted = false;
-      }
+      onVideoPause();
     } else {
-      /* pause previous */
+      /* Pause previous if any */
       if (playingRef.current) {
         playingRef.current.pause();
+        playingRef.current.muted = true;
       }
-      /* mute bg */
-      if (bg) {
-        bg.muted = true;
-      }
+      /* Apply sound state before play */
       el.muted = !soundOn;
-      /* play this */
-      el.play().catch(console.error);
+      el.play().catch(() => {
+        /* If blocked with sound, try muted */
+        el.muted = true;
+        el.play().catch(() => {});
+      });
       playingRef.current = el;
-      setIsPlaying(true);
-      setPlaying(el);
+      onVideoPlay(el);
     }
-    /* force re-render via setPlayingRef */
-    setPlaying(el === playingRef.current ? el : null);
-    // setPlaying(Date.now());
-  }, [playingRef, setPlaying, bgVideoRef, soundOn]);
+    onRerender(Date.now());
+  }, [playingRef, onRerender, soundOn, onVideoPlay, onVideoPause]);
+
+  /* Keep muted state in sync with soundOn while playing */
+  useEffect(() => {
+    const el = ref.current;
+    if (el && playingRef.current === el) {
+      el.muted = !soundOn;
+    }
+  }, [soundOn, playingRef]);
 
   return (
     <Reveal delay={delay}>
@@ -102,6 +98,7 @@ function VidCard({
           poster={video.poster}
           loop
           playsInline
+          muted /* start muted, unmuted on play based on soundOn */
           preload="none"
           style={{
             width: '100%',
@@ -126,15 +123,16 @@ VidCard.propTypes = {
   video: PropTypes.object.isRequired,
   delay: PropTypes.number,
   playingRef: PropTypes.object.isRequired,
-  setPlaying: PropTypes.func.isRequired,
-  bgVideoRef: PropTypes.object,
+  onRerender: PropTypes.func.isRequired,
   soundOn: PropTypes.bool.isRequired,
+  onVideoPlay: PropTypes.func.isRequired,
+  onVideoPause: PropTypes.func.isRequired,
 };
 
-/* ── Video grid — shared playing state ── */
-function VideoGrid({ section, bgVideoRef, soundOn }) {
+/* ── Video grid ── */
+function VideoGrid({ section, soundOn, onVideoPlay, onVideoPause }) {
   const playingRef = useRef(null);
-  const [, setPlaying] = useState(0); /* just for re-render */
+  const [, rerender] = useState(0);
   const GridComponent = GRID_MAP[section.layout] || Grid3;
 
   return (
@@ -145,9 +143,10 @@ function VideoGrid({ section, bgVideoRef, soundOn }) {
           video={video}
           delay={i * 0.06}
           playingRef={playingRef}
-          setPlaying={setPlaying}
-          bgVideoRef={bgVideoRef}
+          onRerender={rerender}
           soundOn={soundOn}
+          onVideoPlay={onVideoPlay}
+          onVideoPause={onVideoPause}
         />
       ))}
     </GridComponent>
@@ -155,8 +154,9 @@ function VideoGrid({ section, bgVideoRef, soundOn }) {
 }
 VideoGrid.propTypes = {
   section: PropTypes.object.isRequired,
-  bgVideoRef: PropTypes.object,
   soundOn: PropTypes.bool.isRequired,
+  onVideoPlay: PropTypes.func.isRequired,
+  onVideoPause: PropTypes.func.isRequired,
 };
 
 /* ── Image grid with lightbox ── */
@@ -201,8 +201,14 @@ function ImgGrid({ section }) {
 }
 ImgGrid.propTypes = { section: PropTypes.object.isRequired };
 
-/* ── Main Portfolio ── */
-export default function Portfolio({ sections, lang, bgVideoRef, soundOn }) {
+/* ── Main ── */
+export default function Portfolio({
+  sections,
+  lang,
+  soundOn,
+  onVideoPlay,
+  onVideoPause,
+}) {
   return (
     <div id="works">
       {sections.map((section, si) => (
@@ -220,8 +226,9 @@ export default function Portfolio({ sections, lang, bgVideoRef, soundOn }) {
             {section.layout === 'grid-video' ? (
               <VideoGrid
                 section={section}
-                bgVideoRef={bgVideoRef}
                 soundOn={soundOn}
+                onVideoPlay={onVideoPlay}
+                onVideoPause={onVideoPause}
               />
             ) : (
               <ImgGrid section={section} />
@@ -237,6 +244,7 @@ export default function Portfolio({ sections, lang, bgVideoRef, soundOn }) {
 Portfolio.propTypes = {
   sections: PropTypes.array.isRequired,
   lang: PropTypes.string.isRequired,
-  bgVideoRef: PropTypes.object,
   soundOn: PropTypes.bool.isRequired,
+  onVideoPlay: PropTypes.func.isRequired,
+  onVideoPause: PropTypes.func.isRequired,
 };
