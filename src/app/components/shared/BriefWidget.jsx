@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { lsGet } from '@/lib/helpers';
 
 const STYLE_PILLS = [
   'Dark editorial',
@@ -337,16 +338,9 @@ function BriefCard({ lang, brief, onReset }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function BriefWidget() {
-  // Sync lang with main page via localStorage
-  const [lang, setLang] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('jg-lang') || 'ua';
-    }
-    return 'ua';
-  });
+  const [lang, setLang] = useState(() => lsGet('jg-lang', 'ua'));
 
   useEffect(() => {
-    // Listen for lang changes from main page
     const onStorage = e => {
       if (e.key === 'jg-lang' && e.newValue) setLang(e.newValue);
     };

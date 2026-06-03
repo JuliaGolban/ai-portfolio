@@ -133,40 +133,6 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
         }
       }
 
-      // const EJS_SVC = process.env.NEXT_PUBLIC_EMAILJS_SERVICE;
-      // const EJS_TPL = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE;
-      // const EJS_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY;
-      // if (EJS_SVC && EJS_TPL && EJS_KEY) {
-      //   const { default: emailjs } = await import('@emailjs/browser');
-      //   await emailjs.send(
-      //     EJS_SVC,
-      //     EJS_TPL,
-      //     {
-      //       from_name: fields.name,
-      //       from_email: fields.email,
-      //       telegram: fields.telegram || '—',
-      //       website: fields.website || '—',
-      //       brand_name: fields.brandName || '—',
-      //       brand_desc: fields.brandDesc || '—',
-      //       package_label: autoLabel,
-      //       package_price: autoPrice,
-      //       goal: fields.goal || '—',
-      //       format: fields.format || '—',
-      //       tone: fields.tone || '—',
-      //       styles: fields.styles.join(', ') || '—',
-      //       details: fields.details || '—',
-      //       text_needed: fields.textNeeded || '—',
-      //       references: fields.references || '—',
-      //       video_dynamic: fields.videoDynamic || '—',
-      //       deadline: fields.deadline || '—',
-      //       restrictions: fields.restrictions || '—',
-      //       tz_filename: fields.tzFile ? fields.tzFile.name : '—',
-      //       lang: lang.toUpperCase(),
-      //     },
-      //     EJS_KEY,
-      //   );
-      // }
-
       setStatus('ok');
       setFields(EMPTY);
       if (fileRef.current) fileRef.current.value = '';
@@ -411,8 +377,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
 
             <FormGroup>
               <FormLabel>
-                {tb.deadline ||
-                  (lang === 'ua' ? 'Дедлайн' : 'Deadline')}
+                {tb.deadline || (lang === 'ua' ? 'Дедлайн' : 'Deadline')}
               </FormLabel>
               <FormInput
                 placeholder={
@@ -428,9 +393,7 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
             <FormGroup>
               <FormLabel>
                 {tb.restrictions ||
-                  (lang === 'ua'
-                    ? 'Заборони та обмеження'
-                    : 'Restrictions')}
+                  (lang === 'ua' ? 'Заборони та обмеження' : 'Restrictions')}
               </FormLabel>
               <FormTextarea
                 placeholder={

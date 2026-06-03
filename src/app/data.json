@@ -689,8 +689,8 @@
       "label_en": "AI Campaign",
       "desc_ua": "Повний AI-продакшн для бренду: стратегія, концепт, зображення, відео — під ключ.",
       "desc_en": "Full AI production for a brand: strategy, concept, imagery, video — end to end.",
-      "cta_ua": "Дивись кейс Jaguar →",
-      "cta_en": "See Jaguar case →",
+      "cta_ua": "Дивись кейс →",
+      "cta_en": "See case →",
       "plans": [
         {
           "id": "campaign-starter",
@@ -758,6 +758,43 @@
     "email": "julia.j.shcherban@gmail.com"
   },
   "cases": [
+    {
+      "id": "nike",
+      "client": "Nike",
+      "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "cover_video": "/portfolio/cases/nike.mp4",
+      "cover_poster": "/portfolio/cases/nike-poster.png",
+      "cover_image": null,
+      "title_ua": "Worlds in motion",
+      "title_en": "Worlds in motion",
+      "subtitle_ua": "AI-кампанія для глобального ребрендингу",
+      "subtitle_en": "AI campaign for a global rebrand",
+      "intro_ua": "Worlds in motion — не просто слоган. Це режисерська установка.",
+      "intro_en": "Worlds in motion — not just a slogan. A directorial premise.",
+      "task_ua": "Nike оголосив радикальний ребрендинг — відмову від класичної спадщини на користь ультра-сучасної електричної ери. Нова айдентика «Copy Nothing» поставила під сумнів усе: форму, колір, мову. Завдання — створити серію campaign-зображень, що передають дух трансформації.",
+      "task_en": "Nike announced a radical rebrand — abandoning classic heritage in favour of an ultra-modern electric era. The 'Copy Nothing' identity challenged everything: form, colour, language. The task — campaign images that capture the spirit of transformation.",
+      "idea_ua": "Замість прямої демонстрації автомобіля — метафора вдиху: момент між видихом старого і вдихом нового. Колірна гама: глибокий чорний, електричний рожевий, платиновий білий. AI дозволив дослідити абстрактні форми, неможливі в реальному продакшні.",
+      "idea_en": "Instead of showing the car — a metaphor of breath: the moment between exhaling the old and inhaling the new. Palette: deep black, electric pink, platinum white. AI allowed exploring forms impossible in real production.",
+      "result_ua": "12 hero-зображень для digital. Серія motion-loop для Reels та TikTok. Час виробництва — 5 днів. Жодних реальних кросівок, але впізнаваність бренду — 100%.",
+      "result_en": "12 hero images for digital. Motion-loop series for Reels and TikTok. Production time — 5 days. No real sneakers in frame, yet 100% brand recognisability.",
+      "images": [
+        "/portfolio/cases/nike-1.png",
+        "/portfolio/cases/nike-2.png",
+        "/portfolio/cases/nike-3.png",
+        "/portfolio/cases/nike-4.png",
+        "/portfolio/cases/nike-5.png",
+        "/portfolio/cases/nike-6.png"
+      ],
+      "tools": [
+        "Midjourney v8",
+        "Nana Banana Pro/ 2",
+        "Kling 3/ Veo 3",
+        "Suno AI",
+        "Photopea",
+        "CapCut"
+      ]
+    },
     {
       "id": "jaguar",
       "client": "Jaguar",

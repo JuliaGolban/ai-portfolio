@@ -59,7 +59,13 @@ const SoundOffIcon = () => (
   </svg>
 );
 const SunIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{ display: 'block' }}
+  >
     <circle cx="8" cy="8" r="3" fill="currentColor" fillOpacity=".7" />
     <path
       d="M8 1v2M8 13v2M1 8h2M13 8h2M3.2 3.2l1.4 1.4M11.4 11.4l1.4 1.4M3.2 12.8l1.4-1.4M11.4 4.6l1.4-1.4"
@@ -71,11 +77,18 @@ const SunIcon = () => (
   </svg>
 );
 const MoonIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ display: 'block' }}
+  >
     <path
-      d="M13.5 10A6 6 0 016 2.5a6 6 0 100 11 6 6 0 007.5-3.5z"
+      d="M11.5 9.5A5 5 0 0 1 5 3a5 5 0 1 0 6.5 6.5z"
       fill="currentColor"
-      fillOpacity=".65"
+      fillOpacity=".6"
     />
   </svg>
 );

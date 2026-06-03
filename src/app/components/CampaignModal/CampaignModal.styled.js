@@ -68,13 +68,24 @@ export const ModalTitle = styled.h2`
 export const Cover = styled.div`
   border-radius: 3px;
   overflow: hidden;
-  aspect-ratio: 16/6;
+  aspect-ratio: 4/3;
   margin-bottom: 48px;
+
+  video,
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: brightness(0.88) saturate(0.88);
+    object-fit: contain;
+    display: block;
+    filter: brightness(0.72) saturate(0.85);
+    transition:
+      filter 0.5s,
+      transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  &:hover video,
+  &:hover img {
+    filter: brightness(0.5) saturate(0.75);
+    transform: scale(1.03);
   }
 `;
 

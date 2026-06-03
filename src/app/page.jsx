@@ -28,24 +28,12 @@ import Brief from './components/Brief/Brief';
 import CampaignModal from './components/CampaignModal/CampaignModal';
 import Footer from './components/Footer/Footer';
 
+import { lsGet, lsSet } from '../lib/helpers';
+
 /* ── helpers ── */
 const LS_SOUND = 'jg-sound';
 const LS_THEME = 'jg-theme';
 const LS_LANG = 'jg-lang';
-
-function lsGet(key, fallback) {
-  if (typeof window === 'undefined') return fallback;
-  try {
-    return localStorage.getItem(key) ?? fallback;
-  } catch {
-    return fallback;
-  }
-}
-function lsSet(key, val) {
-  try {
-    localStorage.setItem(key, String(val));
-  } catch {}
-}
 
 export default function Page() {
   /* ── init from localStorage ── */
@@ -112,6 +100,16 @@ export default function Page() {
     }
   }, []); // run once on mount
 
+  /* ── Called by Hero when bg video fires canplay ── */
+  const onBgReady = useCallback(videoEl => {
+    bgVideoRef.current = videoEl;
+    const saved = lsGet(LS_SOUND, 'false');
+    if (saved === 'true') {
+      videoEl.muted = false;
+      setSoundOn(true);
+    }
+  }, []);
+
   /* ── Sound toggle ── */
   const handleToggleSound = useCallback(() => {
     setSoundOn(prev => {
@@ -153,12 +151,20 @@ export default function Page() {
     [soundOn],
   );
 
-  /* ── Called by Portfolio when video pauses ── */
   const onPortfolioVideoPause = useCallback(() => {
     portfolioPlayingRef.current = null;
-    /* Restore bg sound */
-    const bg = bgVideoRef.current;
-    if (bg) bg.muted = !soundOn;
+    if (bgVideoRef.current) bgVideoRef.current.muted = !soundOn;
+  }, [soundOn]);
+
+  /* ── Cases modal bg control ── */
+  const onCasesModalOpen = useCallback(() => {
+    if (bgVideoRef.current) bgVideoRef.current.muted = true;
+  }, []);
+
+  const onCasesModalClose = useCallback(() => {
+    if (bgVideoRef.current && !portfolioPlayingRef.current) {
+      bgVideoRef.current.muted = !soundOn;
+    }
   }, [soundOn]);
 
   /* ── Campaign modal: mute/restore bg ── */
@@ -241,6 +247,7 @@ export default function Page() {
           t={t.hero}
           instagramUrl={contact.instagram}
           bgVideoRef={bgVideoRef}
+          onBgReady={onBgReady}
         />
 
         <About about={about} lang={lang} contact={contact} />
@@ -263,7 +270,14 @@ export default function Page() {
           onVideoPause={onPortfolioVideoPause}
         />
 
-        <Cases cases={cases} lang={lang} contact={contact} soundOn={soundOn} />
+        <Cases
+          cases={cases}
+          lang={lang}
+          contact={contact}
+          soundOn={soundOn}
+          onModalOpen={onCasesModalOpen}
+          onModalClose={onCasesModalClose}
+        />
 
         <Pricing
           serviceCategories={serviceCategories}

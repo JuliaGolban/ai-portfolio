@@ -43,18 +43,17 @@ import {
 } from './Cases.styled';
 
 /* ── Card cover — preload="metadata" so browser knows duration/size ── */
-function CardCover({ c, autoPlay = false }) {
+function CardCover({ c }) {
   if (c.cover_video) {
     return (
       <video
         src={c.cover_video}
         poster={c.cover_poster || undefined}
-        // autoPlay={autoPlay}
-        // loop
+        autoPlay
+        loop
         muted
         playsInline
-        // preload={autoPlay ? 'auto' : 'none'}
-        preload="auto"
+        preload="metadata"
       />
     );
   }
@@ -64,26 +63,24 @@ function CardCover({ c, autoPlay = false }) {
 }
 CardCover.propTypes = { c: PropTypes.object.isRequired };
 
-/* ── Modal video — plays immediately on mount, no poster wait ── */
-function ModalVideo({ c }) {
+/* ── Modal video — plays immediately on mount ── */
+function ModalVideo({ c, soundOn }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Force play immediately — don't wait for preload
     el.currentTime = 0;
-    el.muted = false; // ensure sound on
+    el.muted = !soundOn; // respect global sound state
 
     const tryPlay = () => {
       el.play().catch(() => {
-        // If blocked with sound, try muted (silent fallback)
+        // If blocked with sound, fallback to muted
         el.muted = true;
         el.play().catch(() => {});
       });
     };
 
-    // Small delay to let modal animation settle
     const timer = setTimeout(tryPlay, 80);
     return () => clearTimeout(timer);
   }, []);
@@ -93,11 +90,8 @@ function ModalVideo({ c }) {
       <video
         ref={ref}
         src={c.cover_video}
-        // No poster in modal — avoids flash while video loads
         loop
-        muted
         playsInline
-        // preload="auto" tells browser to buffer as much as possible
         preload="auto"
         style={{
           width: '100%',
@@ -119,10 +113,13 @@ function ModalVideo({ c }) {
   }
   return null;
 }
-ModalVideo.propTypes = { c: PropTypes.object.isRequired };
+ModalVideo.propTypes = {
+  c: PropTypes.object.isRequired,
+  soundOn: PropTypes.bool,
+};
 
 /* ── Modal ── */
-function CaseModal({ c, lang, onClose, contactUrl }) {
+function CaseModal({ c, lang, onClose, contactUrl, soundOn }) {
   const labels = {
     task: lang === 'ua' ? 'Завдання' : 'Task',
     idea: lang === 'ua' ? 'Ідея' : 'Idea',
@@ -166,7 +163,7 @@ function CaseModal({ c, lang, onClose, contactUrl }) {
         <ModalLayout>
           {/* LEFT — video fills fixed container */}
           <ModalVideoWrap>
-            <ModalVideo c={c} />
+            <ModalVideo c={c} soundOn={soundOn} />
           </ModalVideoWrap>
 
           {/* RIGHT — scrollable text */}
@@ -242,7 +239,14 @@ CaseModal.propTypes = {
 };
 
 /* ── Main Cases component ── */
-export default function Cases({ cases, lang, contact }) {
+export default function Cases({
+  cases,
+  lang,
+  contact,
+  soundOn,
+  onModalOpen,
+  onModalClose,
+}) {
   const [active, setActive] = useState(null);
 
   const title =
@@ -268,7 +272,12 @@ export default function Cases({ cases, lang, contact }) {
           const tags = c[`tags_${lang}`] || c.tags_en || [];
           return (
             <Reveal key={c.id} delay={i * 0.1}>
-              <CaseCard onClick={() => setActive(c)}>
+              <CaseCard
+                onClick={() => {
+                  setActive(c);
+                  onModalOpen?.();
+                }}
+              >
                 <CardCover c={c} />
                 <CardOverlay>
                   <CardClient>{c.client}</CardClient>
@@ -294,7 +303,11 @@ export default function Cases({ cases, lang, contact }) {
           <CaseModal
             c={active}
             lang={lang}
-            onClose={() => setActive(null)}
+            soundOn={soundOn}
+            onClose={() => {
+              setActive(null);
+              onModalClose?.();
+            }}
             contactUrl={contact.instagram}
           />
         )}
