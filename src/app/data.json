@@ -448,9 +448,15 @@
           "ratio": "9:16"
         },
         {
+          "src": "/portfolio/video/jda.mp4",
+          "poster": "/portfolio/video/jda-poster.jpeg",
+          "caption": "Logo Animation",
+          "ratio": "16:9"
+        },
+        {
           "src": "/portfolio/video/she_remember.mp4",
           "poster": "/portfolio/video/she_remember-poster.png",
-          "caption": "Emotion Loop",
+          "caption": "Story",
           "ratio": "16:9"
         }
       ]
