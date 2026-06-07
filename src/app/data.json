@@ -490,8 +490,18 @@
       "Photopea",
       "CapCut"
     ],
-    "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
-    "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"]
+    "tags_ua": [
+      "Automotive",
+      "Rebranding",
+      "Editorial",
+      "Motion"
+    ],
+    "tags_en": [
+      "Automotive",
+      "Rebranding",
+      "Editorial",
+      "Motion"
+    ]
   },
   "serviceCategories": [
     {
@@ -767,22 +777,32 @@
     {
       "id": "nike",
       "client": "Nike",
-      "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
-      "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "tags_ua": [
+        "Sportswear",
+        "Campaign",
+        "Editorial",
+        "Motion"
+      ],
+      "tags_en": [
+        "Sportswear",
+        "Campaign",
+        "Editorial",
+        "Motion"
+      ],
       "cover_video": "/portfolio/cases/nike.mp4",
       "cover_poster": "/portfolio/cases/nike-poster.png",
       "cover_image": null,
       "title_ua": "Worlds in motion",
       "title_en": "Worlds in motion",
-      "subtitle_ua": "AI-кампанія для глобального ребрендингу",
-      "subtitle_en": "AI campaign for a global rebrand",
-      "intro_ua": "Worlds in motion — не просто слоган. Це режисерська установка.",
-      "intro_en": "Worlds in motion — not just a slogan. A directorial premise.",
-      "task_ua": "Nike оголосив радикальний ребрендинг — відмову від класичної спадщини на користь ультра-сучасної електричної ери. Нова айдентика «Copy Nothing» поставила під сумнів усе: форму, колір, мову. Завдання — створити серію campaign-зображень, що передають дух трансформації.",
-      "task_en": "Nike announced a radical rebrand — abandoning classic heritage in favour of an ultra-modern electric era. The 'Copy Nothing' identity challenged everything: form, colour, language. The task — campaign images that capture the spirit of transformation.",
-      "idea_ua": "Замість прямої демонстрації автомобіля — метафора вдиху: момент між видихом старого і вдихом нового. Колірна гама: глибокий чорний, електричний рожевий, платиновий білий. AI дозволив дослідити абстрактні форми, неможливі в реальному продакшні.",
-      "idea_en": "Instead of showing the car — a metaphor of breath: the moment between exhaling the old and inhaling the new. Palette: deep black, electric pink, platinum white. AI allowed exploring forms impossible in real production.",
-      "result_ua": "12 hero-зображень для digital. Серія motion-loop для Reels та TikTok. Час виробництва — 5 днів. Жодних реальних кросівок, але впізнаваність бренду — 100%.",
+      "subtitle_ua": "Концептуальна AI-кампанія для глобального спортивного бренду",
+      "subtitle_en": "Conceptual AI campaign for a global sportswear brand",
+      "intro_ua": "Worlds in motion — не просто слоган. Це фізичний стан: тіло в русі, матерія в напрузі, момент до стрибка.",
+      "intro_en": "Worlds in motion — not just a slogan. A physical state: body in motion, matter under tension, the moment before the leap.",
+      "task_ua": "Nike стоїть на перетині спорту, вулиці та культури — і кожна нова кампанія має звучати сильніше за попередню. Завдання — створити серію campaign-зображень, де кросівки стають не продуктом, а символом: руху, рішення, моменту, коли людина обирає діяти.",
+      "task_en": "Nike lives at the intersection of sport, street and culture — each campaign must land harder than the last. The task: a series of campaign images where the sneaker is not a product but a symbol — of motion, decision, the moment a person chooses to move.",
+      "idea_ua": "Замість класичного product shot — ідея напруги перед дією. Людське тіло і взуття у стані між спокоєм і вибухом. Колірна гама: графітовий, вугільний, спалах білого і кислотного — контраст між тінню і рухом. AI дозволив досліджувати форми на межі реального і абстрактного: розмиття швидкості, деформація матеріалу, кадр, який ніколи не зупиняється.",
+      "idea_en": "Instead of a classic product shot — the idea of tension before action. The human body and footwear suspended between stillness and explosion. Palette: graphite, charcoal, a flash of white and acid — contrast between shadow and motion. AI allowed exploring forms at the edge of real and abstract: speed blur, material deformation, a frame that never stops.",
+      "result_ua": "12 hero-зображень для digital. Серія motion-loop для Reels та TikTok. Час виробництва — 5 днів. Жодних реальних кросівок у кадрі, але впізнаваність бренду — 100%.",
       "result_en": "12 hero images for digital. Motion-loop series for Reels and TikTok. Production time — 5 days. No real sneakers in frame, yet 100% brand recognisability.",
       "images": [
         "/portfolio/cases/nike-1.png",
@@ -804,8 +824,18 @@
     {
       "id": "jaguar",
       "client": "Jaguar",
-      "tags_ua": ["Automotive", "Rebranding", "Editorial", "Motion"],
-      "tags_en": ["Automotive", "Rebranding", "Editorial", "Motion"],
+      "tags_ua": [
+        "Automotive",
+        "Rebranding",
+        "Editorial",
+        "Motion"
+      ],
+      "tags_en": [
+        "Automotive",
+        "Rebranding",
+        "Editorial",
+        "Motion"
+      ],
       "cover_video": "/portfolio/cases/jaguar.mp4",
       "cover_poster": "/portfolio/cases/jaguar-poster.png",
       "cover_image": null,
@@ -840,8 +870,18 @@
     {
       "id": "hermes-time",
       "client": "Hermès",
-      "tags_ua": ["Luxury", "Editorial", "Time", "Heritage"],
-      "tags_en": ["Luxury", "Editorial", "Time", "Heritage"],
+      "tags_ua": [
+        "Luxury",
+        "Editorial",
+        "Time",
+        "Heritage"
+      ],
+      "tags_en": [
+        "Luxury",
+        "Editorial",
+        "Time",
+        "Heritage"
+      ],
       "cover_video": "/portfolio/cases/hermes-heritage.mp4",
       "cover_poster": "/portfolio/cases/hermes-heritage-poster.png",
       "cover_image": null,
@@ -877,8 +917,18 @@
     {
       "id": "hermes-3578",
       "client": "Hermès",
-      "tags_ua": ["Luxury", "Concept", "Future", "Civilization"],
-      "tags_en": ["Luxury", "Concept", "Future", "Civilization"],
+      "tags_ua": [
+        "Luxury",
+        "Concept",
+        "Future",
+        "Civilization"
+      ],
+      "tags_en": [
+        "Luxury",
+        "Concept",
+        "Future",
+        "Civilization"
+      ],
       "cover_video": "/portfolio/cases/hermes-future.mp4",
       "cover_poster": "/portfolio/cases/hermes-future-poster.png",
       "cover_image": null,
@@ -917,5 +967,54 @@
         "CapCut"
       ]
     }
-  ]
+  ],
+  "sound": {
+    "soundcloud_url": "https://soundcloud.com/julia-golban",
+    "bio_ua": "I make songs when images are not enough.",
+    "bio_en": "I make songs when images are not enough.",
+    "vibe_ua": "Cinematic dark soul — українська етніка, неокласичне фортепіано, електроніка і вокал, що тримає до останньої ноти.",
+    "vibe_en": "Cinematic dark soul — Ukrainian ethnic layers, neoclassical piano, electronics and vocals that hold until the final note.",
+    "tracks": [
+      {
+        "id": "terakotovyi",
+        "title_ua": "Теракотовий стрибок",
+        "title_en": "Terracotta Leap",
+        "genre": "Electronic",
+        "duration": "3:32",
+        "src": "/audio/terakotovyi-strybок.mp3",
+        "cover": "/audio/covers/terakotovyi.jpg",
+        "soundcloud_url": "https://soundcloud.com/julia-golban"
+      },
+      {
+        "id": "kriz-dym",
+        "title_ua": "Крізь дим і сніг",
+        "title_en": "Through Smoke and Snow",
+        "genre": "Folk & Singer-Songwriter",
+        "duration": "3:57",
+        "src": "/audio/kriz-dym-i-snig.mp3",
+        "cover": "/audio/covers/kriz-dym.jpg",
+        "soundcloud_url": "https://soundcloud.com/julia-golban"
+      },
+      {
+        "id": "salt-in-the-air",
+        "title_ua": "Salt in the air",
+        "title_en": "Salt in the air",
+        "genre": "R&B & Soul",
+        "duration": "3:23",
+        "src": "/audio/salt-in-the-air.mp3",
+        "cover": "/audio/covers/salt-in-the-air.jpg",
+        "soundcloud_url": "https://soundcloud.com/julia-golban"
+      },
+      {
+        "id": "salt-air-pursuit",
+        "title_ua": "Salt-Air Pursuit",
+        "title_en": "Salt-Air Pursuit",
+        "genre": "R&B & Soul",
+        "duration": "4:42",
+        "src": "/audio/salt-air-pursuit.mp3",
+        "cover": "/audio/covers/salt-air-pursuit.jpg",
+        "soundcloud_url": "https://soundcloud.com/julia-golban"
+      }
+    ]
+  }
 }
