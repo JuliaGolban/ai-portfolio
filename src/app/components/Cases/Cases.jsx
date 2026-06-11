@@ -261,7 +261,7 @@ export default function Cases({
     <CasesSection id="cases">
       <CasesHeader>
         <Reveal>
-          <SectionLabel>Case Studies</SectionLabel>
+          <SectionLabel>Case</SectionLabel>
           <SectionTitle>{title}</SectionTitle>
           <SectionDesc>{desc}</SectionDesc>
         </Reveal>

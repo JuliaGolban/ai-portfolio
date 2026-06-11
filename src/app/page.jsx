@@ -27,6 +27,7 @@ import Cases from './components/Cases/Cases';
 import Brief from './components/Brief/Brief';
 import CampaignModal from './components/CampaignModal/CampaignModal';
 import Footer from './components/Footer/Footer';
+import Audio from './components/Audio/Audio';
 
 import { lsGet, lsSet } from '../lib/helpers';
 
@@ -208,6 +209,7 @@ export default function Page() {
     portfolio,
     cases,
     contact,
+    audio,
   } = portfolioData;
 
   const scrollTo = id =>
@@ -269,6 +271,11 @@ export default function Page() {
           onVideoPlay={onPortfolioVideoPlay}
           onVideoPause={onPortfolioVideoPause}
         />
+        <Divider />
+
+        <Audio audioData={audio} lang={lang} soundOn={soundOn} />
+
+        <Divider />
 
         <Cases
           cases={cases}

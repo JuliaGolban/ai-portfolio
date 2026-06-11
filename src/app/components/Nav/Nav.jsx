@@ -138,11 +138,13 @@ export default function Nav({
       ? [
           { label: 'Зображення', id: 'works' },
           { label: 'Відео', id: 'video-animations' },
+          { label: 'Музика', id: 'audio' },
           { label: 'Campaign', id: 'cases' },
         ]
       : [
           { label: 'Images', id: 'works' },
           { label: 'Video', id: 'video-animations' },
+          { label: 'Audio', id: 'audio' },
           { label: 'Campaign', id: 'cases' },
         ];
 
