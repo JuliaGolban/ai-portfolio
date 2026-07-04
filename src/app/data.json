@@ -412,6 +412,12 @@
           "ratio": "9:16"
         },
         {
+          "src": "/portfolio/video/UGC-serum.mp4",
+          "poster": "/portfolio/video/UGC-serum-poster.png",
+          "caption": "UGC · Product",
+          "ratio": "9:16"
+        },
+        {
           "src": "/portfolio/video/man-portrait.mp4",
           "poster": "/portfolio/video/man-portrait-poster.png",
           "caption": "Portrait · Effect",
