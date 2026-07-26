@@ -283,6 +283,21 @@ export default function Audio({ audioData, lang, soundOn }) {
           </SCLink>
         </Reveal>
       )}
+      {/* Spotify link */}
+      {audioData.spotify_url && (
+        <Reveal delay={0.15}>
+          <SCLink
+            href={audioData.spotify_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SCIcon />
+            {lang === 'ua'
+              ? 'Більше треків на Spotify →'
+              : 'More tracks on Spotify →'}
+          </SCLink>
+        </Reveal>
+      )}
     </AudioSection>
   );
 }
