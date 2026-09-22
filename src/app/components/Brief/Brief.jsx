@@ -113,8 +113,8 @@ export default function Brief({ lang, t, contact, briefQuestions }) {
     ];
 
     try {
-      const TG_BOT = process.env.NEXT_PUBLIC_TG_BOT_TOKEN;
-      const TG_CHAT = process.env.NEXT_PUBLIC_TG_CHAT_ID;
+      const TG_BOT = process.env.TG_BOT_TOKEN;
+      const TG_CHAT = process.env.TG_CHAT_ID;
       if (TG_BOT && TG_CHAT) {
         await fetch(`https://api.telegram.org/bot${TG_BOT}/sendMessage`, {
           method: 'POST',

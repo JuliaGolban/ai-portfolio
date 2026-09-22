@@ -93,8 +93,8 @@ async function withRetry(fn, retries = 3, delayMs = 3000) {
 }
 
 async function sendToTelegram(brief) {
-  const token = process.env.NEXT_PUBLIC_TG_BOT_TOKEN;
-  const adminId = process.env.NEXT_PUBLIC_TG_CHAT_ID;
+  const token = process.env.TG_BOT_TOKEN;
+  const adminId = process.env.TG_CHAT_ID;
   if (!token || !adminId) return;
 
   const text = [
@@ -134,9 +134,9 @@ async function sendToTelegram(brief) {
 }
 
 async function sendToEmail(brief) {
-  const svc = process.env.NEXT_PUBLIC_EMAILJS_SERVICE;
-  const tpl = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE;
-  const key = process.env.NEXT_PUBLIC_EMAILJS_KEY;
+  const svc = process.env.EMAILJS_SERVICE;
+  const tpl = process.env.EMAILJS_TEMPLATE;
+  const key = process.env.EMAILJS_KEY;
   if (!svc || !tpl || !key) return;
 
   await fetch('https://api.emailjs.com/api/v1.0/email/send', {
